@@ -110,7 +110,6 @@ class Eventos:
 					print("Errou de longe, vesgo!")
 
 
-			
 """Sw = Jogo()
 Sw.varia_comida()
 Sw.varia_distancia()"""
