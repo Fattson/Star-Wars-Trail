@@ -99,15 +99,8 @@ class Eventos:
 				else:
 					print("Fracassado! Nem consegue ir atrás de uma Ema.")
 
-			elif self.escolha == "Miar":
+			elif self.escolha == "Fugir":
 				print("Você é um boiola!")
-
-			elif self.escolha == "Tentar jogar pedra":
-				s_n == randint(1,2)
-				if s_n == 1:
-					print("Parábens, você acertou a Ema e ela morreu, ganhou 20 de comida!")
-				else:
-					print("Errou de longe, vesgo!")
 
 
 """Sw = Jogo()
