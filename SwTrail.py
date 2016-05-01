@@ -79,7 +79,7 @@ class Eventos:
 				print("Fracassado! Nem consegue ir atrás de uma Ema.")
 
 		elif self.escolha == "Miar":
-			print("Você é um boiola!")
+			print("Você é um miao!")
 
 		elif self.escolha == "Tentar jogar pedra":
 			s_n == randint(1,2)
@@ -100,7 +100,7 @@ class Eventos:
 					print("Fracassado! Nem consegue ir atrás de uma Ema.")
 
 			elif self.escolha == "Fugir":
-				print("Você é um boiola!")
+				print("Você é um miao!")
 
 
 """Sw = Jogo()
