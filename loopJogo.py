@@ -43,9 +43,20 @@ def dist_proximaCidade(CCrestante):
             break
     
     return d+1
+
+def status(jogador):# criar
     
-def cidade(jogador):
+def mercado(jogador):# criar
+    
+def conserto(jogador):# criar
+    
+def camp(jogador, prox):# criar
+    
+
+
+def cidade(jogador, prox):
     print("Vc esta numa cidade, oq deseja fazer?")
+    print("Rodadas p prox cidade (ou destino final): ", prox)
     x = -1
     while x != 0:
         x = int(input("0 - continuar viagem (0 horas) /n1 - mercado (3 horas) /n2 - SUS (2 horas) /n3 - hospotal particular (0 horas/20 reais) /n4 - conserto do carro (2 horas) /n5 - Status"))
@@ -71,7 +82,8 @@ game_over = False
 
 print("vc e 3 amigos tao no piaui e blablabla roubaram um carro blablabla vai")
 print("a viagem comeca na cidade que vcs estavam com a escola")
-cidade(meuJogador)
+proxCidade = dist_proximaCidade(CC)
+cidade(meuJogador, proxCidade)
 
 i = 0 #iterador de rodadas
 
@@ -88,6 +100,10 @@ while chegou == False and game_over == False:
     elif ev < 85:
         #acontece buraco
     
+    if meuJogador.temporestante <= 0:
+        game_over = True
+        break
+    
     meuJogador.varia_comida()
     meuJogador.varia_gas()
     meuJogador.varia_distancia()
@@ -95,10 +111,17 @@ while chegou == False and game_over == False:
     meuJogador.varia_health()
     meuJogador.varia_tempo()
     
+    if meuJogador.distancia <= 0:
+        chegou = True
+        break
+    elif meuJogador.temporestante <= 0:
+        game_over = True
+        break
+    
     if CC[i] == 1:
-        cidade(meuJogador) #continuar criando
+        cidade(meuJogador, proxCidade) #continuar criando
     else:
-        campo(meuJogador) # criar
+        camp(meuJogador, proxCidade) # criar
         
     if meuJogador.distancia <= 0:
         chegou = True
