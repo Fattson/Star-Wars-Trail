@@ -63,9 +63,9 @@ class Jogo:
 
 class Eventos:
 	def __init__(self):
-		prob = randint(1,2)
-		if prob == 1: 
-			self.ema()
+		#prob = randint(1,2)
+		#if prob == 1: 
+		#	self.ema()
 	def ema(self):
 		self.escolha = input("Voce foi atacado por uma Ema! O que deseja fazer? ")
 		print(self.escolha)
