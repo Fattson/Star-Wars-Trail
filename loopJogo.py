@@ -45,7 +45,8 @@ def dist_proximaCidade(CCrestante):
     return d+1
 
 def status(jogador):
-    
+    print()
+    print("===== STATUS =====")
     print("Comida: ", jogador.comida)
     print("Gasolina: ", jogador.gas)
     print("Pecas: ", jogador.pecas)
@@ -54,6 +55,7 @@ def status(jogador):
     print("Amigos vivos: ", jogador.numero_jogadores-1)
     print("Distancia faltante: ", jogador.distancia)
     print("Tempo restante: ", jogador.temporestante)
+    print("==================")
     
 def mercado(jogador):# criar
     
