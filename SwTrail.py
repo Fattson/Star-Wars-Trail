@@ -3,28 +3,30 @@
 from random import randint
 
 
-class Carro:
+"""class Carro:     # Victor, o que você acha de abolirmos a classe Carro, e deixarmos todas as variaveis em Jogo? Fiz isso por enquanto mas qq coisa mudamos de volta. GG
 
 	def __init__(self):
 		self.velocidade = 10
 	
 	def returnVelocidade(self):
-		return self.velocidade
+		return self.velocidade 
+"""
 
 class Jogo:
 	def __init__(self):
-		car = Carro()
+		"""car = Carro()"""
 		# Estoque não variáveis com a classe do jogador
 		self.comida = 100
 		self.gas = 10
-		self.pecas = 0
+		self.pecas = 1000
 		self.health = 100
 		self.reais = 0
 		self.temporestantante = 100    # Tempo restante
 		self.tempodeviagem = 2    # Tempo de viagem, não conta o tempo gasto em cidade ou camp, apenas na tela go
 		self.numero_jogadores = 3
 		self.distancia = 3000
-		self.velocidade = car.returnVelocidade()
+		self.velocidade = 10
+         self.durab = 1000 # durabilidade
 
 	def varia_gas(self):
 		if 0 < self.velocidade < 50:

@@ -47,9 +47,10 @@ def dist_proximaCidade(CCrestante):
 def status(jogador):
     print()
     print("===== STATUS =====")
-    print("Comida: ", jogador.comida)
     print("Gasolina: ", jogador.gas)
-    print("Pecas: ", jogador.pecas)
+    print("Pecas: ", jogador.pecas)    
+    print("Durabilidade: ", jogador.durab)
+    print("Comida: ", jogador.comida)
     print("Health: ", jogador.health)
     print("DinDin: ", jogador.reais)
     print("Amigos vivos: ", jogador.numero_jogadores-1)
@@ -59,8 +60,44 @@ def status(jogador):
     
 def mercado(jogador):# criar
     
-def conserto(jogador):# criar
-    
+def conserto(jogador):
+    print()
+    print("===== CONSERTO =====")
+    y = -1
+    while y != 0:
+        print()
+        print("Durabilidade atual: ", jogador.durab)
+        print("qtdade atual de pecas: ", jogador.pecas)
+        y = int(input("1 - Consertar 200 de durabilidade (custo depende da durabilidade: >600=200pecas >300=300pecas else 500 pecas) /n0 - Sair"))
+        if y == 1:
+            if jogador.durab = 1000
+                print("Carro ja saudavel")
+            else:
+                if jogador.durab > 600:
+                    if jogador.pecas >= 200:
+                        print("consertou 200 por 200 pecas")
+                        jogador.durab += 200
+                        jogador.pecas -= 200
+                    else:
+                        print("ta sem pecas suficientes, vai comprar")
+                elif jogador.durab > 300:
+                    if jogador.pecas >= 300:
+                        print("consertou 200 por 300 pecas")
+                        jogador.durab += 200
+                        jogador.pecas -= 300
+                    else:
+                        print("ta sem pecas suficientes, vai comprar")
+                else:
+                    if jogador.pecas >= 500:
+                        print("consertou 200 por 500 pecas")
+                        jogador.durab += 200
+                        jogador.pecas -= 500
+                    else:
+                        print("ta sem pecas suficientes, vai comprar")
+            
+            if jogador.durab > 1000: # nao deixa passar do max
+                jogador.durab = 1000
+
 def camp(jogador, prox):# criar
     
 
@@ -70,21 +107,24 @@ def cidade(jogador, prox):
     print("Rodadas p prox cidade (ou destino final): ", prox)
     x = -1
     while x != 0:
+        print()
         x = int(input("0 - continuar viagem (0 horas) /n1 - mercado (3 horas) /n2 - SUS (2 horas) /n3 - hospotal particular (0 horas/20 reais) /n4 - conserto do carro (2 horas) /n5 - Status"))
         if x == 1: # mercado
             mercado(jogador)
+            jogador.temporestante -= 3
         if x == 2: # sus
             print("foi ao sus, gastou 2 horas re recuperou 20 de vida")
             jogador.temporestante -= 2
             jogador.health += 20
-        if x == 3:
+        if x == 3: #hosp particular
             if jogador.reais >= 20:
                 print("foi ao hospital, gastou 20 reais e recuperou 20 health")
             else:
                 print("nao deu, vc ta sem grana")
-        if x == 4:
+        if x == 4: # conserto
             conserto(jogador)
-        if x == 5:
+            jogador.temporestante -= 2
+        if x == 5: # status
             status(jogador)
         
 
