@@ -103,6 +103,7 @@ def camp(jogador, prox):# criar
 
 
 def cidade(jogador, prox):
+    print("******CIDADE******")
     print("Vc esta numa cidade, oq deseja fazer?")
     print("Rodadas p prox cidade (ou destino final): ", prox)
     x = -1
