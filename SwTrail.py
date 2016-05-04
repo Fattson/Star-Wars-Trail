@@ -28,7 +28,7 @@ class Jogo:
 		self.durab = 1000 # durabilidade
 
 	def varia_durabilidade(self, tempo):
-		self.durab -= tempo
+		self.durab -= tempo*10
 
 	def varia_gas(self):
 		if 0 < self.velocidade < 50:

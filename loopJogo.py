@@ -169,7 +169,7 @@ while chegou == False and game_over == False:
     meuJogador.varia_comida()
     meuJogador.varia_gas()
     meuJogador.varia_distancia()
-    meuJogador.varia_durabilidade()
+    meuJogador.varia_durabilidade(meuJogador.tempodeviagem)
     meuJogador.varia_health()
     meuJogador.varia_tempo()
     
