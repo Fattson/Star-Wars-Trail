@@ -42,7 +42,7 @@ def dist_proximaCidade(CCrestante):
         if CCrestante[d] == 1:
             break
     
-    return d+1
+    return (d+1)
 
 def status(jogador):
     print()
@@ -60,9 +60,51 @@ def status(jogador):
 
 
    
-def mercado(jogador):# criar
+def mercado(jog):# criar
     print()
     print("===== MERCADO =====")
+    z = -1
+    while z != 0:
+        print()
+        print("Grana atual: ", jog.reais)
+        print("Comida atual: ", jog.comida)
+        print("0 - Sair \n1 - Comprar 10 comidas (10 reais) \n2 - Vender 10 comidas (10 reais) \n3 - Comprar 100 pecas (10 reais)\n4 - Comprar 100 gasosa (10 reais) \n5 - Queimar dinheiro")
+        z = int(input("==>"))
+        if z == 1:
+            if jog.reais >= 10:
+                jog.reais-=10
+                jog.comida+=10
+                print("Comida agora: ", jog.comida)
+            else:
+                print("Ta sem grana porra")
+        if z == 2:
+            if jog.comida >= 10:
+                jog.comida-=10
+                jog.reais+=10
+                print("Comida agora: ", jog.comida)
+            else:
+                print("Ta sem comida porra, ta tentando enganar alguem?")
+        if z == 3:
+            if jog.reais >= 10:
+                jog.reais-=10
+                jog.pecas+=100
+                print("Pecas agora: ", jog.pecas)
+            else:
+                print("Ta sem grana porra")
+        if z == 4:
+            if jog.reais >= 10:
+                jog.reais-=10
+                jog.gas+=100
+                print("Gasosa agora: ", jog.gas)
+            else:
+                print("Ta sem grana porra")
+        if z == 5:
+            if jog.reais > 0:
+                print("Is not about the money, is about sending the message.")
+                jog.reais=0
+            else:
+                print("vc nem tem dinheiro p queimar")
+                
     
     
 def conserto(jogador):
@@ -115,7 +157,7 @@ def cidade(jogador, prox):
     while x != 0:
         print()
         print("0 - continuar viagem (0 horas) \n1 - mercado (3 horas) \n2 - SUS (2 horas) \n3 - hospotal particular (0 horas/20 reais) \n4 - conserto do carro (2 horas) \n5 - Status")
-        x = int(input())
+        x = int(input("==>"))
         if x == 1: # mercado
             mercado(jogador)
             jogador.temporestante -= 3
@@ -141,6 +183,7 @@ game_over = False
 
 print("vc e 3 amigos tao no piaui e blablabla roubaram um carro blablabla vai")
 print("a viagem comeca na cidade que vcs estavam com a escola")
+print()
 proxCidade = dist_proximaCidade(CC)
 cidade(meuJogador, proxCidade)
 
