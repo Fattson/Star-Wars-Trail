@@ -20,5 +20,7 @@ gameExit = False
 
 while not gameExit :
     for event in pygame.event.get():
-        print(event)
+        #print(event)
+        if event.type == pygame.QUIT:
+            gameExit = True
 pygame.quit()
