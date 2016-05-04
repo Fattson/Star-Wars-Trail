@@ -59,7 +59,7 @@ def status(jogador):
     print("==================")
     
 def mercado(jogador):# criar
-    
+    return "Qualquer merda"
 def conserto(jogador):
     print()
     print("===== CONSERTO =====")
@@ -70,7 +70,7 @@ def conserto(jogador):
         print("qtdade atual de pecas: ", jogador.pecas)
         y = int(input("1 - Consertar 200 de durabilidade (custo depende da durabilidade: >600=200pecas >300=300pecas else 500 pecas) /n0 - Sair"))
         if y == 1:
-            if jogador.durab = 1000
+            if jogador.durab == 1000:
                 print("Carro ja saudavel")
             else:
                 if jogador.durab > 600:
@@ -99,7 +99,7 @@ def conserto(jogador):
                 jogador.durab = 1000
 
 def camp(jogador, prox):# criar
-    
+    return "Qualquermerda"
 
 
 def cidade(jogador, prox):
@@ -147,10 +147,13 @@ while chegou == False and game_over == False:
     
     if ev < 50:
         #acontece ema
+        
     elif ev < 75:
         #acontece lobo guara
+        
     elif ev < 85:
         #acontece buraco
+        
     
     if meuJogador.temporestante <= 0:
         game_over = True
