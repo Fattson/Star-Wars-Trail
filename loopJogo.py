@@ -120,7 +120,7 @@ def cidade(jogador, prox):
             mercado(jogador)
             jogador.temporestante -= 3
         if x == 2: # sus
-            print("foi ao sus, gastou 2 horas re recuperou 20 de vida")
+            print("foi ao sus, gastou 2 horas e recuperou 20 de vida")
             jogador.temporestante -= 2
             jogador.health += 20
         if x == 3: #hosp particular
