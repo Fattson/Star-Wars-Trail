@@ -204,14 +204,26 @@ def cidade(jogador, prox):
             mercado(jogador)
             jogador.temporestante -= 3
         if x == 2: # sus
-            print("foi ao sus, gastou 2 horas e recuperou 20 de vida")
-            jogador.temporestante -= 2
-            jogador.health += 20
-        if x == 3: #hosp particular
-            if jogador.reais >= 20:
-                print("foi ao hospital, gastou 20 reais e recuperou 20 health")
+            if jogador.health == 100:
+                print("mano, ja ta no maximo, nao causa")
             else:
-                print("nao deu, vc ta sem grana")
+                print("foi ao sus, gastou 2 horas e recuperou 20 de vida")
+                jogador.temporestante -= 2
+                jogador.health += 20
+            if jogador.health > 100:
+                jogador.health = 100
+        if x == 3: #hosp particular
+            if jogador.health == 100:
+                print("mano, ja ta no maximo, nao causa")
+            else:
+                if jogador.reais >= 20:
+                    print("foi ao hospital, gastou 20 reais e recuperou 20 health")
+                    jogador.reais -= 20
+                    jogador.health += 20
+                else:
+                    print("nao deu, vc ta sem grana")
+            if jogador.health > 100:
+                jogador.health = 100
         if x == 4: # conserto
             conserto(jogador)
             jogador.temporestante -= 2
