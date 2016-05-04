@@ -60,7 +60,7 @@ class Jogo:
 		besteira = besteira
 
 	def varia_tempo(self):
-		self.temporestantante -= self.tempodeviagem
+		self.temporestante -= self.tempodeviagem
 		# E tambem na cidade e pá
 
 class Eventos:
