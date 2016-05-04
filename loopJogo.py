@@ -38,7 +38,7 @@ for i in range(ci+ca):
         ca -= 1
         
 def dist_proximaCidade(CCrestante):
-    for d in len(CCrestante):
+    for d in range(len(CCrestante)):
         if CCrestante[d] == 1:
             break
     
@@ -57,9 +57,14 @@ def status(jogador):
     print("Distancia faltante: ", jogador.distancia)
     print("Tempo restante: ", jogador.temporestante)
     print("==================")
-    
+
+
+   
 def mercado(jogador):# criar
-    return "Qualquer merda"
+    print()
+    print("===== MERCADO =====")
+    
+    
 def conserto(jogador):
     print()
     print("===== CONSERTO =====")
@@ -68,7 +73,7 @@ def conserto(jogador):
         print()
         print("Durabilidade atual: ", jogador.durab)
         print("qtdade atual de pecas: ", jogador.pecas)
-        y = int(input("1 - Consertar 200 de durabilidade (custo depende da durabilidade: >600=200pecas >300=300pecas else 500 pecas) /n0 - Sair"))
+        y = int(input("1 - Consertar 200 de durabilidade (custo depende da durabilidade: >600=200pecas >300=300pecas else 500 pecas) \n0 - Sair\n"))
         if y == 1:
             if jogador.durab == 1000:
                 print("Carro ja saudavel")
@@ -99,7 +104,7 @@ def conserto(jogador):
                 jogador.durab = 1000
 
 def camp(jogador, prox):# criar
-    return "Qualquermerda"
+    print("Voce esta no acampamento.")
 
 
 def cidade(jogador, prox):
@@ -109,7 +114,8 @@ def cidade(jogador, prox):
     x = -1
     while x != 0:
         print()
-        x = int(input("0 - continuar viagem (0 horas) /n1 - mercado (3 horas) /n2 - SUS (2 horas) /n3 - hospotal particular (0 horas/20 reais) /n4 - conserto do carro (2 horas) /n5 - Status"))
+        print("0 - continuar viagem (0 horas) \n1 - mercado (3 horas) \n2 - SUS (2 horas) \n3 - hospotal particular (0 horas/20 reais) \n4 - conserto do carro (2 horas) \n5 - Status")
+        x = int(input())
         if x == 1: # mercado
             mercado(jogador)
             jogador.temporestante -= 3
@@ -129,6 +135,7 @@ def cidade(jogador, prox):
             status(jogador)
         
 
+
 chegou = False
 game_over = False
 
@@ -147,13 +154,13 @@ while chegou == False and game_over == False:
     
     if ev < 50:
         #acontece ema
-        
+        pass
     elif ev < 75:
         #acontece lobo guara
-        
+        pass
     elif ev < 85:
         #acontece buraco
-        
+        pass
     
     if meuJogador.temporestante <= 0:
         game_over = True
@@ -185,4 +192,6 @@ while chegou == False and game_over == False:
     
     i += 1
     
+
+
 
