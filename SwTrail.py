@@ -1,7 +1,7 @@
 # Star Wars Trail
 
 from random import randint
-import loopJogo
+#import loopJogo
 
 """class Carro:     # Victor, o que você acha de abolirmos a classe Carro, e deixarmos todas as variaveis em Jogo? Fiz isso por enquanto mas qq coisa mudamos de volta. GG
 
@@ -20,7 +20,7 @@ class Jogo:
 		self.pecas = 1000
 		self.health = 100
 		self.reais = 0
-		self.temporestantante = 100    # Tempo restante
+		self.temporestante = 100    # Tempo restante
 		self.tempodeviagem = 2    # Tempo de viagem, não conta o tempo gasto em cidade ou camp, apenas na tela go
 		self.numero_jogadores = 3
 		self.distancia = 3000
@@ -39,11 +39,9 @@ class Jogo:
 	def varia_comida(self):
 		tx = 1
 		self.comida -= self.numero_jogadores*tx
-		print(self.comida)
 
 	def varia_distancia(self):
 		self.distancia -= self.velocidade*self.tempodeviagem
-		print(self.distancia)
 
 	def varia_pecas(self):
 		# Varia conforme há o conserto do carro
