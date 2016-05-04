@@ -146,7 +146,49 @@ def conserto(jogador):
                 jogador.durab = 1000
 
 def camp(jogador, prox):# criar
-    print("Voce esta no acampamento.")
+    print("****** CAMP ******")
+    print("Voce esta no acampamento, oq deseja fazer?")
+    print("Rodadas p prox cidade (ou destino final): ", prox)
+    x = -1
+    while x != 0:
+        print()
+        print("0 - continuar viagem (0 horas) \n1 - Caçar \n2 - Conserto do carro(2 horas) \n3 - Status")
+        x = int(input())
+        if x == 1:
+            print()
+            print("O que deseja caçar? :")
+            print("1 - Hiena : 1 hora de duração e gnaho de 5 de comida")
+            print("2 - Ema : 2 horas de duração e ganho de 10 de comida")
+            print("3 - Lobo guará: 3 horas de duração e ganho de 20 de comida")
+            y = int(input())
+            
+            if y == 1:
+                jogador.temporestante -= 1
+                jogador.comida += 5
+                print("Animal caçado, ganhou 5 de comida")
+            elif y == 2:
+                jogador.temporestante -= 2
+                jogador.comida += 10
+                print("Animal caçado, ganhou 10 de comida")
+            elif y == 3:
+                jogador.temporestante -= 3
+                jogador.comida += 20
+                print("Animal caçado, ganhou 20 de comida")
+            aleat = rd.randint(1,100)
+            if aleat > 80:
+                dano = int((100 - aleat) /2)
+                if dano != 0:
+                    print("Infelizmente você perdeu {0} de vida caçando. ".format(dano))
+                    jogador.health -= dano
+                if dano == 0:
+                    dano = 1
+                    print("Infelizmente você perdeu {0} de vida caçando. ".format(dano))
+                    jogador.health -= dano
+        if x == 2:
+            conserto(jogador)
+            jogador.temporestante -= 2
+        if x == 3:
+            status(jogador)
 
 
 def cidade(jogador, prox):
