@@ -16,10 +16,10 @@ class Jogo:
 	def __init__(self):
 		# Estoque não variáveis com a classe do jogador
 		self.comida = 100
-		self.gas = 10
+		self.gas = 100
 		self.pecas = 1000
 		self.health = 100
-		self.reais = 0
+		self.reais = 1000
 		self.temporestante = 100    # Tempo restante
 		self.tempodeviagem = 2    # Tempo de viagem, não conta o tempo gasto em cidade ou camp, apenas na tela go
 		self.numero_jogadores = 3
