@@ -81,7 +81,6 @@ def mercado(jog):# criar
             if jog.comida >= 10:
                 jog.comida-=10
                 jog.reais+=10
-                print("Comida agora: ", jog.comida)
             else:
                 print("Ta sem comida porra, ta tentando enganar alguem?")
         if z == 3:
@@ -145,19 +144,20 @@ def conserto(jogador):
             if jogador.durab > 1000: # nao deixa passar do max
                 jogador.durab = 1000
 
-def camp(jogador, prox):# criar
+def camp(jogador, prox):
+    print()
     print("****** CAMP ******")
     print("Voce esta no acampamento, oq deseja fazer?")
     print("Rodadas p prox cidade (ou destino final): ", prox)
     x = -1
     while x != 0:
         print()
-        print("0 - continuar viagem (0 horas) \n1 - Caçar \n2 - Conserto do carro(2 horas) \n3 - Status")
-        x = int(input())
+        print("0 - continuar viagem (0 horas) \n1 - Caçar (1-3 horas) \n2 - Conserto do carro(2 horas) \n3 - Status")
+        x = int(input("==>"))
         if x == 1:
             print()
             print("O que deseja caçar? :")
-            print("1 - Hiena : 1 hora de duração e gnaho de 5 de comida")
+            print("1 - Hiena : 1 hora de duração e ganho de 5 de comida")
             print("2 - Ema : 2 horas de duração e ganho de 10 de comida")
             print("3 - Lobo guará: 3 horas de duração e ganho de 20 de comida")
             y = int(input())
@@ -192,6 +192,7 @@ def camp(jogador, prox):# criar
 
 
 def cidade(jogador, prox):
+    print()
     print("******CIDADE******")
     print("Vc esta numa cidade, oq deseja fazer?")
     print("Rodadas p prox cidade (ou destino final): ", prox)
@@ -229,7 +230,10 @@ def cidade(jogador, prox):
             jogador.temporestante -= 2
         if x == 5: # status
             status(jogador)
-        
+    
+for i in range(10):   
+    sw.ema(meuJogador)
+    status(meuJogador)
 
 
 chegou = False
@@ -238,28 +242,29 @@ game_over = False
 print("vc e 3 amigos tao no piaui e blablabla roubaram um carro blablabla vai")
 print("a viagem comeca na cidade que vcs estavam com a escola")
 print()
-proxCidade = dist_proximaCidade(CC)
+#proxCidade = dist_proximaCidade(CC)
+proxCidade = -1 # por enquanto
 cidade(meuJogador, proxCidade)
 
-i = 0 #iterador de rodadas
+i = 1 #iterador de rodadas
 
 while chegou == False and game_over == False:
     
     ev = rd.randint(1,100)
     
-    proxCidade = dist_proximaCidade(CC[i:])
+    #proxCidade = dist_proximaCidade(CC[i:])
     
     if ev < 50:
-        #acontece ema
-        pass
+       sw.ema(meuJogador)
+        
+        
     elif ev < 75:
-        #acontece lobo guara
-        pass
+        sw.lobo_guara(meuJogador)
+        
     elif ev < 85:
-        #acontece buraco
-        pass
-    
-    if meuJogador.temporestante <= 0:
+        sw.buraco(meuJogador)
+        
+    if meuJogador.temporestante <= 0 or meuJogador.health <= 0:
         game_over = True
         break
     
@@ -273,7 +278,7 @@ while chegou == False and game_over == False:
     if meuJogador.distancia <= 0:
         chegou = True
         break
-    elif meuJogador.temporestante <= 0:
+    elif meuJogador.temporestante <= 0 or meuJogador.health <= 0:
         game_over = True
         break
     
@@ -284,11 +289,18 @@ while chegou == False and game_over == False:
         
     if meuJogador.distancia <= 0:
         chegou = True
-    elif meuJogador.temporestante <= 0:
+    elif meuJogador.temporestante <= 0 or meuJogador.health <= 0:
         game_over = True
     
     i += 1
     
 
+if chegou == True:
+    print()
+    print("{{{{{{{ CHEGOOU }}}}}}}")
+    print("tan tan tan, tan tantantan, tan tantantan")
+    print("tan tan tan, tan tantantan, tan tantantan")
+    print("taaaaan tan tan tanananam tan tan tanananam")
 
-
+if game_over == True:
+    print("Boa cara, falhou. Vai preso pelo carro roubado e nem deu pra ver Star Wars.")
