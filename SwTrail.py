@@ -16,15 +16,15 @@ class Jogo:
 	def __init__(self):
 		# Estoque não variáveis com a classe do jogador
 		self.comida = 100
-		self.gas = 100
+		self.gas = 1000
 		self.pecas = 1000
 		self.health = 100
 		self.reais = 1000
 		self.temporestante = 100    # Tempo restante
-		self.tempodeviagem = 2    # Tempo de viagem, não conta o tempo gasto em cidade ou camp, apenas na tela go
+		self.tempodeviagem = 3    # Tempo de viagem, não conta o tempo gasto em cidade ou camp, apenas na tela go
 		self.numero_jogadores = 3
 		self.distancia = 3000
-		self.velocidade = 50
+		self.velocidade = 100
 		self.durab = 1000 # durabilidade
 
 	def varia_durabilidade(self, tempo):
@@ -37,7 +37,7 @@ class Jogo:
 			self.gas -= (self.velocidade*self.tempodeviagem) / 10
 
 	def varia_comida(self):
-		tx = 1
+		tx = 2
 		self.comida -= self.numero_jogadores*tx
 
 	def varia_distancia(self):
@@ -63,71 +63,83 @@ class Jogo:
 		self.temporestante -= self.tempodeviagem
 		# E tambem na cidade e pá
 
-class Eventos:
+#class Eventos:
 	"""def __init__(self):
 		prob = randint(1,2)
 		if prob == 1: 
 			self.ema()"""
-	def ema(self):
-		animais = ["ema, hiena, alpaca"]
-		i = randint(0,2)
-		self.escolha = input("Voce foi atacado por uma {0}! O que deseja fazer? ".format(animais[i]))
-		if self.escolha == "Perseguir":
-			s_n = randint(1,2)
-			print(s_n)
-			if s_n == 1:
-				print("Parabéns, você conseguiu pegar a {0} e recuperar 10 de comida! Apesar de ter demorado ".format(animais[i]))
-				self.comida += 10
-			else:
-				print("Fracassado! Nem consegue ir atrás de uma {0}. ".format(animais[i]))
+def ema(jogador):
+    animais = ["ema", "hiena", "alpaca"]
+    i = randint(0,2)
+    print()
+    print("Uma {0} roubou 10 das suas comidas, e saiu correndo! O que deseja fazer? ".format(animais[i]))
+    print("1 - Perseguir e recuperar (gasta tempo, aproximadamente 3 horas)")
+    print("2 - Miar e ir embora (perde a comida)")
+    print("3 - Tentar jogar uma pedra nela (osso, mas instantaneo e mata o bixo, dando mais comida)")
+    escolha = int(input("==>")) 
+    
+    if escolha == 1:
+        jogador.temporestante -= 3
+        s_n = randint(0,100)
+        if s_n < 75:
+            print("Parabéns, você conseguiu pegar a {0} e recuperar 10 de comida! Apesar de ter demorado 3 horas".format(animais[i]))
+            
+        else:
+            print("Fracassado! Nem consegue ir atrás de uma {0}. Ainda levou 3 horas --' ".format(animais[i]))
+            jogador.comida -= 10            
+            
+    elif escolha == 2:
+            print("Você é um miao!")
+            jogador.comida -= 10
 
-		elif self.escolha == "Miar":
-			print("Você é um miao!")
+    elif escolha == 3:
+        s_n = randint(0,100)
+        if s_n < 15:
+            print("Parábens, você acertou a {0} e ela morreu, ganhou 20 de comida!".format(animais[i]))
+            jogador.comida += 10
+        else:
+            print("Errou feio, errou rude!")
+            jogador.comida -= 10
 
-		elif self.escolha == "Tentar jogar pedra":
-			s_n == randint(1,2)
-			if s_n == 1:
-				print("Parábens, você acertou a {0} e ela morreu, ganhou 20 de comida!".format(animais[i]))
-				self.comida += 20
-			else:
-				print("Errou de longe, vesgo!")
+def lobo_guara(jogador):
+	animais = ["lobo guara", "urso", "esquilo"]
+	i = randint(0,2)
+	escolha = input("Voce foi atacado por um {0}! O que deseja fazer? \n === Escolhas === \n Se esconder \n Fugir ".format(animais[i]))
 
-	def lobo_guara(self):
-		animais = ["lobo guara", "urso", "esquilo"]
-		i = randint(0,2)
-		self.escolha = input("Voce foi atacado por um {0}! O que deseja fazer? \n === Escolhas === \n Se esconder \n Fugir ".format(animais[i]))
+	if escolha == "Se esconder":
+		s_n = randint(1,2)
+		if s_n == 1:
+			print("Parabéns, você conseguiu pegar o {0} e recuperar 10 de comida! Apesar de ter demorado ".format(animais[i]))
+			jogador.comida += 10
 
-		if self.escolha == "Se esconder":
-			s_n = randint(1,2)
-			if s_n == 1:
-				print("Parabéns, você conseguiu pegar o {0} e recuperar 10 de comida! Apesar de ter demorado ".format(animais[i]))
-				self.comida += 10
+		else:
+			print("Fracassado! Nem consegue ir atrás de um {0}. ".format(animais[i]))
 
-			else:
-				print("Fracassado! Nem consegue ir atrás de um {0}. ".format(animais[i]))
-
-		elif self.escolha == "Fugir":
-			print("Você é um miao!")
-
-	def lampiao(self):
-		self.escolha = input("Caralho, Lampião acabou de te desafiar para um fight, aceita? Se aceitar e perder, morreu! 'Sim/Não' ")
-		if self.escolha == "Sim":
-			s_n = randint(1,2)
-			if s_n == 1:
-				print("Palmas, tu é foda! matou o lampião, e com isso conseguiu 100 reais.")
-				self.reais += 100
-			else:
-				print("Haha, Se fodeu!")
-				self.health = 0
-		elif self.escolha == "Não":
-			s_n = randint(1,4)
-			if s_n == 4:	
-				print("Bom, tentou fugir mas morreu")
-			else:
-				print("Conseguiu fugir")
+	elif escolha == "Fugir":
+		print("Você é um miao!")
+ 	
+def lampiao(jogador):
+    escolha = input("Caralho, Lampião acabou de te desafiar para um fight, aceita? Se aceitar e perder, morreu! 'Sim/Não' ")
+    if escolha == "Sim":
+        s_n = randint(1,2)
+        if s_n == 1:
+            print("Palmas, tu é foda! matou o lampião, e com isso conseguiu 100 reais.")
+            jogador.reais += 100
+        else:
+            print("Haha, Se fodeu!")
+            jogador.health = 0
+    elif escolha == "Não":
+        s_n = randint(1,4)
+        if s_n == 4:	
+            print("Bom, tentou fugir mas morreu")
+        else:
+            print("Conseguiu fugir")
+            
+def buraco(jogador):
+    print("Faz acontecer o buraco aqui, guilherme")
 
 """Sw = Jogo()
 Sw.varia_comida()
 Sw.varia_distancia()"""
-Eventos()
+#Eventos()
 
