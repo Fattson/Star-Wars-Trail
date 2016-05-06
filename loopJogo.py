@@ -37,12 +37,19 @@ for i in range(ci+ca):
         CC.append(2)      
         ca -= 1
         
-def dist_proximaCidade(CCrestante):
-    for d in range(len(CCrestante)):
-        if CCrestante[d] == 1:
-            break
+def dist_proximaCidade(CCrest):
     
-    return (d+1)
+    d = -1     
+    
+    for j in range(1,len(CCrest)):
+        if CCrest[j] == 1:
+            d = j
+            break
+    if len(CCrest) == 2 and CCrest[1] == 2:
+        d = 2
+    if len(CCrest) == 1:
+        d = 1   
+    return (d)
 
 def status(jogador):
     print()
@@ -148,7 +155,7 @@ def camp(jogador, prox):
     print()
     print("****** CAMP ******")
     print("Voce esta no acampamento, oq deseja fazer?")
-    print("Rodadas p prox cidade (ou destino final): ", prox)
+    print("Rodadas p prox cidade: ", prox)
     x = -1
     while x != 0:
         print()
@@ -195,7 +202,7 @@ def cidade(jogador, prox):
     print()
     print("******CIDADE******")
     print("Vc esta numa cidade, oq deseja fazer?")
-    print("Rodadas p prox cidade (ou destino final): ", prox)
+    print("Rodadas p prox cidade: ", prox)
     x = -1
     while x != 0:
         print()
@@ -239,8 +246,8 @@ game_over = False
 print("vc e 3 amigos tao no piaui e blablabla roubaram um carro blablabla vai")
 print("a viagem comeca na cidade que vcs estavam com a escola")
 print()
-#proxCidade = dist_proximaCidade(CC)
-proxCidade = -1 # por enquanto
+
+proxCidade = dist_proximaCidade(CC)
 cidade(meuJogador, proxCidade)
 
 i = 1 #iterador de rodadas
@@ -249,7 +256,7 @@ while chegou == False and game_over == False:
     
     ev = rd.randint(1,100)
     
-    #proxCidade = dist_proximaCidade(CC[i:])
+    proxCidade = dist_proximaCidade(CC[i:])
     
     if ev < 50:
        sw.ema(meuJogador)
