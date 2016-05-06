@@ -37,12 +37,19 @@ for i in range(ci+ca):
         CC.append(2)      
         ca -= 1
         
-def dist_proximaCidade(CCrestante):
-    for d in range(len(CCrestante)):
-        if CCrestante[d] == 1:
-            break
+def dist_proximaCidade(CCrest):
     
-    return (d+1)
+    d = -1     
+    
+    for j in range(1,len(CCrest)):
+        if CCrest[j] == 1:
+            d = j
+            break
+    if len(CCrest) == 2 and CCrest[1] == 2:
+        d = 2
+    if len(CCrest) == 1:
+        d = 1   
+    return (d)
 
 def status(jogador):
     print()
@@ -148,7 +155,7 @@ def camp(jogador, prox):
     print()
     print("****** CAMP ******")
     print("Voce esta no acampamento, oq deseja fazer?")
-    print("Rodadas p prox cidade (ou destino final): ", prox)
+    print("Rodadas p prox cidade: ", prox)
     x = -1
     while x != 0:
         print()
@@ -195,7 +202,7 @@ def cidade(jogador, prox):
     print()
     print("******CIDADE******")
     print("Vc esta numa cidade, oq deseja fazer?")
-    print("Rodadas p prox cidade (ou destino final): ", prox)
+    print("Rodadas p prox cidade: ", prox)
     x = -1
     while x != 0:
         print()
@@ -231,28 +238,25 @@ def cidade(jogador, prox):
         if x == 5: # status
             status(jogador)
     
-for i in range(10):   
-    sw.ema(meuJogador)
-    status(meuJogador)
-
 
 chegou = False
 game_over = False
 
+
 print("vc e 3 amigos tao no piaui e blablabla roubaram um carro blablabla vai")
 print("a viagem comeca na cidade que vcs estavam com a escola")
 print()
-#proxCidade = dist_proximaCidade(CC)
-proxCidade = -1 # por enquanto
+
+proxCidade = dist_proximaCidade(CC)
 cidade(meuJogador, proxCidade)
 
 i = 1 #iterador de rodadas
 
-while chegou == False and game_over == False:
+while chegou == False and game_over == False: 
     
     ev = rd.randint(1,100)
     
-    #proxCidade = dist_proximaCidade(CC[i:])
+    proxCidade = dist_proximaCidade(CC[i:])
     
     if ev < 50:
        sw.ema(meuJogador)
@@ -268,11 +272,27 @@ while chegou == False and game_over == False:
         game_over = True
         break
     
+    if meuJogador.durab == 0:
+        print()
+        print("O CARRO QUEBROOOOOU")
+        print("Conserte na raça.")
+        conserto(meuJogador)
+        if meuJogador.durab == 0:
+            game_over = True
+            break
+    
     meuJogador.varia_comida()
+    
     meuJogador.varia_gas()
+
     meuJogador.varia_distancia()
+
     meuJogador.varia_durabilidade(meuJogador.tempodeviagem)
+    if meuJogador.durab < 0:
+        meuJogador.durab = 0
+
     meuJogador.varia_health()
+
     meuJogador.varia_tempo()
     
     if meuJogador.distancia <= 0:
@@ -281,6 +301,15 @@ while chegou == False and game_over == False:
     elif meuJogador.temporestante <= 0 or meuJogador.health <= 0:
         game_over = True
         break
+    
+    if meuJogador.durab == 0:
+        print()
+        print("O CARRO QUEBROOOOOU")
+        print("Conserte na raça.")
+        conserto(meuJogador)
+        if meuJogador.durab == 0:
+            game_over = True
+            break
     
     if CC[i] == 1:
         cidade(meuJogador, proxCidade) #continuar criando
@@ -303,4 +332,6 @@ if chegou == True:
     print("taaaaan tan tan tanananam tan tan tanananam")
 
 if game_over == True:
+    print()    
     print("Boa cara, falhou. Vai preso pelo carro roubado e nem deu pra ver Star Wars.")
+    status(meuJogador)
