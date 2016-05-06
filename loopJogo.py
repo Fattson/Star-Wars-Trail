@@ -282,6 +282,9 @@ while chegou == False and game_over == False:
             break
     
     meuJogador.varia_comida()
+    if meuJogador.comida < 0:
+        meuJogador.comida = 0
+    
     
     meuJogador.varia_gas()
 
@@ -292,6 +295,7 @@ while chegou == False and game_over == False:
         meuJogador.durab = 0
 
     meuJogador.varia_health()
+            
 
     meuJogador.varia_tempo()
     
