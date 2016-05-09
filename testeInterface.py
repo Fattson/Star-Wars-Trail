@@ -265,6 +265,11 @@ while game_over==False and chegou==False: #loop do jogo
             exit()
 
     
+    
+    
+    
+    
+    
     if key.get_pressed()[K_e] or key.get_pressed()[K_0] or key.get_pressed()[K_KP0]:
         limpaTela()
     
