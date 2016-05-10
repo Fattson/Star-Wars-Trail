@@ -316,9 +316,9 @@ while chegou == False and game_over == False:
             break
     
     if CC[i] == 1:
-        cidade(meuJogador, proxCidade) #continuar criando
+        cidade(meuJogador, proxCidade) 
     else:
-        camp(meuJogador, proxCidade) # criar
+        camp(meuJogador, proxCidade) 
         
     if meuJogador.distancia <= 0:
         chegou = True
