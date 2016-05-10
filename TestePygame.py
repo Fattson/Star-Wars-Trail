@@ -8,15 +8,13 @@ screen = pygame.display.set_mode((956,560), 0, 32) # Definir tela e suas dimens�
 
 pygame.display.set_caption("Testando, 1.. 2.. 3..") # Título da Sceen
 
-#sur = pygame.Surface((30,30), flags=0, depth=)
-#circulo = pygame.draw.circle(screen, (0,0), (100,100), 5, width=0)
 
 imagem = pygame.image.load("oi.png").convert() # Carregar a imagem, .convert_alpha() serve para a imagem ficar em cima do Plano de Fundo
 bg = pygame.image.load("bg.png").convert()
 bg2 = pygame.image.load("bg.png").convert()  # Carregar a imagem, .convert() serve para a imagem ser o Plano de Fundo
 xis = pygame.image.load("Xis.jpg").convert()
 barra = pygame.image.load("barra_500x50.png").convert()
-clock = pygame.time.Clock() # Tempo
+clock = pygame.time.Clock()# Tempo
 image_position = [-500,0] # Colocar fora do while --'
 circle_position = [100,100]
 largura = 0
@@ -31,7 +29,9 @@ while True: # Tem que ter haha
 
 	speed = {'x': 2.5, 'y': 0} # Dicionário com as velocidades, não precisa ser dicionário, pode ser variávies. Mas é mais fácil
 	Cspeed= {'x': 0, 'y': 0}
+
 	tecla = pygame.key.get_pressed() # Registra as teclas pressionadas
+
 	cair = {'y': 10}
 	# Se tecla 'x' for pressionada, acontece 'y':
 	if tecla[K_d]:
@@ -66,8 +66,6 @@ while True: # Tem que ter haha
 	screen.blit(imagem, image_position) # Plotar imagem na screen
 	screen.blit(barra, (300,400))
 	ya += cair['y'] 
-	#screen.blit(xis, (rand, ya))
-	#circulo = pygame.draw.circle(screen, (225, 0, 0), circle_position, 10)
 	if largura <= 496:
 		largura += 1
 	retângulo = pygame.draw.rect(screen, (225, 0, 0), [303, 403, largura, 46])
