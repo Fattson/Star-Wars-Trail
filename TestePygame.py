@@ -10,8 +10,8 @@ pygame.display.set_caption("Testando, 1.. 2.. 3..") # Título da Sceen
 
 
 imagem = pygame.image.load("oi.png").convert() # Carregar a imagem, .convert_alpha() serve para a imagem ficar em cima do Plano de Fundo
-bg = pygame.image.load("bg.png").convert()
-bg2 = pygame.image.load("bg.png").convert()  # Carregar a imagem, .convert() serve para a imagem ser o Plano de Fundo
+bg = pygame.image.load("desert8bitdaySCREEN.png").convert()
+bg2 = pygame.image.load("desert8bitdaySCREEN.png").convert()  # Carregar a imagem, .convert() serve para a imagem ser o Plano de Fundo
 xis = pygame.image.load("Xis.jpg").convert()
 barra = pygame.image.load("barra_500x50.png").convert()
 clock = pygame.time.Clock()# Tempo
