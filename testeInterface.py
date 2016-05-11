@@ -58,6 +58,7 @@ screen = display.set_mode((956,560), 0, 32) # cria a janela
 x,y = (100,100)
 #bg = image.load("bg.png").convert() # define uma imagem bg
 fonte = font.Font(None, 30) # define uma fonte
+fontePeq = font.Font(None, 24)
 
 screen.fill((0,0,0)) # pinta a tela de preto
 clock = time.Clock() # cria o reloginho
@@ -108,10 +109,10 @@ tanomax = fonte.render("Tá no max já!", 1, (255,255,255))
 
 go = fonte.render("TELA GO",1,(255,255,255))
 
-ema = fonte.render("Uma ema roubou 10 das suas comidas, e saiu correndo! O que deseja fazer?",1,(255,255,255))
-ema_menu1 = fonte.render("0 - Miar e ir embora (perde a comida)",1,(255,255,255))
-ema_menu2 = fonte.render("1 - Perseguir e recuperar (gasta tempo, aproximadamente 3 horas)",1,(255,255,255))
-ema_menu3 = fonte.render("2 - Tentar jogar uma pedra nela (osso, mas instantaneo e mata o bixo, dando mais comida)",1,(255,255,255))
+ema0 = fontePeq.render("Uma ema roubou 10 das suas comidas, e saiu correndo! O que deseja fazer?",0,(255,255,255))
+ema_menu1 = fontePeq.render("0 - Miar e ir embora (perde a comida)",0,(255,255,255))
+ema_menu2 = fontePeq.render("1 - Perseguir e recuperar (gasta tempo, aproximadamente 3 horas)",0,(255,255,255))
+ema_menu3 = fontePeq.render("2 - Tentar jogar uma pedra nela (osso,-tempo +recompensa)",0,(255,255,255))
 
 def getTempoDist(jog): # retorna o tempo e a distancia restantes (em forma de caixa de texto pygame)
     dist = "Distancia " + str(jog.distancia) + "km/3000km"
@@ -631,6 +632,10 @@ def ema(jog):
         if e.type == QUIT:
             exit()
         
+        screen.blit(ema0,(160,160))
+        screen.blit(ema_menu1,(160,200))
+        screen.blit(ema_menu2,(160,240))
+        screen.blit(ema_menu3,(160,280))
         
         
         display.update()
