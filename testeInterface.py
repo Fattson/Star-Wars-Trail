@@ -1,7 +1,8 @@
 from pygame import *
 #import loopJogo.py as lj
 import SwTrail as sw
-import random as rd
+
+from random import randint
 
 jog = sw.Jogo()
 
@@ -18,7 +19,7 @@ tick = 35 #fps
 
 for i in range(ci+ca): # monta o vetor CC
     if ci>0 and ca>0:
-        x = rd.randint(1,100)
+        x = randint(1,100)
 
         if x > p:
             CC.append(1)
@@ -58,7 +59,7 @@ screen = display.set_mode((956,560), 0, 32) # cria a janela
 x,y = (100,100)
 #bg = image.load("bg.png").convert() # define uma imagem bg
 fonte = font.Font(None, 30) # define uma fonte
-fontePeq = font.Font(None, 24)
+fontePeq = font.Font(None, 23)
 
 screen.fill((0,0,0)) # pinta a tela de preto
 clock = time.Clock() # cria o reloginho
@@ -113,6 +114,12 @@ ema0 = fontePeq.render("Uma ema roubou 10 das suas comidas, e saiu correndo! O q
 ema_menu1 = fontePeq.render("0 - Miar e ir embora (perde a comida)",0,(255,255,255))
 ema_menu2 = fontePeq.render("1 - Perseguir e recuperar (gasta tempo, aproximadamente 3 horas)",0,(255,255,255))
 ema_menu3 = fontePeq.render("2 - Tentar jogar uma pedra nela (osso,-tempo +recompensa)",0,(255,255,255))
+ema_suc1 = fontePeq.render("Parabéns, você conseguiu pegar a ema e recuperar sua comida!",0,(255,255,255))
+ema_suc1_2 = fontePeq.render("Apesar de ter demorado 3 horas...",0,(255,255,255))
+ema_fal1 = fontePeq.render("Fracassado! Nem consegue ir atrás de uma ema. Ainda levou 3 horas...",0,(255,255,255))
+ema_suc2 = fontePeq.render("Parábens, você acertou a ema e ela morreu!",0,(255,255,255))
+ema_suc2_2 = fontePeq.render("Recuperou seus 10 e guardou a carne dela (+10 de comida)!",0,(255,255,255))
+ema_fal2 = fontePeq.render("Errou feio, errou rude!! ;)",0,(255,255,255))
 
 def getTempoDist(jog): # retorna o tempo e a distancia restantes (em forma de caixa de texto pygame)
     dist = "Distancia " + str(jog.distancia) + "km/3000km"
@@ -621,27 +628,80 @@ def campo(jog, prox):
     display.update()
     clock.tick(tick)
     
-    
-    
-def ema(jog):
+ 
+def popup():
     rect = ((150, 150),(600, 200))
     screen.fill((255,0,0),rect) 
     display.update()
     
+
+
+def ema(jog):
+    popup()
+    screen.blit(ema0,(160,160))
+    screen.blit(ema_menu1,(160,200))
+    screen.blit(ema_menu2,(160,240))
+    screen.blit(ema_menu3,(160,280))
+    display.update()
+    
     while True: #loop da ema
-        if e.type == QUIT:
-            exit()
         
-        screen.blit(ema0,(160,160))
-        screen.blit(ema_menu1,(160,200))
-        screen.blit(ema_menu2,(160,240))
-        screen.blit(ema_menu3,(160,280))
+        for e in event.get():
+            if e.type == QUIT:
+                exit()
         
+        if key.get_pressed()[K_0] or key.get_pressed()[K_KP0]: #miar
+            jog.comida -=10
+            limpaTela()
+            break
         
-        display.update()
+        if key.get_pressed()[K_1] or key.get_pressed()[K_KP1]:#perseguir
+            popup()
+            jog.temporestante -= 3
+            s_n = randint(0,100)
+            if s_n < 75:
+                screen.blit(ema_suc1,(160,200))
+                screen.blit(ema_suc1_2,(160,220))
+                display.update()
+                time.wait(5000)
+                limpaTela()
+                break
+            
+            else:
+                jog.comida -= 10       
+                screen.blit(ema_fal1, (160,200))
+                display.update()
+                time.wait(5000)
+                limpaTela()
+                break
+            
+            
+        if key.get_pressed()[K_2] or key.get_pressed()[K_KP2]:#jogar pedra    
+            popup()
+            s_n = randint(0,100)
+            if s_n < 15:
+                jog.comida += 10
+                screen.blit(ema_suc2,(160,200))
+                screen.blit(ema_suc2_2,(160,220))
+                display.update()
+                time.wait(5000)
+                limpaTela()
+                break
+            
+            else:
+                jog.comida -= 10       
+                screen.blit(ema_fal2, (160,200))
+                display.update()
+                time.wait(5000)
+                limpaTela()
+                break
+                
+        
+        #display.update()
         clock.tick(tick)
         
-    
+
+
 menuMercado(jog)
 while True: #loop mercado inicial
 
@@ -774,7 +834,7 @@ while game_over==False and chegou==False: #loop do jogo
         if e.type == QUIT:
             exit()
 
-    ev = rd.randint(1,100)
+    
     
     proxCidade = dist_proximaCidade(CC[i:])
 
@@ -782,10 +842,24 @@ while game_over==False and chegou==False: #loop do jogo
     screen.blit(go, (100,100))
     screen.blit(dist,(100,500))
     screen.blit(temp,(500,500))
-    display.update()
-    ema(jog)
-    time.wait(3000)
+    display.update()####### COMEÇA A TELA GO
+    time.wait(2000)
     
+    ev = randint(1,100)
+
+    if ev < 50: 
+        ema(jog)        
+        
+    elif ev < 75:
+        #add lobo guará
+        pass
+        
+    elif ev < 85:
+        #add buraco
+        pass
+    
+    
+    time.wait(2000) ####### TERMINA A TELA GO
     
     
     jog.varia_comida()
