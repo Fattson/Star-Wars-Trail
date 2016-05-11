@@ -1,16 +1,7 @@
 # Star Wars Trail
 
 from random import randint
-#import loopJogo
 
-"""class Carro:     # Victor, o que você acha de abolirmos a classe Carro, e deixarmos todas as variaveis em Jogo? Fiz isso por enquanto mas qq coisa mudamos de volta. GG
-
-	def __init__(self):
-		self.velocidade = 10
-	
-	def returnVelocidade(self):
-		return self.velocidade 
-"""
 
 class Jogo:
 	def __init__(self):
@@ -152,8 +143,5 @@ def lampiao(jogador):
         else:
             print("Conseguiu fugir")
 
-"""Sw = Jogo()
-Sw.varia_comida()
-Sw.varia_distancia()"""
-#Eventos()
+
 

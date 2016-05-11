@@ -36,7 +36,6 @@ for i in range(ci+ca): # monta o vetor CC
         CC.append(2)      
         ca -= 1
         
-print(CC)
 
 def dist_proximaCidade(CCrest): # Recebe o CC restante e retorna a distancia (em rodadas) para a prox cidade
     
@@ -89,6 +88,9 @@ camp_menu1 = fonte.render("1 - Caçar",1,(255,255,255))
 camp_menu2 = fonte.render("2 - Conserto do carro", 1, (255,255,255))
 camp_menu3 = fonte.render("3 - Status", 1, (255,255,255))
 
+cons = fonte.render("CONSERTO DO CARRO (durabilidade: >600=200pecas >300=300pecas else 500 pecas)",1,(255,255,255))
+cons_menu0 = fonte.render("0 - Sair",1,(255,255,255))
+cons_menu1 = fonte.render("1 - Consertar",1,(255,255,255))
 
 stat = fonte.render("===== Status =====", 1, (255,255,255))
 
@@ -98,27 +100,31 @@ semGrana = fonte.render("Ta sem grana porra",1,(255,255,255))
 
 semComida = fonte.render("Ta sem comida porra, ta tentando enganar alguem?",1,(255,255,255))
 
+semPecas = fonte.render("Ta sem pecas suficientes, vai comprar!",1,(255,255,255))
+
 done = fonte.render("Done!",1,(255,255,255))
+
+tanomax = fonte.render("Tá no max já!", 1, (255,255,255))
 
 go = fonte.render("TELA GO",1,(255,255,255))
 
-def getTempoDist(jogador):
-    dist = "Distancia " + str(jogador.distancia) + "km/3000km"
-    time = "Tempo restante: " + str(jogador.temporestante) + " horas"
+def getTempoDist(jog): # retorna o tempo e a distancia restantes (em forma de caixa de texto pygame)
+    dist = "Distancia " + str(jog.distancia) + "km/3000km"
+    time = "Tempo restante: " + str(jog.temporestante) + " horas"
     textD = fonte.render(dist, 1, (255,255,255))
     textT = fonte.render(time, 1, (255,255,255))
     return textD,textT
 
-def getStatus(jogador): # faz as frases do STATUS
-    stat1 = "Gasolina: " + str(jogador.gas)
-    stat2 = "Pecas: " + str(jogador.pecas)
-    stat3 = "Durabilidade: " + str(jogador.durab)
-    stat4 = "Comida: " + str(jogador.comida)
-    stat5 = "Health: " + str(jogador.health)
-    stat6 = "Dinheiro: " + str(jogador.reais)
-    stat7 = "Amigos vivos: " + str(jogador.numero_jogadores-1)
-    stat8 = "Distancia restante: " + str(jogador.distancia)
-    stat9 = "Tempo restante: " + str(jogador.temporestante)
+def getStatus(jog): # faz as frases do STATUS
+    stat1 = "Gasolina: " + str(jog.gas)
+    stat2 = "Pecas: " + str(jog.pecas)
+    stat3 = "Durabilidade: " + str(jog.durab)
+    stat4 = "Comida: " + str(jog.comida)
+    stat5 = "Health: " + str(jog.health)
+    stat6 = "Dinheiro: " + str(jog.reais)
+    stat7 = "Amigos vivos: " + str(jog.numero_jogadores-1)
+    stat8 = "Distancia restante: " + str(jog.distancia)
+    stat9 = "Tempo restante: " + str(jog.temporestante)
 
     stat_gas = fonte.render(stat1, 1, (255,255,255))
     stat_pecas = fonte.render(stat2, 1, (255,255,255))
@@ -149,7 +155,7 @@ display.update() #da um update pra aparecer o escrito na tela
 time.wait(3000) # espera, em milisegundos
 limpaTela()
 
-def menuMercado():
+def menuMercado(jog): # imprime na tela o menu do mercado
     screen.blit(mer, (100,100))
     screen.blit(mer_menu0, (100,150))
     screen.blit(mer_menu1, (100,200))
@@ -157,13 +163,142 @@ def menuMercado():
     screen.blit(mer_menu3, (100,300))
     screen.blit(mer_menu4, (100,350))
     screen.blit(mer_menu5, (100,400))
+    grana = fazTextoGrana(jog)
+    screen.blit(grana, (500,100))
     
-def fazTextoProx(prox):
+def fazTextoProx(prox): # faz o texto da distancia pra prox cidade
     text = "Distância para a próxima cidade: " + str(prox)
     return fonte.render(text, 1, (255,255,255))
     
+def fazTextoGrana(jog):
+    grana = "Grana: " + str(jog.reais)
+    return fonte.render(grana,1,(255,255,255))
     
-def cidade(jog, prox):
+def mercado(jog):
+    menuMercado(jog)
+
+    while True: #loop mercado 
+
+        for e in event.get():
+            if e.type == QUIT:
+                exit()
+
+        if key.get_pressed()[K_0] or key.get_pressed()[K_KP0]:
+            limpaTela()
+            time.wait(500)
+            break
+
+        if key.get_pressed()[K_1] or key.get_pressed()[K_KP1]:
+            if jog.reais >= 10:
+                jog.reais-=10
+                jog.comida+=10
+                screen.blit(done, (500,200))
+                display.update()
+                time.wait(1000)
+                limpaTela()
+                menuMercado(jog)
+            
+            else:
+                limpaTela()
+                screen.blit(semGrana, (250,200))
+                display.update()
+                time.wait(2000)
+                limpaTela()
+                menuMercado(jog)
+                
+                
+        if key.get_pressed()[K_2] or key.get_pressed()[K_KP2]:
+            if jog.comida >= 10:
+                jog.comida-=10
+                jog.reais+=10
+                screen.blit(done, (500,250))
+                display.update()
+                time.wait(1000)
+                limpaTela()
+                menuMercado(jog)
+            else:
+                limpaTela()
+                screen.blit(semComida, (250,200))
+                display.update()
+                time.wait(3000)
+                limpaTela()
+                menuMercado(jog)
+        
+        
+        if key.get_pressed()[K_3] or key.get_pressed()[K_KP3]:
+            if jog.reais >= 10:
+                jog.reais-=10
+                jog.pecas+=100
+                screen.blit(done, (500,300))
+                display.update()
+                time.wait(1000)
+                limpaTela()
+                menuMercado(jog)
+            else:
+                limpaTela()
+                screen.blit(semGrana, (250,200))
+                display.update()
+                time.wait(2000)
+                limpaTela()
+                menuMercado(jog)
+                
+        if key.get_pressed()[K_4] or key.get_pressed()[K_KP4]:
+            if jog.reais >= 10:
+                jog.reais-=10
+                jog.gas+=100
+                screen.blit(done, (500,350))
+                display.update()
+                time.wait(1000)
+                limpaTela()
+                menuMercado(jog)
+            else:
+                limpaTela()
+                screen.blit(semGrana, (250,200))
+                display.update()
+                time.wait(2000)
+                limpaTela()
+                menuMercado(jog)
+                
+    
+        if key.get_pressed()[K_5] or key.get_pressed()[K_KP5]:
+            limpaTela()
+            stat1, stat2, stat3, stat4, stat5, stat6, stat7, stat8, stat9 = getStatus(jog)
+            py = 100 # 1o y da tela 
+            esp = 35 # espaco entre eles
+            screen.blit(stat, (100,py))
+            screen.blit(stat1, (100,py+1*esp))
+            screen.blit(stat2, (100,py+2*esp))
+            screen.blit(stat3, (100,py+3*esp))
+            screen.blit(stat4, (100,py+4*esp))
+            screen.blit(stat5, (100,py+5*esp))
+            screen.blit(stat6, (100,py+6*esp))
+            screen.blit(stat7, (100,py+7*esp))
+            screen.blit(stat8, (100,py+8*esp))
+            screen.blit(stat9, (100,py+9*esp))
+            screen.blit(voltar, (100, 500))
+            display.update()
+            
+            while True: # loopzinho esperando o cara ler o status e decidir voltar
+                for e in event.get():
+                    if e.type == QUIT:
+                        exit()
+            
+                if key.get_pressed()[K_0] or key.get_pressed()[K_KP0]:
+                    limpaTela()
+                    menuMercado(jog)
+                    time.wait(500) # pra dar tempo de tirar o dedo da tecla 0
+                    break
+                
+                display.update()
+                clock.tick(tick)
+            
+        
+        
+        
+        display.update()
+        clock.tick(tick)
+
+def menuCidade(prox):
     limpaTela()    
     screen.blit(cid, (100,100))
     screen.blit(cid_menu0, (100,150))
@@ -176,6 +311,110 @@ def cidade(jog, prox):
     screen.blit(proxima, (100,500))
     display.update()
     
+
+    
+def menuConserto(jog):
+    limpaTela()    
+    screen.blit(cons, (100,100))
+    screen.blit(cons_menu0, (100,150))
+    screen.blit(cons_menu1, (100,200))
+    textp="Peças: "+str(jog.pecas)
+    pecas = fonte.render(textp,1,(255,255,255))
+    textd="Durabilidade: "+str(jog.durab)
+    durab = fonte.render(textd,1,(255,255,255))
+    screen.blit(pecas, (500,200))
+    screen.blit(durab, (700,200))
+    display.update()
+
+def conserto(jog):
+    menuConserto(jog)
+    
+    while True:
+        for e in event.get():
+            if e.type == QUIT:
+                exit()
+        if key.get_pressed()[K_0] or key.get_pressed()[K_KP0]:
+            limpaTela()
+            time.wait(500)
+            break
+    
+        if key.get_pressed()[K_1] or key.get_pressed()[K_KP1]: 
+            
+            if jog.durab == 1000:
+                screen.blit(tanomax, (300,200))
+                display.update()
+                time.wait(1000)
+                limpaTela()
+                menuConserto(jog)
+            else:
+                if jog.durab > 600:
+                    if jog.pecas >= 200:
+                        jog.durab += 200
+                        jog.pecas -= 200
+                        if jog.durab > 1000: # nao deixa passar do max
+                            jog.durab = 1000
+                        screen.blit(done, (300,200))
+                        display.update()
+                        time.wait(1000)
+                        limpaTela()
+                        menuConserto(jog)
+                    else:
+                        limpaTela()
+                        screen.blit(semPecas, (250,200))
+                        display.update()
+                        time.wait(2000)
+                        limpaTela()
+                        menuConserto(jog)
+                elif jog.durab > 300:
+                    if jog.pecas >= 300:
+                        jog.durab += 200
+                        jog.pecas -= 300
+                        if jog.durab > 1000: # nao deixa passar do max
+                            jog.durab = 1000
+                        screen.blit(done, (300,200))
+                        display.update()
+                        time.wait(1000)
+                        limpaTela()
+                        menuConserto(jog)
+                    else:
+                        limpaTela()
+                        screen.blit(semPecas, (250,200))
+                        display.update()
+                        time.wait(2000)
+                        limpaTela()
+                        menuConserto(jog)
+                else:
+                    if jog.pecas >= 500:
+                        jog.durab += 200
+                        jog.pecas -= 500
+                        if jog.durab > 1000: # nao deixa passar do max
+                            jog.durab = 1000
+                        screen.blit(done, (300,200))
+                        display.update()
+                        time.wait(1000)
+                        limpaTela()
+                        menuConserto(jog)
+                    else:
+                        limpaTela()
+                        screen.blit(semPecas, (250,200))
+                        display.update()
+                        time.wait(2000)
+                        limpaTela()
+                        menuConserto(jog)
+            
+            
+            
+            
+            
+        
+        display.update()
+        clock.tick(tick)
+    
+    
+def cidade(jog, prox): # CIDADE
+    
+    menuCidade(prox)
+    
     while True: # loop cidade
         for e in event.get():
             if e.type == QUIT:
@@ -184,19 +423,59 @@ def cidade(jog, prox):
             limpaTela()
             break
     
-        if key.get_pressed()[K_1] or key.get_pressed()[K_KP1]:
-            pass
+        if key.get_pressed()[K_1] or key.get_pressed()[K_KP1]: #MERCADO
+            limpaTela()            
+            time.wait(500) # para a opcao 1 nao valer dentro do mercado
+            mercado(jog)
+            menuCidade(prox)
     
-        if key.get_pressed()[K_2] or key.get_pressed()[K_KP2]:
-            pass
+        if key.get_pressed()[K_2] or key.get_pressed()[K_KP2]:#SUS
+            if jog.health<100:
+                jog.temporestante-=2
+                jog.health+=20
+                screen.blit(done, (500,250))
+                display.update()
+                time.wait(1000)
+                limpaTela()
+                menuCidade(prox)
+            else:
+                screen.blit(tanomax, (500,250))
+                display.update()
+                time.wait(1000)
+                limpaTela()
+                menuCidade(prox)
+            
+            if jog.health<100:
+                jog.health = 100
+                
+
+        if key.get_pressed()[K_3] or key.get_pressed()[K_KP3]:#HOSP
+            if jog.health<100:
+                jog.reais-=20
+                jog.health+=20
+                screen.blit(done, (500,300))
+                display.update()
+                time.wait(1000)
+                limpaTela()
+                menuCidade(prox)
+            else:
+                screen.blit(tanomax, (500,300))
+                display.update()
+                time.wait(1000)
+                limpaTela()
+                menuCidade(prox)
+            
+            if jog.health<100:
+                jog.health = 100
+                
     
-        if key.get_pressed()[K_3] or key.get_pressed()[K_KP3]:
-            pass
+        if key.get_pressed()[K_4] or key.get_pressed()[K_KP4]:#CONSERTO
+            limpaTela()            
+            time.wait(500)
+            conserto(jog)
+            menuCidade(prox)
     
-        if key.get_pressed()[K_4] or key.get_pressed()[K_KP4]:
-            pass
-    
-        if key.get_pressed()[K_5] or key.get_pressed()[K_KP5]:
+        if key.get_pressed()[K_5] or key.get_pressed()[K_KP5]:#STATUS
             limpaTela()
             stat1, stat2, stat3, stat4, stat5, stat6, stat7, stat8, stat9 = getStatus(jog)
             py = 100 # 1o y da tela 
@@ -231,12 +510,13 @@ def cidade(jog, prox):
                     proxima = fazTextoProx(prox)
                     screen.blit(proxima, (100,500))
                     display.update()
+                    time.wait(500) # pra dar tempo de tirar o dedo da tecla 0
                     break
             
-        display.update()
-        clock.tick(tick)
+            display.update()
+            clock.tick(tick)
         
-        time.wait(500) # pra dar tempo de tirar o dedo da tecla 0
+           
     
     display.update()
     clock.tick(tick)
@@ -260,11 +540,22 @@ def campo(jog, prox):
             limpaTela()
             break
     
-        if key.get_pressed()[K_1] or key.get_pressed()[K_KP1]:
+        if key.get_pressed()[K_1] or key.get_pressed()[K_KP1]: #Caçar
             pass
     
-        if key.get_pressed()[K_2] or key.get_pressed()[K_KP2]:
-            pass
+        if key.get_pressed()[K_2] or key.get_pressed()[K_KP2]: #conserto
+            limpaTela()
+            time.wait(500)
+            conserto(jog)
+            limpaTela()    
+            screen.blit(camp, (100,100))
+            screen.blit(camp_menu0, (100,150))
+            screen.blit(camp_menu1, (100,200))
+            screen.blit(camp_menu2, (100,250))
+            screen.blit(camp_menu3, (100,300))
+            proxima = fazTextoProx(prox)
+            screen.blit(proxima, (100,500))
+            display.update()
     
         if key.get_pressed()[K_3] or key.get_pressed()[K_KP3]:
             limpaTela()
@@ -301,18 +592,19 @@ def campo(jog, prox):
                     proxima = fazTextoProx(prox)
                     screen.blit(proxima, (100,500))
                     display.update()
+                    time.wait(500) # pra dar tempo de tirar o dedo da tecla 0
                     break
             
             display.update()
             clock.tick(tick)
         
-        time.wait(500) # pra dar tempo de tirar o dedo da tecla 0
+        
     
     display.update()
     clock.tick(tick)
     
     
-menuMercado()
+menuMercado(jog)
 while True: #loop mercado inicial
 
     for e in event.get():
@@ -331,7 +623,7 @@ while True: #loop mercado inicial
             display.update()
             time.wait(1000)
             limpaTela()
-            menuMercado()
+            menuMercado(jog)
             
         else:
             limpaTela()
@@ -339,7 +631,7 @@ while True: #loop mercado inicial
             display.update()
             time.wait(2000)
             limpaTela()
-            menuMercado()
+            menuMercado(jog)
         
         
     if key.get_pressed()[K_2] or key.get_pressed()[K_KP2]:
@@ -350,49 +642,49 @@ while True: #loop mercado inicial
             display.update()
             time.wait(1000)
             limpaTela()
-            menuMercado()
+            menuMercado(jog)
         else:
             limpaTela()
             screen.blit(semComida, (250,200))
             display.update()
             time.wait(3000)
             limpaTela()
-            menuMercado()
+            menuMercado(jog)
         
         
     if key.get_pressed()[K_3] or key.get_pressed()[K_KP3]:
         if jog.reais >= 10:
             jog.reais-=10
             jog.pecas+=100
-            screen.blit(done, (500,250))
+            screen.blit(done, (500,300))
             display.update()
             time.wait(1000)
             limpaTela()
-            menuMercado()
+            menuMercado(jog)
         else:
             limpaTela()
             screen.blit(semGrana, (250,200))
             display.update()
             time.wait(2000)
             limpaTela()
-            menuMercado()
+            menuMercado(jog)
     
     if key.get_pressed()[K_4] or key.get_pressed()[K_KP4]:
         if jog.reais >= 10:
             jog.reais-=10
             jog.gas+=100
-            screen.blit(done, (500,250))
+            screen.blit(done, (500,350))
             display.update()
             time.wait(1000)
             limpaTela()
-            menuMercado()
+            menuMercado(jog)
         else:
             limpaTela()
             screen.blit(semGrana, (250,200))
             display.update()
             time.wait(2000)
             limpaTela()
-            menuMercado()
+            menuMercado(jog)
     
     
     if key.get_pressed()[K_5] or key.get_pressed()[K_KP5]:
@@ -420,13 +712,14 @@ while True: #loop mercado inicial
             
             if key.get_pressed()[K_0] or key.get_pressed()[K_KP0]:
                 limpaTela()
-                menuMercado()
+                menuMercado(jog)
+                time.wait(500) # pra dar tempo de tirar o dedo da tecla 0
                 break
             
             display.update()
             clock.tick(tick)
             
-        time.wait(500) # pra dar tempo de tirar o dedo da tecla 0
+        
         
         
     display.update()
@@ -453,6 +746,7 @@ while game_over==False and chegou==False: #loop do jogo
     screen.blit(temp,(500,500))
     display.update()
     time.wait(3000)
+    
     
     
     jog.varia_comida()
