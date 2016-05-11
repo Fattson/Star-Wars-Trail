@@ -521,6 +521,7 @@ def cidade(jog, prox): # CIDADE
     display.update()
     clock.tick(tick)
     
+
 def campo(jog, prox):
     limpaTela()    
     screen.blit(camp, (100,100))
@@ -541,7 +542,20 @@ def campo(jog, prox):
             break
     
         if key.get_pressed()[K_1] or key.get_pressed()[K_KP1]: #Caçar
-            pass
+            jog.temporestante-=2
+            jog.comida+=10
+            screen.blit(done, (500,200))
+            display.update()
+            time.wait(1000)
+            limpaTela()    
+            screen.blit(camp, (100,100))
+            screen.blit(camp_menu0, (100,150))
+            screen.blit(camp_menu1, (100,200))
+            screen.blit(camp_menu2, (100,250))
+            screen.blit(camp_menu3, (100,300))
+            proxima = fazTextoProx(prox)
+            screen.blit(proxima, (100,500))
+            display.update()
     
         if key.get_pressed()[K_2] or key.get_pressed()[K_KP2]: #conserto
             limpaTela()
@@ -557,7 +571,7 @@ def campo(jog, prox):
             screen.blit(proxima, (100,500))
             display.update()
     
-        if key.get_pressed()[K_3] or key.get_pressed()[K_KP3]:
+        if key.get_pressed()[K_3] or key.get_pressed()[K_KP3]: #STATUS
             limpaTela()
             stat1, stat2, stat3, stat4, stat5, stat6, stat7, stat8, stat9 = getStatus(jog)
             py = 100 # 1o y da tela 
@@ -582,13 +596,11 @@ def campo(jog, prox):
                         
                 if key.get_pressed()[K_0] or key.get_pressed()[K_KP0]:
                     limpaTela()
-                    screen.blit(cid, (100,100))
-                    screen.blit(cid_menu0, (100,150))
-                    screen.blit(cid_menu1, (100,200))
-                    screen.blit(cid_menu2, (100,250))
-                    screen.blit(cid_menu3, (100,300))
-                    screen.blit(cid_menu4, (100,350))
-                    screen.blit(cid_menu5, (100,400))
+                    screen.blit(camp, (100,100))
+                    screen.blit(camp_menu0, (100,150))
+                    screen.blit(camp_menu1, (100,200))
+                    screen.blit(camp_menu2, (100,250))
+                    screen.blit(camp_menu3, (100,300))
                     proxima = fazTextoProx(prox)
                     screen.blit(proxima, (100,500))
                     display.update()
@@ -602,6 +614,13 @@ def campo(jog, prox):
     
     display.update()
     clock.tick(tick)
+    
+    
+    
+def ema(jog):
+    rect = ((150, 150),(600, 200))
+    screen.fill((255,0,0),rect) 
+    display.update()
     
     
 menuMercado(jog)
@@ -745,6 +764,7 @@ while game_over==False and chegou==False: #loop do jogo
     screen.blit(dist,(100,500))
     screen.blit(temp,(500,500))
     display.update()
+    ema(jog)
     time.wait(3000)
     
     
