@@ -64,11 +64,11 @@ while True: # Tem que ter haha
 	circle_position[0] += Cspeed['x']
 	circle_position[1] += Cspeed['y']
 	screen.blit(imagem, image_position) # Plotar imagem na screen
-	screen.blit(barra, (300,400))
+	screen.blit(barra, (100,200))
 	ya += cair['y'] 
 	if largura <= 496:
 		largura += 1
-	retângulo = pygame.draw.rect(screen, (225, 0, 0), [303, 403, largura, 46])
+	retângulo = pygame.draw.rect(screen, (225, 0, 0), [103, 203, largura, 46])
 	pygame.display.update() # Atualizar a tela constantemente, senão, ao mover, a imagem ela ficará arrastada
 	time = clock.tick(60) # Definir frames per second
 
