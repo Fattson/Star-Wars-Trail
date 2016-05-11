@@ -108,6 +108,11 @@ tanomax = fonte.render("Tá no max já!", 1, (255,255,255))
 
 go = fonte.render("TELA GO",1,(255,255,255))
 
+ema = fonte.render("Uma ema roubou 10 das suas comidas, e saiu correndo! O que deseja fazer?",1,(255,255,255))
+ema_menu1 = fonte.render("0 - Miar e ir embora (perde a comida)",1,(255,255,255))
+ema_menu2 = fonte.render("1 - Perseguir e recuperar (gasta tempo, aproximadamente 3 horas)",1,(255,255,255))
+ema_menu3 = fonte.render("2 - Tentar jogar uma pedra nela (osso, mas instantaneo e mata o bixo, dando mais comida)",1,(255,255,255))
+
 def getTempoDist(jog): # retorna o tempo e a distancia restantes (em forma de caixa de texto pygame)
     dist = "Distancia " + str(jog.distancia) + "km/3000km"
     time = "Tempo restante: " + str(jog.temporestante) + " horas"
@@ -622,6 +627,15 @@ def ema(jog):
     screen.fill((255,0,0),rect) 
     display.update()
     
+    while True: #loop da ema
+        if e.type == QUIT:
+            exit()
+        
+        
+        
+        display.update()
+        clock.tick(tick)
+        
     
 menuMercado(jog)
 while True: #loop mercado inicial
