@@ -10,7 +10,11 @@ pygame.display.set_caption("StarWars Trail") # Título
 # Carregar imagens
 background = pygame.image.load("background1.1.png").convert()
 background2 = pygame.image.load("background1.1.png").convert()
-#nuvens = pygame.image.load("").convert()
+
+nuvens = pygame.image.load("nuvem_provisoria.png").convert()
+nuvens1 = pygame.image.load("nuvem_provisoria.png").convert()
+nuvens2 = pygame.image.load("nuvem_provisoria.png").convert()
+
 estrada = pygame.image.load("estrada.png")
 estrada2 = pygame.image.load("estrada.png")
 
@@ -20,16 +24,27 @@ carro = pygame.transform.scale(carro, (50,50))
 
 background = pygame.transform.scale(background, (956,300))
 background2 = pygame.transform.scale(background, (956,300))
+
 estrada = pygame.transform.scale(estrada, (956,200))
 estrada2 = pygame.transform.scale(estrada, (956,200))
+
+nuvens = pygame.transform.scale(nuvens, (50,30))
+nuvens2 = pygame.transform.scale(nuvens, (50,30))
+nuvens3 = pygame.transform.scale(nuvens, (50,30))
 
 # Posições
 background_position = [0,0]
 background2_position = [956,0]
-nuvens_position = [0,0]
+
+nuvens_position = [950,100]
+nuvens2_position = [600,200]
+nuvens3_position = [300,50]
+
 estrada_position = [0,230]
 estrada2_position =[956,230]
+
 carro_position = [0,280]
+
 sol_position = [0,0]
 
 # Movimentos
@@ -57,13 +72,16 @@ while True:
 	elif carro_movimento['y'] == -2:
 		carro_movimento['y'] = 2
 
-	if background_position[0] == -956 or estrada_position[0] == -956:
+	if background_position[0] == -956:
 		background_position[0] = 956
-		estrada_position[0] = 956
-	if background2_position[0] == -956 or estrada2_position[0] == -956:
+	if background2_position[0] == -956:
 		background2_position[0] = 956
-		estrada_position[0] = 956
+	
 
+	if estrada_position[0] == -956:
+		estrada_position[0] = 956
+	if estrada2_position[0] == -956:
+		estrada2_position[0] = 956
 
 	if carro_position[1] > 260 and carro_position[1] < 290:
 		if tecla[K_w]:
@@ -83,10 +101,23 @@ while True:
 		elif tecla[K_d]:
 			carro_position[0] += 1.5
 
+	if nuvens_position[0] <= 0:
+		nuvens_position[0] = 956
+
+	if nuvens2_position[0] <= 0:
+		nuvens2_position[0] = 956
+
+	if nuvens3_position[0] <= 0:
+		nuvens3_position[0] = 956
+
 	# Movimentos
 	background_position[0] += background_movimento['x']
 	background2_position[0] += background_movimento['x']
+
 	nuvens_position[0] += nuvens_movimento['x']
+	nuvens2_position[0] += nuvens_movimento['x']
+	nuvens3_position[0] += nuvens_movimento['x']
+
 	carro_position[1] += carro_movimento['y']
 
 	estrada_position[0] += background_movimento['x']
@@ -95,12 +126,14 @@ while True:
 	# Plotar na tela
 	screen.blit(background, background_position)
 	screen.blit(background2, background2_position)
-	#screen.blit(sol, sol_position)
-	#screen.blit(montanhas, montanhas_position)
-	#screen.blit(nuvens, nuvens_position)
+	#screen.blit(sol, sol_position))
+	screen.blit(nuvens, nuvens_position)
+	screen.blit(nuvens2, nuvens2_position)
+	screen.blit(nuvens3, nuvens3_position)
 	screen.blit(estrada, estrada_position)
 	screen.blit(estrada2, estrada2_position)
 	screen.blit(carro, carro_position)
+	print(nuvens3_position[0])
 	pygame.display.update()
 
 	# relógio
