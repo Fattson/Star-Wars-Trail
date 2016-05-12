@@ -110,6 +110,9 @@ tanomax = fonte.render("Tá no max já!", 1, (255,255,255))
 
 go = fonte.render("TELA GO",1,(255,255,255))
 
+msg_gameover = fonte.render("GAME OVER",1,(255,255,255))
+msg_chegou = fonte.render("CHEGOOOOOU!!!",1,(255,255,255))
+
 ema0 = fontePeq.render("Uma ema roubou 10 das suas comidas, e saiu correndo! O que deseja fazer?",0,(255,255,255))
 ema_menu1 = fontePeq.render("0 - Miar e ir embora (perde a comida)",0,(255,255,255))
 ema_menu2 = fontePeq.render("1 - Perseguir e recuperar (gasta tempo, aproximadamente 3 horas)",0,(255,255,255))
@@ -424,7 +427,7 @@ def conserto(jog):
         clock.tick(tick)
     
     
-def cidade(jog, prox): # CIDADE
+def cidade(jog, prox, game_over): # CIDADE
     
     menuCidade(prox)
     
@@ -432,6 +435,11 @@ def cidade(jog, prox): # CIDADE
         for e in event.get():
             if e.type == QUIT:
                 exit()
+                
+        if jog.temporestante <= 0:
+            game_over[0] = True
+            break       
+    
         if key.get_pressed()[K_0] or key.get_pressed()[K_KP0]:
             limpaTela()
             break
@@ -535,7 +543,7 @@ def cidade(jog, prox): # CIDADE
     clock.tick(tick)
     
 
-def campo(jog, prox):
+def campo(jog, prox, game_over):
     limpaTela()    
     screen.blit(camp, (100,100))
     screen.blit(camp_menu0, (100,150))
@@ -550,6 +558,11 @@ def campo(jog, prox):
         for e in event.get():
             if e.type == QUIT:
                 exit()
+                
+        if jog.temporestante <= 0:
+            game_over[0] = True
+            break                
+        
         if key.get_pressed()[K_0] or key.get_pressed()[K_KP0]:
             limpaTela()
             break
@@ -823,11 +836,14 @@ while True: #loop mercado inicial
     display.update()
     clock.tick(tick)
 
-game_over = False
+game_over = [False]
 chegou = False
 
 i = 0
-while game_over==False and chegou==False: #loop do jogo
+
+###  LOOP PRINCIPAL DO JOGO  ###
+
+while game_over[0]==False and chegou==False: 
     
     
     for e in event.get():
@@ -842,7 +858,7 @@ while game_over==False and chegou==False: #loop do jogo
     screen.blit(go, (100,100))
     screen.blit(dist,(100,500))
     screen.blit(temp,(500,500))
-    display.update()####### COMEÇA A TELA GO
+    display.update()####### COMEÇA A TELA GO 
     time.wait(2000)
     
     ev = randint(1,100)
@@ -851,15 +867,19 @@ while game_over==False and chegou==False: #loop do jogo
         ema(jog)        
         
     elif ev < 75:
-        #add lobo guará
+        # vou add lobo guará
         pass
         
     elif ev < 85:
-        #add buraco
+        #vou add buraco
         pass
     
     
     time.wait(2000) ####### TERMINA A TELA GO
+    
+    if jog.temporestante <= 0 or jog.health <= 0:
+        game_over[0] = True
+        break
     
     
     jog.varia_comida()
@@ -880,27 +900,46 @@ while game_over==False and chegou==False: #loop do jogo
 
     jog.varia_tempo()
     
+    if jog.distancia <= 0:
+        chegou = True
+        break
+    elif jog.temporestante <= 0 or jog.health <= 0:
+        game_over[0] = True
+        break
+    
     if CC[i] == 1:
-        cidade(jog, proxCidade) 
+        cidade(jog, proxCidade, game_over) 
     else:
-        campo(jog, proxCidade) 
+        campo(jog, proxCidade, game_over) 
     
     i += 1
     
+    if jog.temporestante <= 0 or jog.health <= 0:
+        game_over[0] = True
+        break
     
-    
-    if key.get_pressed()[K_e] or key.get_pressed()[K_0] or key.get_pressed()[K_KP0]:
-        limpaTela()
-    
-    if key.get_pressed()[K_c]: #teste bobo
-        screen.blit(cid, (100,100))
-        screen.blit(cid_menu0, (100,150))
-        screen.blit(cid_menu1, (100,200))
-        screen.blit(cid_menu2, (100,250))
-        screen.blit(cid_menu3, (100,300))
-        screen.blit(cid_menu4, (100,350))
-        screen.blit(cid_menu5, (100,400))
         
     display.update()
     clock.tick(tick)
 
+
+limpaTela()
+
+
+
+if game_over[0] == True:
+    screen.blit(msg_gameover, (250,200))
+    display.update()
+    
+if chegou == True:
+    screen.blit(msg_chegou, (250,200))
+    display.update()
+
+while True:
+    
+    for e in event.get():
+        if e.type == QUIT:
+            exit() 
+    
+    display.update()
+    clock.tick(tick)
