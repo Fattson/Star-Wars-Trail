@@ -827,7 +827,10 @@ game_over = False
 chegou = False
 
 i = 0
-while game_over==False and chegou==False: #loop do jogo
+
+###  LOOP PRINCIPAL DO JOGO  ###
+
+while game_over==False and chegou==False: 
     
     
     for e in event.get():
@@ -842,7 +845,7 @@ while game_over==False and chegou==False: #loop do jogo
     screen.blit(go, (100,100))
     screen.blit(dist,(100,500))
     screen.blit(temp,(500,500))
-    display.update()####### COMEÇA A TELA GO
+    display.update()####### COMEÇA A TELA GO 
     time.wait(2000)
     
     ev = randint(1,100)
@@ -851,15 +854,19 @@ while game_over==False and chegou==False: #loop do jogo
         ema(jog)        
         
     elif ev < 75:
-        #add lobo guará
+        # vou add lobo guará
         pass
         
     elif ev < 85:
-        #add buraco
+        #vou add buraco
         pass
     
     
     time.wait(2000) ####### TERMINA A TELA GO
+    
+    if meuJogador.temporestante <= 0 or meuJogador.health <= 0:
+        game_over = True
+        break
     
     
     jog.varia_comida()
@@ -880,6 +887,13 @@ while game_over==False and chegou==False: #loop do jogo
 
     jog.varia_tempo()
     
+    if meuJogador.distancia <= 0:
+        chegou = True
+        break
+    elif meuJogador.temporestante <= 0 or meuJogador.health <= 0:
+        game_over = True
+        break
+    
     if CC[i] == 1:
         cidade(jog, proxCidade) 
     else:
@@ -887,19 +901,10 @@ while game_over==False and chegou==False: #loop do jogo
     
     i += 1
     
+    if meuJogador.temporestante <= 0 or meuJogador.health <= 0:
+        game_over = True
+        break
     
-    
-    if key.get_pressed()[K_e] or key.get_pressed()[K_0] or key.get_pressed()[K_KP0]:
-        limpaTela()
-    
-    if key.get_pressed()[K_c]: #teste bobo
-        screen.blit(cid, (100,100))
-        screen.blit(cid_menu0, (100,150))
-        screen.blit(cid_menu1, (100,200))
-        screen.blit(cid_menu2, (100,250))
-        screen.blit(cid_menu3, (100,300))
-        screen.blit(cid_menu4, (100,350))
-        screen.blit(cid_menu5, (100,400))
         
     display.update()
     clock.tick(tick)
