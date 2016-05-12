@@ -17,6 +17,9 @@ barra = pygame.image.load("barra_500x50.png").convert()
 clock = pygame.time.Clock()# Tempo
 image_position = [-500,0] # Colocar fora do while --'
 circle_position = [100,100]
+
+#imagem = pygame.transform.scale(imagem, (10, 70))
+
 largura = 0
 ya =  0
 bg_x = 0
@@ -26,6 +29,7 @@ while True: # Tem que ter haha
 	for event in pygame.event.get(): # Todos os eventos do pygame
 		if event.type == pygame.QUIT: # QUIT é para fechar a tela
 			exit()
+
 
 	speed = {'x': 2.5, 'y': 0} # Dicionário com as velocidades, não precisa ser dicionário, pode ser variávies. Mas é mais fácil
 	Cspeed= {'x': 0, 'y': 0}
