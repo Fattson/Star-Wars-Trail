@@ -905,6 +905,7 @@ while game_over==False and chegou==False:
         game_over = True
         break
     
+    
         
     display.update()
     clock.tick(tick)
