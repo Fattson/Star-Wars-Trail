@@ -744,7 +744,7 @@ def lobo(jog):
             popup()
             s_n = randint(0,100)
             if s_n < 15:
-                jogador.comida += 20
+                jog.comida += 20
                 screen.blit(lobo_suc,(160,200))
                 display.update()
                 time.wait(5000)
@@ -757,8 +757,8 @@ def lobo(jog):
                 limpaTela()
                 break
             else:
-                jogador.comida -= 10
-                jogador.health -= 10
+                jog.comida -= 10
+                jog.health -= 10
                 screen.blit(lobo_fail,(160,200))
                 screen.blit(lobo_fail2,(160,220))
                 display.update()
