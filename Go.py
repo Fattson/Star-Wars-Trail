@@ -7,7 +7,7 @@ jog = testeInterface.sw.Jogo()
 def getStatusGO(jog, i):
 	fonte = pygame.font.Font(None, 30)
 
-	stat1 = "Gasolina: " + str(testeInterface.jog.gas) 
+	stat1 = "Gasolina: " + str(testeInterface.jog.gas - 0.06*i) 
 	stat3 = "Durabilidade: " + str(testeInterface.jog.durab)
 	stat8 = "Distancia restante: " + str(testeInterface.jog.distancia)
 	stat9 = "Tempo restante: " + str(testeInterface.jog.temporestante)
@@ -86,6 +86,13 @@ def TelaGo(jog):
 	esp = 35
 	i = 0
 
+
+	ev = randint(1,100)
+	flag = 0
+	lugar = randint(0,495)
+
+	recta = pygame.Rect((150,350), (200,100))
+
 	# Loop
 	while True:
 		
@@ -131,13 +138,13 @@ def TelaGo(jog):
 			elif tecla[K_d]:
 				carro_position[0] += 1.5
 
-		if nuvens_position[0] <= 0:
+		if nuvens_position[0] <= -100:
 			nuvens_position[0] = 956
 
-		if nuvens2_position[0] <= 0:
+		if nuvens2_position[0] <= -100:
 			nuvens2_position[0] = 956
 
-		if nuvens3_position[0] <= 0:
+		if nuvens3_position[0] <= -100:
 			nuvens3_position[0] = 956
 
 		# Movimentos
@@ -171,22 +178,23 @@ def TelaGo(jog):
 			break
 
 		barra = pygame.draw.rect(screen, (225, 0, 0), [253, 503, largura, 46])
+		
+		if flag == 300:
+		    if ev < 50: 
+		    	testeInterface.ema(jog)
+		    elif ev < 75:
+		    	# vou add lobo guará
+		    	pass
 
-		ev = randint(1,70000)
+		    elif ev < 85:
+		    	# vou add buraco
+		    	pass
 
-		if ev < 50: 
-			testeInterface.ema(jog)        
-	        
-		elif ev < 75:
-	        # vou add lobo guará
-			pass
-	        
-		elif ev < 85:
-	        #vou add buraco
-			pass
+		flag += 1
 
 		stat1, stat3, stat8, stat9 = getStatusGO(jog, i)
-
+		
+		screen.fill((0,0,0),recta)
 		i += 1
 
 		screen.blit(stat1, (150,py+250+1*esp))
@@ -195,6 +203,6 @@ def TelaGo(jog):
 		screen.blit(stat9, (600,py+300+1*esp))
 		#screen.fill( True)
 		pygame.display.update()
-
+		print(flag)
 		# relógio
 		time.tick(30)

@@ -132,7 +132,7 @@ def getTempoDist(jog): # retorna o tempo e a distancia restantes (em forma de ca
     return textD,textT
 
 def getStatus(jog): # faz as frases do STATUS
-    stat1 = "Gasolina: " + str(t)
+    stat1 = "Gasolina: " + str(jog.gas)
     stat2 = "Pecas: " + str(jog.pecas)
     stat3 = "Durabilidade: " + str(jog.durab)
     stat4 = "Comida: " + str(jog.comida)
