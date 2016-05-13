@@ -1,7 +1,7 @@
 from pygame import *
 #import loopJogo.py as lj
 import SwTrail as sw
-
+import Go
 from random import randint
 
 jog = sw.Jogo()
@@ -132,7 +132,7 @@ def getTempoDist(jog): # retorna o tempo e a distancia restantes (em forma de ca
     return textD,textT
 
 def getStatus(jog): # faz as frases do STATUS
-    stat1 = "Gasolina: " + str(jog.gas)
+    stat1 = "Gasolina: " + str(t)
     stat2 = "Pecas: " + str(jog.pecas)
     stat3 = "Durabilidade: " + str(jog.durab)
     stat4 = "Comida: " + str(jog.comida)
@@ -261,7 +261,7 @@ def mercado(jog):
         if key.get_pressed()[K_4] or key.get_pressed()[K_KP4]:
             if jog.reais >= 10:
                 jog.reais-=10
-                jog.gas+=100
+                t+=100
                 screen.blit(done, (500,350))
                 display.update()
                 time.wait(1000)
@@ -855,25 +855,13 @@ while game_over[0]==False and chegou==False:
     proxCidade = dist_proximaCidade(CC[i:])
 
     dist, temp = getTempoDist(jog)
-    screen.blit(go, (100,100))
-    screen.blit(dist,(100,500))
-    screen.blit(temp,(500,500))
-    display.update()####### COMEÇA A TELA GO 
-    time.wait(2000)
-    
-    ev = randint(1,100)
+    #screen.blit(go, (100,100))
+    #screen.blit(dist,(100,500))
+    #screen.blit(temp,(500,500))
 
-    if ev < 50: 
-        ema(jog)        
-        
-    elif ev < 75:
-        # vou add lobo guará
-        pass
-        
-    elif ev < 85:
-        #vou add buraco
-        pass
-    
+    display.update()####### COMEÇA A TELA GO
+
+    Go.TelaGo(jog)
     
     time.wait(2000) ####### TERMINA A TELA GO
     
