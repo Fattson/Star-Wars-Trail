@@ -124,6 +124,15 @@ ema_suc2 = fontePeq.render("Parábens, você acertou a ema e ela morreu!",0,(255
 ema_suc2_2 = fontePeq.render("Recuperou seus 10 e guardou a carne dela (+10 de comida)!",0,(255,255,255))
 ema_fal2 = fontePeq.render("Errou feio, errou rude!! ;)",0,(255,255,255))
 
+lobo0 = fontePeq.render("Voce foi atacado por um lobo guara! O que deseja fazer?",0,(255,255,255))
+lobo_menu0 = fontePeq.render("0 - Fugir (abandona 10 de comida pra destrair a fera)",0,(255,255,255))
+lobo_menu1 = fontePeq.render("1 - Se defender (boa sorte)",0,(255,255,255))
+lobo_suc = fontePeq.render("Parabéns, você conseguiu matar o lobo mau! E pegou a carne dele. (+20 de comida)",0,(255,255,255))
+lobo_medio = fontePeq.render("Não derrotou a fera, mas tambem nao teve que distraí-la.",0,(255,255,255))
+lobo_fail = fontePeq.render("Seu fraco! Nem consegue derrotar um lobo guara.",0,(255,255,255))
+lobo_fal2 = fontePeq.render("Ficou ferido (-10 de health) e perdeu 10 de comida...",0,(255,255,255))
+ 
+
 def getTempoDist(jog): # retorna o tempo e a distancia restantes (em forma de caixa de texto pygame)
     dist = "Distancia " + str(jog.distancia) + "km/3000km"
     time = "Tempo restante: " + str(jog.temporestante) + " horas"
@@ -261,7 +270,7 @@ def mercado(jog):
         if key.get_pressed()[K_4] or key.get_pressed()[K_KP4]:
             if jog.reais >= 10:
                 jog.reais-=10
-                t+=100
+                jog.gas+=100
                 screen.blit(done, (500,350))
                 display.update()
                 time.wait(1000)
@@ -712,7 +721,56 @@ def ema(jog):
         
         #display.update()
         clock.tick(tick)
+
+def lobo(jog):
+    popup()
+    screen.blit(lobo0,(160,160))
+    screen.blit(lobo_menu0,(160,200))
+    screen.blit(lobo_menu1,(160,240))
+    display.update()
+    
+    while True: #loop da ema
         
+        for e in event.get():
+            if e.type == QUIT:
+                exit()
+        
+        if key.get_pressed()[K_0] or key.get_pressed()[K_KP0]: #fugir
+            jog.comida -=10
+            limpaTela()
+            break
+        
+        if key.get_pressed()[K_1] or key.get_pressed()[K_KP1]:#lutar
+            popup()
+            s_n = randint(0,100)
+            if s_n < 15:
+                jogador.comida += 20
+                screen.blit(lobo_suc,(160,200))
+                display.update()
+                time.wait(5000)
+                limpaTela()
+                break
+            elif s_n < 55: 
+                screen.blit(lobo_medio,(160,200))
+                display.update()
+                time.wait(5000)
+                limpaTela()
+                break
+            else:
+                jogador.comida -= 10
+                jogador.health -= 10
+                screen.blit(lobo_fail,(160,200))
+                screen.blit(lobo_fail2,(160,220))
+                display.update()
+                time.wait(5000)
+                limpaTela()
+                break
+
+
+        
+        #display.update()
+        clock.tick(tick)
+
 
 
 menuMercado(jog)
