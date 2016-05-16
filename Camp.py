@@ -26,6 +26,7 @@ while True:
 				exit()
 
 	screen.blit(background, (0,0))
+	screen.blit(carro, (190,405))
 	if i == 60:
 		pygame.draw.rect(screen, (0, 0, 0), [2,3,952,200])
 		pygame.draw.rect(screen, (255, 255, 255), [2,3,952,200], 5)

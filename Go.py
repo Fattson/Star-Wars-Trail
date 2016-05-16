@@ -90,6 +90,7 @@ def TelaGo(jog):
 	time = pygame.time.Clock()
 
 	#Algumas variáveis
+	
 	largura = 0
 	py = 100 # 1o y da tela 
 	esp = 35
@@ -207,6 +208,7 @@ def TelaGo(jog):
 
 		stat1, stat3, stat8, stat9 = getStatusGO(jog, i)
 		
+		pygame.draw.rect(screen,(255, 255, 255), [0, 332, 956, 228], 5)
 		screen.fill((0,0,0),recta)
 		i += 1
 
@@ -216,6 +218,5 @@ def TelaGo(jog):
 		screen.blit(stat9, (600,py+300+1*esp))
 		#screen.fill( True)
 		pygame.display.update()
-		print(flag)
 		# relógio
 		time.tick(30)
