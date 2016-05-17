@@ -4,6 +4,11 @@ import testeInterface
 from random import randint
 
 jog = testeInterface.sw.Jogo()
+
+def randY():
+	return randint(-100, 50)
+
+
 def getStatusGO(jog, i):
 	fonte = pygame.font.Font(None, 30)
 
@@ -30,9 +35,9 @@ def TelaGo(jog):
 	background = pygame.image.load("background1.1.png").convert()
 	background2 = pygame.image.load("background1.1.png").convert()
 
-	nuvens = pygame.image.load("nuvem_provisoria.png").convert()
-	nuvens1 = pygame.image.load("nuvem_provisoria.png").convert()
-	nuvens2 = pygame.image.load("nuvem_provisoria.png").convert()
+	nuvens = pygame.image.load("nuvem3.png")
+	nuvens1 = pygame.image.load("nuvem2.png")
+	nuvens2 = pygame.image.load("nuvem1.png")
 
 	estrada = pygame.image.load("estrada.png")
 	estrada2 = pygame.image.load("estrada.png")
@@ -50,9 +55,9 @@ def TelaGo(jog):
 	estrada = pygame.transform.scale(estrada, (956,200))
 	estrada2 = pygame.transform.scale(estrada, (956,200))
 
-	nuvens = pygame.transform.scale(nuvens, (50,30))
-	nuvens2 = pygame.transform.scale(nuvens, (50,30))
-	nuvens3 = pygame.transform.scale(nuvens, (50,30))
+	nuvens = pygame.transform.scale(nuvens, (956,300))
+	nuvens2 = pygame.transform.scale(nuvens, (956,300))
+	nuvens3 = pygame.transform.scale(nuvens, (956,300))
 
 	# Posições
 	barra_limite_position = [250,500]
@@ -60,9 +65,13 @@ def TelaGo(jog):
 	background_position = [0,0]
 	background2_position = [956,0]
 
-	nuvens_position = [950,100]
-	nuvens2_position = [600,200]
-	nuvens3_position = [300,50]
+	rand_nuvem = randY()
+	rand_nuvem2 = randY()
+	rand_nuvem3 = randY()
+
+	nuvens_position = [0, rand_nuvem]
+	nuvens2_position = [600, rand_nuvem2]
+	nuvens3_position = [300, rand_nuvem3]
 
 	estrada_position = [0,230]
 	estrada2_position =[956,230]
@@ -81,6 +90,7 @@ def TelaGo(jog):
 	time = pygame.time.Clock()
 
 	#Algumas variáveis
+	
 	largura = 0
 	py = 100 # 1o y da tela 
 	esp = 35
@@ -138,14 +148,17 @@ def TelaGo(jog):
 			elif tecla[K_d]:
 				carro_position[0] += 1.5
 
-		if nuvens_position[0] <= -100:
-			nuvens_position[0] = 956
+		if nuvens_position[0] <= -650:
+			nuvens_position[0] = 456
+			rand_nuvem = randY()
 
-		if nuvens2_position[0] <= -100:
-			nuvens2_position[0] = 956
+		if nuvens2_position[0] <= -650:
+			nuvens2_position[0] = 456
+			rand_nuvem2 = randY()
 
-		if nuvens3_position[0] <= -100:
-			nuvens3_position[0] = 956
+		if nuvens3_position[0] <= -650:
+			nuvens3_position[0] = 456
+			rand_nuvem3 = randY()
 
 		# Movimentos
 		background_position[0] += background_movimento['x']
@@ -180,10 +193,11 @@ def TelaGo(jog):
 		barra = pygame.draw.rect(screen, (225, 0, 0), [253, 503, largura, 46])
 		
 		if flag == 300:
-		    if ev < 50: 
+		    if ev < 10: 
 		    	testeInterface.ema(jog)
+
 		    elif ev < 75:
-		    	# vou add lobo guará
+		    	testeInterface.lobo(jog)
 		    	pass
 
 		    elif ev < 85:
@@ -194,6 +208,7 @@ def TelaGo(jog):
 
 		stat1, stat3, stat8, stat9 = getStatusGO(jog, i)
 		
+		pygame.draw.rect(screen,(255, 255, 255), [0, 332, 956, 228], 5)
 		screen.fill((0,0,0),recta)
 		i += 1
 
@@ -203,6 +218,5 @@ def TelaGo(jog):
 		screen.blit(stat9, (600,py+300+1*esp))
 		#screen.fill( True)
 		pygame.display.update()
-		print(flag)
 		# relógio
 		time.tick(30)
