@@ -98,7 +98,6 @@ def TelaGo(jog):
 
 
 	ev = randint(1,100)
-	flag = 0
 	lugar = randint(0,495)
 
 	recta = pygame.Rect((150,350), (200,100))
@@ -192,19 +191,16 @@ def TelaGo(jog):
 
 		barra = pygame.draw.rect(screen, (225, 0, 0), [253, 503, largura, 46])
 		
-		if flag == 300:
-		    if ev < 10: 
+		if i == lugar:
+		    if ev < 50: 
 		    	testeInterface.ema(jog)
 
-		    elif ev < 75:
+		    elif ev < 70:
 		    	testeInterface.lobo(jog)
-		    	pass
 
 		    elif ev < 85:
-		    	# vou add buraco
-		    	pass
+		    	testeInterface.buraco(jog)
 
-		flag += 1
 
 		stat1, stat3, stat8, stat9 = getStatusGO(jog, i)
 		

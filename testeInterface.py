@@ -130,7 +130,9 @@ lobo_menu1 = fontePeq.render("1 - Se defender (boa sorte)",0,(255,255,255))
 lobo_suc = fontePeq.render("Parabéns, você conseguiu matar o lobo mau! E pegou a carne dele. (+20 de comida)",0,(255,255,255))
 lobo_medio = fontePeq.render("Não derrotou a fera, mas tambem nao teve que distraí-la.",0,(255,255,255))
 lobo_fail = fontePeq.render("Seu fraco! Nem consegue derrotar um lobo guara.",0,(255,255,255))
-lobo_fal2 = fontePeq.render("Ficou ferido (-10 de health) e perdeu 10 de comida...",0,(255,255,255))
+lobo_fail2 = fontePeq.render("Ficou ferido (-10 de health) e perdeu 10 de comida...",0,(255,255,255))
+
+buraco0 = fontePeq.render("Oh shit! Passou rapido num buraco! (-100 durabilidade)",0,(255,255,255))
  
 
 def getTempoDist(jog): # retorna o tempo e a distancia restantes (em forma de caixa de texto pygame)
@@ -173,12 +175,7 @@ def limpaTela():
     
 
 
-screen.blit(msg_comeco1, (100,100)) # escreve a intro na tela
-screen.blit(msg_comeco2, (100, 150))
-display.update() #da um update pra aparecer o escrito na tela
 
-time.wait(3000) # espera, em milisegundos
-limpaTela()
 
 def menuMercado(jog): # imprime na tela o menu do mercado
     screen.blit(mer, (100,100))
@@ -772,6 +769,23 @@ def lobo(jog):
         clock.tick(tick)
 
 
+def buraco(jog):
+    popup()
+    screen.blit(buraco0,(160,200))
+    display.update()
+    jog.durab -= 100
+    time.wait(3000)
+    limpaTela()
+    
+
+
+
+screen.blit(msg_comeco1, (100,100)) # escreve a intro na tela
+screen.blit(msg_comeco2, (100, 150))
+display.update() #da um update pra aparecer o escrito na tela
+
+time.wait(3000) # espera, em milisegundos
+limpaTela()
 
 menuMercado(jog)
 while True: #loop mercado inicial
