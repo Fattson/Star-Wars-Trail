@@ -97,8 +97,10 @@ def TelaGo(jog):
 	i = 0
 
 
-	ev = randint(1,100)
-	lugar = randint(0,495)
+	ev = randint(0,100)
+	lugar = randint(1,495)
+	game_over = [False]
+
 
 	recta = pygame.Rect((150,350), (200,100))
 
@@ -192,14 +194,21 @@ def TelaGo(jog):
 		barra = pygame.draw.rect(screen, (225, 0, 0), [253, 503, largura, 46])
 		
 		if i == lugar:
-		    if ev < 50: 
+		    if ev < 1: 
 		    	testeInterface.ema(jog)
 
-		    elif ev < 70:
+		    elif ev < 2:
 		    	testeInterface.lobo(jog)
 
-		    elif ev < 85:
+		    elif ev < 100:
 		    	testeInterface.buraco(jog)
+        
+		if jog.durab<=0:
+		    jog.durab = 0 
+		    testeInterface.quebrou(jog, game_over)
+            
+		if game_over[0]==True:
+		    break
 
 
 		stat1, stat3, stat8, stat9 = getStatusGO(jog, i)

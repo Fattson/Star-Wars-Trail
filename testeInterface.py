@@ -94,6 +94,13 @@ cons = fonte.render("CONSERTO DO CARRO (durabilidade: >600=200pecas >300=300peca
 cons_menu0 = fonte.render("0 - Sair",1,(255,255,255))
 cons_menu1 = fonte.render("1 - Consertar",1,(255,255,255))
 
+quebrou0 = fontePeq.render("O CARRO QUEBROOOU!!!!",1,(255,255,255))
+consE_noGrana = fontePeq.render("Ta sem peças, sorry...",1,(255,255,255))
+
+consE = fontePeq.render("CONSERTO EMERGENCIAL DO CARRO (200 durabilidade por 500 peças)",1,(255,255,255))
+consE_menu0 = fontePeq.render("0 - Sair",1,(255,255,255))
+consE_menu1 = fontePeq.render("1 - Consertar",1,(255,255,255))
+
 stat = fonte.render("===== Status =====", 1, (255,255,255))
 
 voltar = fonte.render("0 - Voltar", 1, (255,255,255))
@@ -777,6 +784,49 @@ def buraco(jog):
     time.wait(3000)
     limpaTela()
     
+
+def quebrou(jog, game_over):
+    popup()
+    screen.blit(quebrou0,(160,200))
+    display.update()
+    time.wait(3000)
+    popup()
+    screen.blit(consE,(160,160))
+    screen.blit(consE_menu0,(160,200))
+    screen.blit(consE_menu1,(160,240))
+    display.update()
+    
+    while True: #loop do conserto emergencial
+        for e in event.get():
+            if e.type == QUIT:
+                exit()
+                
+        if key.get_pressed()[K_0] or key.get_pressed()[K_KP0]:
+            limpaTela()
+            game_over[0] = True
+            break
+    
+        if key.get_pressed()[K_1] or key.get_pressed()[K_KP1]: 
+            if jog.pecas >= 500:
+                jog.durab += 200
+                jog.pecas -= 500
+                time.wait(300)
+                limpaTela()
+                break
+            else:
+                popup()
+                screen.blit(consE_noGrana, (160, 200))
+                display.update()
+                time.wait(2000)
+                popup()
+                screen.blit(consE,(160,160))
+                screen.blit(consE_menu0,(160,200))
+                screen.blit(consE_menu1,(160,240))
+                display.update()
+        
+        
+        #display.update()
+        clock.tick(tick)
 
 
 
