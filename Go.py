@@ -1,6 +1,7 @@
 import pygame
 from pygame.locals import *
 from random import randint
+from eventos import *
 
 def randY():
 	return randint(-100, 50)
@@ -9,10 +10,10 @@ def randY():
 def getStatusGO(jog, i):
 	fonte = pygame.font.Font(None, 30)
 
-	stat1 = "Gasolina: " + str(testeInterface.jog.gas - 0.06*i) 
-	stat3 = "Durabilidade: " + str(testeInterface.jog.durab)
-	stat8 = "Distancia restante: " + str(testeInterface.jog.distancia)
-	stat9 = "Tempo restante: " + str(testeInterface.jog.temporestante)
+	stat1 = "Gasolina: " + str(jog.gas - 0.06*i) 
+	stat3 = "Durabilidade: " + str(jog.durab)
+	stat8 = "Distancia restante: " + str(jog.distancia)
+	stat9 = "Tempo restante: " + str(jog.temporestante)
 
 	stat_gas = fonte.render(stat1, 1, (255,255,255))
 	stat_dur = fonte.render(stat3, 1, (255,255,255))
@@ -21,12 +22,12 @@ def getStatusGO(jog, i):
 
 	return stat_gas, stat_dur, stat_dist, stat_temp
 
-def TelaGo(jog):
-	pygame.init() # Iniciar pygame
+def TelaGo(jog, screen, display, game_over):
+	#pygame.init() # Iniciar pygame
 
 	# Configurações gerais da tela
-	screen = pygame.display.set_mode((956,560), 0, 32) # Tamanho da tela
-	pygame.display.set_caption("StarWars Trail") # Título
+	#screen = pygame.display.set_mode((956,560), 0, 32) # Tamanho da tela
+	#pygame.display.set_caption("StarWars Trail") # Título
 
 	# Carregar imagens
 	background = pygame.image.load("background1.1.png").convert()
@@ -75,7 +76,7 @@ def TelaGo(jog):
 
 	carro_position = [0,280]
 
-	sol_position = [0,0]
+	#sol_position = [0,0]
 
 	# Movimentos
 	background_movimento = {'x': -2, 'y': 0}
@@ -96,7 +97,6 @@ def TelaGo(jog):
 
 	ev = randint(0,100)
 	lugar = randint(1,495)
-	game_over = [False]
 
 
 	recta = pygame.Rect((150,350), (200,100))
@@ -191,20 +191,20 @@ def TelaGo(jog):
 		barra = pygame.draw.rect(screen, (225, 0, 0), [253, 503, largura, 46])
 		
 		if i == lugar:
-		    if ev < 1: 
-		    	testeInterface.ema(jog)
+		    if ev < 50: 
+		    	ema(jog, screen, display)
 
-		    elif ev < 2:
-		    	testeInterface.lobo(jog)
+		    elif ev < 75:
+		    	lobo(jog,screen, display)
 
-		    elif ev < 100:
-		    	testeInterface.buraco(jog)
+		    elif ev < 90:
+		    	buraco(jog, screen, display)
         
 		if jog.durab<=0:
 		    jog.durab = 0 
-		    testeInterface.quebrou(jog, testeInterface.game_over)
+		    quebrou(jog, game_over, screen, display)
             
-		if testeInterface.game_over[0]==True:
+		if game_over[0]==True:
 		    break
 
 
