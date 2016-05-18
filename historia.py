@@ -32,7 +32,6 @@ def intro(screen, display):
             screen.blit(texto, (position['x'],position['y']))
             position['y'] -= 0.5
             pygame.display.update()
-            print(position['y'])
 
         else:
             while True:
