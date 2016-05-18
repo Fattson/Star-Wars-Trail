@@ -301,19 +301,19 @@ def mercado(jog):
         if key.get_pressed()[K_5] or key.get_pressed()[K_KP5]:
             limpaMercado()
             stat1, stat2, stat3, stat4, stat5, stat6, stat7, stat8, stat9 = getStatus(jog)
-            py = 100 # 1o y da tela 
-            esp = 35 # espaco entre eles
-            screen.blit(stat, (100,py))
-            screen.blit(stat1, (100,py+1*esp))
-            screen.blit(stat2, (100,py+2*esp))
-            screen.blit(stat3, (100,py+3*esp))
-            screen.blit(stat4, (100,py+4*esp))
-            screen.blit(stat5, (100,py+5*esp))
-            screen.blit(stat6, (100,py+6*esp))
-            screen.blit(stat7, (100,py+7*esp))
-            screen.blit(stat8, (100,py+8*esp))
-            screen.blit(stat9, (100,py+9*esp))
-            screen.blit(voltar, (100, 500))
+            py = 20 # 1o y da tela 
+            esp = 30 # espaco entre eles
+            screen.blit(stat, (10,py))
+            screen.blit(stat1, (10,py+1*esp))
+            screen.blit(stat2, (10,py+2*esp))
+            screen.blit(stat3, (10,py+3*esp))
+            screen.blit(stat4, (10,py+4*esp))
+            screen.blit(stat5, (10,py+5*esp))
+            screen.blit(stat6, (250,py+1*esp))
+            screen.blit(stat7, (250,py+2*esp))
+            screen.blit(stat8, (250,py+3*esp))
+            screen.blit(stat9, (250,py+4*esp))
+            screen.blit(voltar, (600, 100))
             display.update()
             
             while True: # loopzinho esperando o cara ler o status e decidir voltar
@@ -737,131 +737,7 @@ historia.intro(screen,display)
 """
 # ACABA A INTROOOOO
 
-mercado(jog)
-
-"""
-menuMercado(jog)
-while True: #loop mercado inicial
-
-    for e in event.get():
-        if e.type == QUIT:
-            exit()
-
-    if key.get_pressed()[K_0] or key.get_pressed()[K_KP0]:
-        limpaTela()
-        break
-
-    if key.get_pressed()[K_1] or key.get_pressed()[K_KP1]:
-        if jog.reais >= 10:
-            jog.reais-=10
-            jog.comida+=10
-            screen.blit(done, (500,200))
-            display.update()
-            time.wait(1000)
-            limpaTela()
-            menuMercado(jog)
-            
-        else:
-            limpaTela()
-            screen.blit(semGrana, (250,200))
-            display.update()
-            time.wait(2000)
-            limpaTela()
-            menuMercado(jog)
-        
-        
-    if key.get_pressed()[K_2] or key.get_pressed()[K_KP2]:
-        if jog.comida >= 10:
-            jog.comida-=10
-            jog.reais+=10
-            screen.blit(done, (500,250))
-            display.update()
-            time.wait(1000)
-            limpaTela()
-            menuMercado(jog)
-        else:
-            limpaTela()
-            screen.blit(semComida, (250,200))
-            display.update()
-            time.wait(3000)
-            limpaTela()
-            menuMercado(jog)
-        
-        
-    if key.get_pressed()[K_3] or key.get_pressed()[K_KP3]:
-        if jog.reais >= 10:
-            jog.reais-=10
-            jog.pecas+=100
-            screen.blit(done, (500,300))
-            display.update()
-            time.wait(1000)
-            limpaTela()
-            menuMercado(jog)
-        else:
-            limpaTela()
-            screen.blit(semGrana, (250,200))
-            display.update()
-            time.wait(2000)
-            limpaTela()
-            menuMercado(jog)
-    
-    if key.get_pressed()[K_4] or key.get_pressed()[K_KP4]:
-        if jog.reais >= 10:
-            jog.reais-=10
-            jog.gas+=100
-            screen.blit(done, (500,350))
-            display.update()
-            time.wait(1000)
-            limpaTela()
-            menuMercado(jog)
-        else:
-            limpaTela()
-            screen.blit(semGrana, (250,200))
-            display.update()
-            time.wait(2000)
-            limpaTela()
-            menuMercado(jog)
-    
-    
-    if key.get_pressed()[K_5] or key.get_pressed()[K_KP5]:
-        limpaTela()
-        stat1, stat2, stat3, stat4, stat5, stat6, stat7, stat8, stat9 = getStatus(jog)
-        py = 100 # 1o y da tela 
-        esp = 35 # espaco entre eles
-        screen.blit(stat, (100,py))
-        screen.blit(stat1, (100,py+1*esp))
-        screen.blit(stat2, (100,py+2*esp))
-        screen.blit(stat3, (100,py+3*esp))
-        screen.blit(stat4, (100,py+4*esp))
-        screen.blit(stat5, (100,py+5*esp))
-        screen.blit(stat6, (100,py+6*esp))
-        screen.blit(stat7, (100,py+7*esp))
-        screen.blit(stat8, (100,py+8*esp))
-        screen.blit(stat9, (100,py+9*esp))
-        screen.blit(voltar, (100, 500))
-        display.update()
-        
-        while True: # loopzinho esperando o cara ler o status e decidir voltar
-            for e in event.get():
-                if e.type == QUIT:
-                    exit()
-            
-            if key.get_pressed()[K_0] or key.get_pressed()[K_KP0]:
-                limpaTela()
-                menuMercado(jog)
-                time.wait(500) # pra dar tempo de tirar o dedo da tecla 0
-                break
-            
-            display.update()
-            clock.tick(tick)
-            
-        
-        
-        
-    display.update()
-    clock.tick(tick)
-    
-"""
+mercado(jog) # mercado inicial
 
 game_over = [False]
 chegou = False
