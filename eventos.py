@@ -385,3 +385,35 @@ def quebrou(jog, game_over, screen, display):
         
         #display.update()
         clock.tick(tick)
+
+
+def assalto(jog, screen, display):
+    
+    ass = image.load('evento_assalto.png')
+    screen.blit(ass,(150,150))
+    display.update()
+    
+    ass_suc1 = image.load('resposta1_assalto.png')
+    ass_fal1 = image.load('resposta2_assalto.png')
+    ass_suc2 = image.load('resposta3_assalto.png')
+    ass_fal2 = image.load('resposta4_assalto.png')
+    
+    while True: #loop do assalto
+        for e in event.get():
+            if e.type == QUIT:
+                exit()
+        
+        if key.get_pressed()[K_0] or key.get_pressed()[K_KP0]:
+            jog.reais -= 30
+            limpaTelaEv(screen, display)
+            game_over[0] = True
+            break
+        
+        
+        
+        
+        
+        
+        #display.update()
+        clock.tick(tick)
+    
