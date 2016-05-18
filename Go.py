@@ -145,6 +145,10 @@ def TelaGo(jog, screen, display, game_over):
 				carro_position[0] -= 1.5
 			elif tecla[K_d]:
 				carro_position[0] += 1.5
+		
+		if carro_position[0] == -1.5:
+			if tecla[K_a]:
+				carro_position[0] += 1.5
 
 		if nuvens_position[0] <= -650:
 			nuvens_position[0] = 456
@@ -186,6 +190,7 @@ def TelaGo(jog, screen, display, game_over):
 		if largura <= 496:
 			largura += 1
 		if largura >= 496:
+			stat1 -= 0.36
 			break
 
 		barra = pygame.draw.rect(screen, (225, 0, 0), [253, 503, largura, 46])
@@ -219,6 +224,7 @@ def TelaGo(jog, screen, display, game_over):
 		screen.blit(stat8, (600,py+250+1*esp))
 		screen.blit(stat9, (600,py+300+1*esp))
 		#screen.fill( True)
+		print(carro_position[0])
 		pygame.display.update()
 		# relógio
 		time.tick(30)
