@@ -198,11 +198,11 @@ def TelaGo(jog, screen, display, game_over):
 		    if ev < 1: 
 		    	ema2(jog, screen, display)
 
-		    elif ev < 100:
+		    elif ev < 2:
 		    	lobo2(jog,screen, display)
 
-		    elif ev < 90:
-		    	buraco(jog, screen, display)
+		    elif ev < 100:
+		    	buraco2(jog, screen, display)
         
 		if jog.durab<=0:
 		    jog.durab = 0 
