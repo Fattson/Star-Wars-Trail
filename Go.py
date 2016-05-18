@@ -206,7 +206,7 @@ def TelaGo(jog, screen, display, game_over):
         
 		if jog.durab<=0:
 		    jog.durab = 0 
-		    quebrou(jog, game_over, screen, display)
+		    quebrou2(jog, game_over, screen, display)
             
 		if game_over[0]==True:
 		    break
