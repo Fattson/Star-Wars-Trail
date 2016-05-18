@@ -1,9 +1,6 @@
 import pygame
 from pygame.locals import *
-import testeInterface
 from random import randint
-
-jog = testeInterface.sw.Jogo()
 
 def randY():
 	return randint(-100, 50)
