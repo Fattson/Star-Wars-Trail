@@ -726,7 +726,7 @@ def campo(jog, prox, game_over):
 
 
 # INTROOOOOOO
-
+"""
 screen.blit(msg_comeco1, (100,100)) # escreve a intro na tela
 screen.blit(msg_comeco2, (100, 150))
 display.update() #da um update pra aparecer o escrito na tela
@@ -736,14 +736,13 @@ limpaTela()
 
 """
 historia.intro(screen,display)
-"""
+
 # ACABA A INTROOOOO
 
 game_over = [False]
 chegou = False
 
 
-campo(jog, 1, game_over)
 
 mercado(jog) # mercado inicial
 
