@@ -3,6 +3,7 @@ from pygame import *
 import SwTrail as sw
 import Go
 from random import randint
+import historia
 
 jog = sw.Jogo()
 
@@ -686,6 +687,7 @@ def campo(jog, prox, game_over):
  
 
 
+# INTROOOOOOO
 
 screen.blit(msg_comeco1, (100,100)) # escreve a intro na tela
 screen.blit(msg_comeco2, (100, 150))
@@ -693,6 +695,11 @@ display.update() #da um update pra aparecer o escrito na tela
 
 time.wait(3000) # espera, em milisegundos
 limpaTela()
+
+"""
+historia.intro(screen,display)
+"""
+# ACABA A INTROOOOO
 
 menuMercado(jog)
 while True: #loop mercado inicial
