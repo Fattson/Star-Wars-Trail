@@ -185,8 +185,8 @@ def mercado(jog):
                 exit()
 
         if key.get_pressed()[K_0] or key.get_pressed()[K_KP0]:
-            limpaTela()
-            time.wait(500)
+            time.wait(500)            
+            limpaTela()            
             break
 
         if key.get_pressed()[K_1] or key.get_pressed()[K_KP1]:
@@ -299,8 +299,7 @@ def mercado(jog):
         display.update()
         clock.tick(tick)
 
-def menuCidade(prox):
-    limpaTela()    
+def menuCidade(prox):    
     screen.blit(cid, (100,100))
     screen.blit(cid_menu0, (100,150))
     screen.blit(cid_menu1, (100,200))
@@ -313,21 +312,26 @@ def menuCidade(prox):
     display.update()
     
 
-    
+
+def limpaConserto():
+    draw.rect(screen, (0, 0, 0), [2,2,952,200])
+    display.update()
+
 def menuConserto(jog):
-    limpaTela()    
-    screen.blit(cons, (100,100))
-    screen.blit(cons_menu0, (100,150))
-    screen.blit(cons_menu1, (100,200))
+    limpaConserto()    
+    screen.blit(cons, (100,50))
+    screen.blit(cons_menu0, (100,100))
+    screen.blit(cons_menu1, (100,150))
     textp="Peças: "+str(jog.pecas)
     pecas = fonte.render(textp,1,(255,255,255))
     textd="Durabilidade: "+str(jog.durab)
     durab = fonte.render(textd,1,(255,255,255))
-    screen.blit(pecas, (500,200))
-    screen.blit(durab, (700,200))
+    screen.blit(pecas, (500,150))
+    screen.blit(durab, (700,150))
     display.update()
 
 def conserto(jog):
+    
     menuConserto(jog)
     
     while True:
@@ -335,17 +339,17 @@ def conserto(jog):
             if e.type == QUIT:
                 exit()
         if key.get_pressed()[K_0] or key.get_pressed()[K_KP0]:
-            limpaTela()
+            #limpaTela()
             time.wait(500)
             break
     
         if key.get_pressed()[K_1] or key.get_pressed()[K_KP1]: 
             
             if jog.durab == 1000:
-                screen.blit(tanomax, (300,200))
+                screen.blit(tanomax, (300,150))
                 display.update()
                 time.wait(1000)
-                limpaTela()
+                limpaConserto()
                 menuConserto(jog)
             else:
                 if jog.durab > 600:
@@ -354,17 +358,17 @@ def conserto(jog):
                         jog.pecas -= 200
                         if jog.durab > 1000: # nao deixa passar do max
                             jog.durab = 1000
-                        screen.blit(done, (300,200))
+                        screen.blit(done, (300,150))
                         display.update()
                         time.wait(1000)
-                        limpaTela()
+                        limpaConserto()
                         menuConserto(jog)
                     else:
-                        limpaTela()
-                        screen.blit(semPecas, (250,200))
+                        limpaConserto()
+                        screen.blit(semPecas, (250,150))
                         display.update()
                         time.wait(2000)
-                        limpaTela()
+                        limpaConserto()
                         menuConserto(jog)
                 elif jog.durab > 300:
                     if jog.pecas >= 300:
@@ -372,17 +376,17 @@ def conserto(jog):
                         jog.pecas -= 300
                         if jog.durab > 1000: # nao deixa passar do max
                             jog.durab = 1000
-                        screen.blit(done, (300,200))
+                        screen.blit(done, (300,150))
                         display.update()
                         time.wait(1000)
-                        limpaTela()
+                        limpaConserto()
                         menuConserto(jog)
                     else:
-                        limpaTela()
-                        screen.blit(semPecas, (250,200))
+                        limpaConserto()
+                        screen.blit(semPecas, (250,150))
                         display.update()
                         time.wait(2000)
-                        limpaTela()
+                        limpaConserto()
                         menuConserto(jog)
                 else:
                     if jog.pecas >= 500:
@@ -390,17 +394,17 @@ def conserto(jog):
                         jog.pecas -= 500
                         if jog.durab > 1000: # nao deixa passar do max
                             jog.durab = 1000
-                        screen.blit(done, (300,200))
+                        screen.blit(done, (300,150))
                         display.update()
                         time.wait(1000)
-                        limpaTela()
+                        limpaConserto()
                         menuConserto(jog)
                     else:
-                        limpaTela()
-                        screen.blit(semPecas, (250,200))
+                        limpaConserto()
+                        screen.blit(semPecas, (100,150))
                         display.update()
                         time.wait(2000)
-                        limpaTela()
+                        limpaConserto()
                         menuConserto(jog)
             
             
@@ -410,16 +414,46 @@ def conserto(jog):
         
         display.update()
         clock.tick(tick)
+        
+def limpaCidade():
+
+    background = image.load("cidade2.jpg")
+    background = transform.scale(background, (956,560))
+
+    rect_transparente = image.load("cidade2_transparente.jpg")
+    rect_transparente = transform.scale(rect_transparente, (956,200))   
+    
+    screen.blit(background, (0,0))
+    draw.rect(screen, (0, 0, 0), [2,2,952,200])
+    screen.blit(rect_transparente,(0, 0))
+    draw.rect(screen, (255, 255, 255), [2,2,952,200], 5)
+    display.update()
     
     
 def cidade(jog, prox, game_over): # CIDADE
+
+    background = image.load("cidade2.jpg")
+    background = transform.scale(background, (956,560))
     
+    
+    rect_transparente = image.load("cidade2_transparente.jpg")
+    rect_transparente = transform.scale(rect_transparente, (956,200))
+    
+    screen.blit(background, (0,0))
+    display.update()
+    
+    time.wait(1000)
+    draw.rect(screen, (0, 0, 0), [2,2,952,200])
+    screen.blit(rect_transparente,(0, 0))
+    draw.rect(screen, (255, 255, 255), [2,2,952,200], 5)
     menuCidade(prox)
+    display.update()
     
     while True: # loop cidade
         for e in event.get():
             if e.type == QUIT:
                 exit()
+       
                 
         if jog.temporestante <= 0:
             game_over[0] = True
@@ -430,9 +464,10 @@ def cidade(jog, prox, game_over): # CIDADE
             break
     
         if key.get_pressed()[K_1] or key.get_pressed()[K_KP1]: #MERCADO
-            limpaTela()            
+            limpaCidade()            
             time.wait(500) # para a opcao 1 nao valer dentro do mercado
             mercado(jog)
+            limpaCidade()
             menuCidade(prox)
     
         if key.get_pressed()[K_2] or key.get_pressed()[K_KP2]:#SUS
@@ -442,14 +477,12 @@ def cidade(jog, prox, game_over): # CIDADE
                 screen.blit(done, (500,250))
                 display.update()
                 time.wait(1000)
-                limpaTela()
-                menuCidade(prox)
+                limpaCidade()
             else:
                 screen.blit(tanomax, (500,250))
                 display.update()
                 time.wait(1000)
-                limpaTela()
-                menuCidade(prox)
+                limpaCidade()
             
             if jog.health<100:
                 jog.health = 100
@@ -462,13 +495,13 @@ def cidade(jog, prox, game_over): # CIDADE
                 screen.blit(done, (500,300))
                 display.update()
                 time.wait(1000)
-                limpaTela()
+                limpaCidade()
                 menuCidade(prox)
             else:
                 screen.blit(tanomax, (500,300))
                 display.update()
                 time.wait(1000)
-                limpaTela()
+                limpaCidade()
                 menuCidade(prox)
             
             if jog.health<100:
@@ -476,13 +509,14 @@ def cidade(jog, prox, game_over): # CIDADE
                 
     
         if key.get_pressed()[K_4] or key.get_pressed()[K_KP4]:#CONSERTO
-            limpaTela()            
+            screen.blit(background, (0,0))            
             time.wait(500)
             conserto(jog)
+            limpaCidade()
             menuCidade(prox)
     
         if key.get_pressed()[K_5] or key.get_pressed()[K_KP5]:#STATUS
-            limpaTela()
+            limpaCidade()
             stat1, stat2, stat3, stat4, stat5, stat6, stat7, stat8, stat9 = getStatus(jog)
             py = 100 # 1o y da tela 
             esp = 35 # espaco entre eles
@@ -505,18 +539,10 @@ def cidade(jog, prox, game_over): # CIDADE
                         exit()
                         
                 if key.get_pressed()[K_0] or key.get_pressed()[K_KP0]:
-                    limpaTela()
-                    screen.blit(cid, (100,100))
-                    screen.blit(cid_menu0, (100,150))
-                    screen.blit(cid_menu1, (100,200))
-                    screen.blit(cid_menu2, (100,250))
-                    screen.blit(cid_menu3, (100,300))
-                    screen.blit(cid_menu4, (100,350))
-                    screen.blit(cid_menu5, (100,400))
-                    proxima = fazTextoProx(prox)
-                    screen.blit(proxima, (100,500))
-                    display.update()
                     time.wait(500) # pra dar tempo de tirar o dedo da tecla 0
+                    limpaCidade()
+                    menuCidade(prox)
+                    display.update()
                     break
             
             display.update()
@@ -527,9 +553,40 @@ def cidade(jog, prox, game_over): # CIDADE
     display.update()
     clock.tick(tick)
     
+    
+def limpaCampo():
+    background = image.load("campfire1.png")
+    background = transform.scale(background, (956,560))
+    carro = image.load("carrofogo.png")
+    carro = transform.scale(carro, (260,90))
+    rect_transparente = image.load("campfire1_transparente1.png")
+    rect_transparente= transform.scale(rect_transparente, (956,200)) 
+    
+    screen.blit(background, (0,0))
+    screen.blit(carro, (190,405))
+    draw.rect(screen, (0, 0, 0), [2,3,952,200])
+    draw.rect(screen, (255, 255, 255), [2,3,952,200], 5)
+    display.update()
+    
 
 def campo(jog, prox, game_over):
-    limpaTela()    
+    
+    background = image.load("campfire1.png")
+    background = transform.scale(background, (956,560))
+    carro = image.load("carrofogo.png")
+    carro = transform.scale(carro, (260,90))
+    rect_transparente = image.load("campfire1_transparente1.png")
+    rect_transparente= transform.scale(rect_transparente, (956,200)) 
+    
+    screen.blit(background, (0,0))
+    screen.blit(carro, (190,405))
+    display.update()
+    
+    time.wait(1000)    
+    
+    draw.rect(screen, (0, 0, 0), [2,3,952,200])
+    draw.rect(screen, (255, 255, 255), [2,3,952,200], 5)
+    screen.blit(rect_transparente, (0,0))
     screen.blit(camp, (100,100))
     screen.blit(camp_menu0, (100,150))
     screen.blit(camp_menu1, (100,200))
@@ -558,7 +615,7 @@ def campo(jog, prox, game_over):
             screen.blit(done, (500,200))
             display.update()
             time.wait(1000)
-            limpaTela()    
+            limpaCampo()    
             screen.blit(camp, (100,100))
             screen.blit(camp_menu0, (100,150))
             screen.blit(camp_menu1, (100,200))
@@ -569,10 +626,10 @@ def campo(jog, prox, game_over):
             display.update()
     
         if key.get_pressed()[K_2] or key.get_pressed()[K_KP2]: #conserto
-            limpaTela()
+            limpaCampo()
             time.wait(500)
             conserto(jog)
-            limpaTela()    
+            limpaCampo()    
             screen.blit(camp, (100,100))
             screen.blit(camp_menu0, (100,150))
             screen.blit(camp_menu1, (100,200))
@@ -606,7 +663,7 @@ def campo(jog, prox, game_over):
                         exit()
                         
                 if key.get_pressed()[K_0] or key.get_pressed()[K_KP0]:
-                    limpaTela()
+                    limpaCampo()
                     screen.blit(camp, (100,100))
                     screen.blit(camp_menu0, (100,150))
                     screen.blit(camp_menu1, (100,200))
@@ -762,6 +819,9 @@ game_over = [False]
 chegou = False
 
 i = 0
+
+
+#campo(jog, 1, game_over)
 
 ###  LOOP PRINCIPAL DO JOGO  ###
 

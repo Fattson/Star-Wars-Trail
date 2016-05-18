@@ -2,9 +2,6 @@ import pygame
 from pygame.locals import *
 
 pygame.init()
-
-
-
 screen = pygame.display.set_mode((956,560), 0, 32)
 
 background = pygame.image.load("cidade2.jpg")
