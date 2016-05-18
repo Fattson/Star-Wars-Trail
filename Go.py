@@ -196,8 +196,8 @@ def TelaGo(jog, screen, display, game_over):
 		barra = pygame.draw.rect(screen, (225, 0, 0), [253, 503, largura, 46])
 		
 		if i == lugar:
-		    if ev < 50: 
-		    	ema(jog, screen, display)
+		    if ev < 100: 
+		    	ema2(jog, screen, display)
 
 		    elif ev < 75:
 		    	lobo(jog,screen, display)
@@ -224,7 +224,7 @@ def TelaGo(jog, screen, display, game_over):
 		screen.blit(stat8, (600,py+250+1*esp))
 		screen.blit(stat9, (600,py+300+1*esp))
 		#screen.fill( True)
-		print(carro_position[0])
+		
 		pygame.display.update()
 		# relógio
 		time.tick(30)
