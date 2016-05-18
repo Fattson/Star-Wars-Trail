@@ -185,8 +185,8 @@ def mercado(jog):
                 exit()
 
         if key.get_pressed()[K_0] or key.get_pressed()[K_KP0]:
-            limpaTela()
-            time.wait(500)
+            time.wait(500)            
+            limpaTela()            
             break
 
         if key.get_pressed()[K_1] or key.get_pressed()[K_KP1]:
@@ -299,8 +299,7 @@ def mercado(jog):
         display.update()
         clock.tick(tick)
 
-def menuCidade(prox):
-    limpaTela()    
+def menuCidade(prox):    
     screen.blit(cid, (100,100))
     screen.blit(cid_menu0, (100,150))
     screen.blit(cid_menu1, (100,200))
@@ -410,16 +409,46 @@ def conserto(jog):
         
         display.update()
         clock.tick(tick)
+        
+def limpaCidade():
+
+    background = image.load("cidade2.jpg")
+    background = transform.scale(background, (956,560))
+
+    rect_transparente = image.load("cidade2_transparente.jpg")
+    rect_transparente = transform.scale(rect_transparente, (956,200))   
+    
+    screen.blit(background, (0,0))
+    draw.rect(screen, (0, 0, 0), [2,2,952,200])
+    screen.blit(rect_transparente,(0, 0))
+    draw.rect(screen, (255, 255, 255), [2,2,952,200], 5)
+    display.update()
     
     
 def cidade(jog, prox, game_over): # CIDADE
+
+    background = image.load("cidade2.jpg")
+    background = transform.scale(background, (956,560))
     
+    
+    rect_transparente = image.load("cidade2_transparente.jpg")
+    rect_transparente = transform.scale(rect_transparente, (956,200))
+    
+    screen.blit(background, (0,0))
+    display.update()
+    
+    time.wait(1000)
+    draw.rect(screen, (0, 0, 0), [2,2,952,200])
+    screen.blit(rect_transparente,(0, 0))
+    draw.rect(screen, (255, 255, 255), [2,2,952,200], 5)
     menuCidade(prox)
+    display.update()
     
     while True: # loop cidade
         for e in event.get():
             if e.type == QUIT:
                 exit()
+       
                 
         if jog.temporestante <= 0:
             game_over[0] = True
@@ -430,9 +459,10 @@ def cidade(jog, prox, game_over): # CIDADE
             break
     
         if key.get_pressed()[K_1] or key.get_pressed()[K_KP1]: #MERCADO
-            limpaTela()            
+            limpaCidade()            
             time.wait(500) # para a opcao 1 nao valer dentro do mercado
             mercado(jog)
+            limpaCidade()
             menuCidade(prox)
     
         if key.get_pressed()[K_2] or key.get_pressed()[K_KP2]:#SUS
@@ -442,14 +472,12 @@ def cidade(jog, prox, game_over): # CIDADE
                 screen.blit(done, (500,250))
                 display.update()
                 time.wait(1000)
-                limpaTela()
-                menuCidade(prox)
+                limpaCidade()
             else:
                 screen.blit(tanomax, (500,250))
                 display.update()
                 time.wait(1000)
-                limpaTela()
-                menuCidade(prox)
+                limpaCidade()
             
             if jog.health<100:
                 jog.health = 100
@@ -462,13 +490,13 @@ def cidade(jog, prox, game_over): # CIDADE
                 screen.blit(done, (500,300))
                 display.update()
                 time.wait(1000)
-                limpaTela()
+                limpaCidade()
                 menuCidade(prox)
             else:
                 screen.blit(tanomax, (500,300))
                 display.update()
                 time.wait(1000)
-                limpaTela()
+                limpaCidade()
                 menuCidade(prox)
             
             if jog.health<100:
@@ -476,13 +504,14 @@ def cidade(jog, prox, game_over): # CIDADE
                 
     
         if key.get_pressed()[K_4] or key.get_pressed()[K_KP4]:#CONSERTO
-            limpaTela()            
+            screen.blit(background, (0,0))            
             time.wait(500)
             conserto(jog)
+            limpaCidade()
             menuCidade(prox)
     
         if key.get_pressed()[K_5] or key.get_pressed()[K_KP5]:#STATUS
-            limpaTela()
+            limpaCidade()
             stat1, stat2, stat3, stat4, stat5, stat6, stat7, stat8, stat9 = getStatus(jog)
             py = 100 # 1o y da tela 
             esp = 35 # espaco entre eles
@@ -505,18 +534,10 @@ def cidade(jog, prox, game_over): # CIDADE
                         exit()
                         
                 if key.get_pressed()[K_0] or key.get_pressed()[K_KP0]:
-                    limpaTela()
-                    screen.blit(cid, (100,100))
-                    screen.blit(cid_menu0, (100,150))
-                    screen.blit(cid_menu1, (100,200))
-                    screen.blit(cid_menu2, (100,250))
-                    screen.blit(cid_menu3, (100,300))
-                    screen.blit(cid_menu4, (100,350))
-                    screen.blit(cid_menu5, (100,400))
-                    proxima = fazTextoProx(prox)
-                    screen.blit(proxima, (100,500))
-                    display.update()
                     time.wait(500) # pra dar tempo de tirar o dedo da tecla 0
+                    limpaCidade()
+                    menuCidade(prox)
+                    display.update()
                     break
             
             display.update()

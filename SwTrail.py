@@ -11,12 +11,12 @@ class Jogo:
 		self.pecas = 1000
 		self.health = 100
 		self.reais = 20
-		self.temporestante = 10    # Tempo restante
+		self.temporestante = 100    # Tempo restante
 		self.tempodeviagem = 3    # Tempo de viagem, não conta o tempo gasto em cidade ou camp, apenas na tela go
 		self.numero_jogadores = 3
 		self.distancia = 3000
 		self.velocidade = 100
-		self.durab = 100 # durabilidade
+		self.durab = 1000 # durabilidade
 
 	def varia_durabilidade(self, tempo):
 		self.durab -= tempo*10
