@@ -22,17 +22,16 @@ def limpaTelaEv(screen, display):
     
 
 def ema2(jog,screen, display):
-    emaB0 = image.load("evento_emma1.png")
-    screen.blit(emaB0,(150,150))
+    ema0 = image.load("evento_emma1.png")
+    screen.blit(ema0,(150,150))
     display.update()
     
-    fontePeq = font.Font(None, 23)
-    ema_suc1 = fontePeq.render("Parabéns, você conseguiu pegar a ema e recuperar sua comida!",0,(255,255,255))
-    ema_suc1_2 = fontePeq.render("Apesar de ter demorado 3 horas...",0,(255,255,255))
-    ema_fal1 = fontePeq.render("Fracassado! Nem consegue ir atrás de uma ema. Ainda levou 3 horas...",0,(255,255,255))
-    ema_suc2 = fontePeq.render("Parábens, você acertou a ema e ela morreu!",0,(255,255,255))
-    ema_suc2_2 = fontePeq.render("Recuperou seus 10 e guardou a carne dela (+10 de comida)!",0,(255,255,255))
-    ema_fal2 = fontePeq.render("Errou feio, errou rude!! ;)",0,(255,255,255))
+    ema_suc1 = image.load("resposta1_emma1.png")
+    ema_fal1 = image.load("resposta2_emma1.png")
+    ema_suc2 = image.load("resposta3_emma1.png")
+    ema_fal2 = image.load("resposta3_emma1.png")
+    
+    
     
     
     while True: #loop da ema
@@ -43,7 +42,7 @@ def ema2(jog,screen, display):
         
         if key.get_pressed()[K_0] or key.get_pressed()[K_KP0]: #miar
             jog.comida -=10
-            limpaTelaEv(screen, display)
+            #limpaTelaEv(screen, display)
             break
         
         if key.get_pressed()[K_1] or key.get_pressed()[K_KP1]:#perseguir
@@ -51,19 +50,18 @@ def ema2(jog,screen, display):
             jog.temporestante -= 3
             s_n = randint(0,100)
             if s_n < 75:
-                screen.blit(ema_suc1,(160,200))
-                screen.blit(ema_suc1_2,(160,220))
+                screen.blit(ema_suc1,(150,150))
                 display.update()
                 time.wait(5000)
-                limpaTelaEv(screen, display)
+                #limpaTelaEv(screen, display)
                 break
             
             else:
                 jog.comida -= 10       
-                screen.blit(ema_fal1, (160,200))
+                screen.blit(ema_fal1, (150,1500))
                 display.update()
                 time.wait(5000)
-                limpaTelaEv(screen, display)
+                #limpaTelaEv(screen, display)
                 break
             
             
@@ -72,19 +70,18 @@ def ema2(jog,screen, display):
             s_n = randint(0,100)
             if s_n < 15:
                 jog.comida += 10
-                screen.blit(ema_suc2,(160,200))
-                screen.blit(ema_suc2_2,(160,220))
+                screen.blit(ema_suc2,(150,150))
                 display.update()
                 time.wait(5000)
-                limpaTelaEv(screen, display)
+                #limpaTelaEv(screen, display)
                 break
             
             else:
                 jog.comida -= 10       
-                screen.blit(ema_fal2, (160,200))
+                screen.blit(ema_fal2, (150,150))
                 display.update()
                 time.wait(5000)
-                limpaTelaEv(screen, display)
+                #limpaTelaEv(screen, display)
                 break
                 
         
