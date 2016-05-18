@@ -190,13 +190,13 @@ def lobo2(jog, screen, display):
                 jog.comida += 20
                 screen.blit(lobo_suc,(150,150))
                 display.update()
-                time.wait(5000)
+                time.wait(8000)
                 limpaTelaEv(screen, display)
                 break
             elif s_n < 55: 
                 screen.blit(lobo_medio,(150,150))
                 display.update()
-                time.wait(5000)
+                time.wait(8000)
                 limpaTelaEv(screen, display)
                 break
             else:
@@ -204,7 +204,7 @@ def lobo2(jog, screen, display):
                 jog.health -= 10
                 screen.blit(lobo_fal,(150,150))
                 display.update()
-                time.wait(5000)
+                time.wait(8000)
                 limpaTelaEv(screen, display)
                 break
 
@@ -272,7 +272,16 @@ def lobo(jog, screen, display):
         #display.update()
         clock.tick(tick)
 
-
+def buraco2(jog, screen, display):
+    buraco0 = image.load('evento_buraco.png')
+    screen.blit(buraco0,(150,150))
+    display.update()
+    
+    jog.durab -= 100
+    time.wait(5000)
+    limpaTelaEv(screen, display)
+        
+    
 def buraco(jog, screen, display):
     fontePeq = font.Font(None, 23)
     buraco0 = fontePeq.render("Oh shit! Passou rapido num buraco! (-100 durabilidade)",0,(255,255,255))
