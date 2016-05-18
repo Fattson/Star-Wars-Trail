@@ -67,6 +67,9 @@ clock = time.Clock() # cria o reloginho
 
 #jog = sw.Jogo()
 
+
+
+
 cid = fonte.render("CIDADE! O que deseja fazer?", 1, (255,255,255))
 cid_menu0 = fonte.render("0 - Continuar a viagem", 1, (255,255,255))
 cid_menu1 = fonte.render("1 - Mercado", 1, (255,255,255))
@@ -158,15 +161,15 @@ def limpaTela():
 
 
 def menuMercado(jog): # imprime na tela o menu do mercado
-    screen.blit(mer, (100,100))
-    screen.blit(mer_menu0, (100,150))
-    screen.blit(mer_menu1, (100,200))
-    screen.blit(mer_menu2, (100,250))
-    screen.blit(mer_menu3, (100,300))
-    screen.blit(mer_menu4, (100,350))
-    screen.blit(mer_menu5, (100,400))
+    #screen.blit(mer, (10,10))
+    screen.blit(mer_menu0, (10,20))
+    screen.blit(mer_menu1, (10,50))
+    screen.blit(mer_menu2, (10,80))
+    screen.blit(mer_menu3, (10,110))
+    screen.blit(mer_menu4, (10,140))
+    screen.blit(mer_menu5, (10,170))
     grana = fazTextoGrana(jog)
-    screen.blit(grana, (500,100))
+    screen.blit(grana, (500,20))
     
 def fazTextoProx(prox): # faz o texto da distancia pra prox cidade
     text = "Distância para a próxima cidade: " + str(prox)
@@ -176,8 +179,41 @@ def fazTextoGrana(jog):
     grana = "Grana: " + str(jog.reais)
     return fonte.render(grana,1,(255,255,255))
     
+def limpaMercado():
+    background = image.load("market.png")
+    background = transform.scale(background, (956,560))
+    rect = image.load("market_preto.png")
+    rect = transform.scale(rect, (956,200))
+    rect_transparente = image.load("market_transp.png")
+    rect_transparente = transform.scale(rect_transparente, (956,200))
+    
+    screen.blit(background, (0,0))
+    draw.rect(screen, (0, 0, 0), [2,2,952,200])
+    screen.blit(rect,(0, 0))
+    screen.blit(rect_transparente,(0, 0))
+    draw.rect(screen, (255, 255, 255), [2,2,952,200], 5)
+    display.update()
+    
 def mercado(jog):
+    background = image.load("market.png")
+    background = transform.scale(background, (956,560))
+    rect = image.load("market_preto.png")
+    rect = transform.scale(rect, (956,200))
+    
+    rect_transparente = image.load("market_transp.png")
+    rect_transparente = transform.scale(rect_transparente, (956,200))
+    
+    screen.blit(background, (0,0))
+    display.update()
+
+    time.wait(1000)
+    
+    draw.rect(screen, (0, 0, 0), [2,2,952,200])
+    screen.blit(rect,(0, 0))
+    screen.blit(rect_transparente,(0, 0))
+    draw.rect(screen, (255, 255, 255), [2,2,952,200], 5)
     menuMercado(jog)
+    display.update()
 
     while True: #loop mercado 
 
@@ -194,18 +230,18 @@ def mercado(jog):
             if jog.reais >= 10:
                 jog.reais-=10
                 jog.comida+=10
-                screen.blit(done, (500,200))
+                screen.blit(done, (400,50))
                 display.update()
                 time.wait(1000)
-                limpaTela()
+                limpaMercado()
                 menuMercado(jog)
             
             else:
-                limpaTela()
-                screen.blit(semGrana, (250,200))
+                limpaMercado()
+                screen.blit(semGrana, (250,100))
                 display.update()
                 time.wait(2000)
-                limpaTela()
+                limpaMercado()
                 menuMercado(jog)
                 
                 
@@ -213,17 +249,17 @@ def mercado(jog):
             if jog.comida >= 10:
                 jog.comida-=10
                 jog.reais+=10
-                screen.blit(done, (500,250))
+                screen.blit(done, (400,80))
                 display.update()
                 time.wait(1000)
-                limpaTela()
+                limpaMercado()
                 menuMercado(jog)
             else:
-                limpaTela()
-                screen.blit(semComida, (250,200))
+                limpaMercado()
+                screen.blit(semComida, (250,100))
                 display.update()
                 time.wait(3000)
-                limpaTela()
+                limpaMercado()
                 menuMercado(jog)
         
         
@@ -231,39 +267,39 @@ def mercado(jog):
             if jog.reais >= 10:
                 jog.reais-=10
                 jog.pecas+=100
-                screen.blit(done, (500,300))
+                screen.blit(done, (400,110))
                 display.update()
                 time.wait(1000)
-                limpaTela()
+                limpaMercado()
                 menuMercado(jog)
             else:
-                limpaTela()
-                screen.blit(semGrana, (250,200))
+                limpaMercado()
+                screen.blit(semGrana, (250,100))
                 display.update()
                 time.wait(2000)
-                limpaTela()
+                limpaMercado()
                 menuMercado(jog)
                 
         if key.get_pressed()[K_4] or key.get_pressed()[K_KP4]:
             if jog.reais >= 10:
                 jog.reais-=10
                 jog.gas+=100
-                screen.blit(done, (500,350))
+                screen.blit(done, (400,140))
                 display.update()
                 time.wait(1000)
-                limpaTela()
+                limpaMercado()
                 menuMercado(jog)
             else:
-                limpaTela()
-                screen.blit(semGrana, (250,200))
+                limpaMercado()
+                screen.blit(semGrana, (250,100))
                 display.update()
                 time.wait(2000)
-                limpaTela()
+                limpaMercado()
                 menuMercado(jog)
                 
     
         if key.get_pressed()[K_5] or key.get_pressed()[K_KP5]:
-            limpaTela()
+            limpaMercado()
             stat1, stat2, stat3, stat4, stat5, stat6, stat7, stat8, stat9 = getStatus(jog)
             py = 100 # 1o y da tela 
             esp = 35 # espaco entre eles
@@ -286,7 +322,7 @@ def mercado(jog):
                         exit()
             
                 if key.get_pressed()[K_0] or key.get_pressed()[K_KP0]:
-                    limpaTela()
+                    limpaMercado()
                     menuMercado(jog)
                     time.wait(500) # pra dar tempo de tirar o dedo da tecla 0
                     break
@@ -701,6 +737,9 @@ historia.intro(screen,display)
 """
 # ACABA A INTROOOOO
 
+mercado(jog)
+
+"""
 menuMercado(jog)
 while True: #loop mercado inicial
 
@@ -821,6 +860,8 @@ while True: #loop mercado inicial
         
     display.update()
     clock.tick(tick)
+    
+"""
 
 game_over = [False]
 chegou = False
