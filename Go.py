@@ -10,10 +10,10 @@ def randY():
 def getStatusGO(jog, i):
 	fonte = pygame.font.Font(None, 30)
 
-	stat1 = "Gasolina: " + str(jog.gas - 0.06*i) 
-	stat3 = "Durabilidade: " + str(jog.durab)
-	stat8 = "Distancia restante: " + str(jog.distancia)
-	stat9 = "Tempo restante: " + str(jog.temporestante)
+	stat1 = "Gasolina: " + str(jog.gas - int(0.06*i)) 
+	stat3 = "Durabilidade: " + str(jog.durab - int(0.06*i))
+	stat8 = "Distancia restante: " + str(jog.distancia - int(0.6*i))
+	stat9 = "Tempo restante: " + str(jog.temporestante - int(0.006*i))
 
 	stat_gas = fonte.render(stat1, 1, (255,255,255))
 	stat_dur = fonte.render(stat3, 1, (255,255,255))
@@ -99,7 +99,7 @@ def TelaGo(jog, screen, display, game_over):
 	lugar = randint(1,495)
 
 
-	recta = pygame.Rect((150,350), (200,100))
+	recta = pygame.Rect((150,350), (800,120))
 
 	# Loop
 	while True:
@@ -129,21 +129,21 @@ def TelaGo(jog, screen, display, game_over):
 			estrada2_position[0] = 956
 
 		if carro_position[1] > 260 and carro_position[1] < 290:
-			if tecla[K_w]:
+			if tecla[K_w] or tecla[K_UP]:
 				carro_position[1] -= 1.5
-			elif tecla[K_s]:
+			elif tecla[K_s] or tecla[K_DOWN]:
 				carro_position[1] += 1.5
 		elif carro_position[1] <= 260:
-			if tecla[K_s]:
+			if tecla[K_s] or tecla[K_UP]:
 				carro_position[1] += 1.5
 		elif carro_position[1] >= 290:
-			if tecla[K_w]:
+			if tecla[K_w] or tecla[K_DOWN]:
 				carro_position[1] -= 1.5
 
 		if carro_position[0] >= 0 and carro_position[0] <= 956:
-			if tecla[K_a]:
+			if tecla[K_a]or tecla[K_LEFT]:
 				carro_position[0] -= 1.5
-			elif tecla[K_d]:
+			elif tecla[K_d] or tecla[K_RIGHT]:
 				carro_position[0] += 1.5
 		
 		if carro_position[0] == -1.5:
@@ -187,15 +187,9 @@ def TelaGo(jog, screen, display, game_over):
 		screen.blit(carro, carro_position)
 		screen.blit(barra_limite, barra_limite_position)
 
-		if largura == 495:
-			stat1 = "Gasolina: " + str(jog.gas - 0.06*i - 0.36) 
 		if largura <= 496:
 			largura += 1
 		if largura >= 496:
-<<<<<<< HEAD
-=======
-			largura -= 0.36
->>>>>>> ae9e8bf1d80934fc352313f8a7ca9d5c4526463d
 			break
 
 		barra = pygame.draw.rect(screen, (225, 0, 0), [253, 503, largura, 46])
@@ -217,7 +211,6 @@ def TelaGo(jog, screen, display, game_over):
 		if game_over[0]==True:
 		    break
 
-
 		stat1, stat3, stat8, stat9 = getStatusGO(jog, i)
 		
 		pygame.draw.rect(screen,(255, 255, 255), [0, 332, 956, 228], 5)
@@ -228,8 +221,8 @@ def TelaGo(jog, screen, display, game_over):
 		screen.blit(stat3, (150,py+300+1*esp))
 		screen.blit(stat8, (600,py+250+1*esp))
 		screen.blit(stat9, (600,py+300+1*esp))
-		#screen.fill( True)
 		
 		pygame.display.update()
+
 		# relógio
 		time.tick(30)
