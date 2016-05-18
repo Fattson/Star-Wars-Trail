@@ -190,7 +190,7 @@ def TelaGo(jog, screen, display, game_over):
 		if largura <= 496:
 			largura += 1
 		if largura >= 496:
-			stat1 -= 0.36
+			largura -= 0.36
 			break
 
 		barra = pygame.draw.rect(screen, (225, 0, 0), [253, 503, largura, 46])
