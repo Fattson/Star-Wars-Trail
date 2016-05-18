@@ -16,7 +16,7 @@ p = 50
 tick = 35 #fps
 
 
-for i in range(ci+ca): # monta o vetor CC
+for i in range(ci+ca): # monta o vetor CCB
     if ci>0 and ca>0:
         x = randint(1,100)
 
