@@ -202,9 +202,9 @@ def TelaGo(jog):
         
 		if jog.durab<=0:
 		    jog.durab = 0 
-		    testeInterface.quebrou(jog, game_over)
+		    testeInterface.quebrou(jog, testeInterface.game_over)
             
-		if game_over[0]==True:
+		if testeInterface.game_over[0]==True:
 		    break
 
 
