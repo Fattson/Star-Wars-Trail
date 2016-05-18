@@ -293,7 +293,50 @@ def buraco(jog, screen, display):
     time.wait(3000)
     limpaTelaEv(screen, display)
     
+    
+def quebrou2(jog, game_over, screen, display):
+    quebrou0 = image.load('evento_carro.png')
+    screen.blit(quebrou0,(150,150))
+    display.update()
+    time.wait(3000)
+    
+    consE = image.load('evento2_carro.png')
+    screen.blit(consE,(150,150))
+    display.update()
+    
+    consE_noGrana = image.load('aviso_carro.png')
+    
+    while True: #loop do conserto emergencial
+       for e in event.get():
+           if e.type == QUIT:
+               exit()
+                
+       if key.get_pressed()[K_0] or key.get_pressed()[K_KP0]:
+           limpaTelaEv(screen, display)
+           game_over[0] = True
+           break
+    
+       if key.get_pressed()[K_1] or key.get_pressed()[K_KP1]: 
+           if jog.pecas >= 500:
+               jog.durab += 200
+               jog.pecas -= 500
+               time.wait(300)
+               limpaTelaEv(screen, display)
+               break
+           else:
+               popup(screen, display)
+               screen.blit(consE_noGrana, (150, 150))
+               display.update()
+               time.wait(5000)
+               screen.blit(consE,(150,150))
+               display.update()
+        
+        
+       #display.update()
+       clock.tick(tick)
 
+
+    
 def quebrou(jog, game_over, screen, display):
     fontePeq = font.Font(None, 23)
     quebrou0 = fontePeq.render("O CARRO QUEBROOOU!!!!",1,(255,255,255))
