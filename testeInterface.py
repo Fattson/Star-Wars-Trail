@@ -6,8 +6,6 @@ from random import randint
 
 jog = sw.Jogo()
 
-
-
 # 3000 km  5 cidades 5 camps
 
 CC = []
