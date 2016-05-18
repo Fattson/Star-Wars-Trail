@@ -192,16 +192,20 @@ def TelaGo(jog, screen, display, game_over):
 		if largura <= 496:
 			largura += 1
 		if largura >= 496:
+<<<<<<< HEAD
+=======
+			largura -= 0.36
+>>>>>>> ae9e8bf1d80934fc352313f8a7ca9d5c4526463d
 			break
 
 		barra = pygame.draw.rect(screen, (225, 0, 0), [253, 503, largura, 46])
 		
 		if i == lugar:
-		    if ev < 100: 
+		    if ev < 1: 
 		    	ema2(jog, screen, display)
 
-		    elif ev < 75:
-		    	lobo(jog,screen, display)
+		    elif ev < 100:
+		    	lobo2(jog,screen, display)
 
 		    elif ev < 90:
 		    	buraco(jog, screen, display)
