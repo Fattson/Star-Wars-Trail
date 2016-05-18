@@ -21,6 +21,74 @@ def limpaTelaEv(screen, display):
     display.update()
     
 
+def ema2(jog,screen, display):
+    ema0 = image.load("evento_emma1.png")
+    screen.blit(ema0,(150,150))
+    display.update()
+    
+    ema_suc1 = image.load("resposta1_emma1.png")
+    ema_fal1 = image.load("resposta2_emma1.png")
+    ema_suc2 = image.load("resposta3_emma1.png")
+    ema_fal2 = image.load("resposta3_emma1.png")
+    
+    
+    
+    
+    while True: #loop da ema
+        
+        for e in event.get():
+            if e.type == QUIT:
+                exit()
+        
+        if key.get_pressed()[K_0] or key.get_pressed()[K_KP0]: #miar
+            jog.comida -=10
+            #limpaTelaEv(screen, display)
+            break
+        
+        if key.get_pressed()[K_1] or key.get_pressed()[K_KP1]:#perseguir
+            popup(screen, display)
+            jog.temporestante -= 3
+            s_n = randint(0,100)
+            if s_n < 75:
+                screen.blit(ema_suc1,(150,150))
+                display.update()
+                time.wait(5000)
+                #limpaTelaEv(screen, display)
+                break
+            
+            else:
+                jog.comida -= 10       
+                screen.blit(ema_fal1, (150,1500))
+                display.update()
+                time.wait(5000)
+                #limpaTelaEv(screen, display)
+                break
+            
+            
+        if key.get_pressed()[K_2] or key.get_pressed()[K_KP2]:#jogar pedra    
+            popup(screen, display)
+            s_n = randint(0,100)
+            if s_n < 15:
+                jog.comida += 10
+                screen.blit(ema_suc2,(150,150))
+                display.update()
+                time.wait(5000)
+                #limpaTelaEv(screen, display)
+                break
+            
+            else:
+                jog.comida -= 10       
+                screen.blit(ema_fal2, (150,150))
+                display.update()
+                time.wait(5000)
+                #limpaTelaEv(screen, display)
+                break
+                
+        
+        #display.update()
+        clock.tick(tick)
+
+
 def ema(jog, screen, display):
     fontePeq = font.Font(None, 23)
     ema0 = fontePeq.render("Uma ema roubou 10 das suas comidas, e saiu correndo! O que deseja fazer?",0,(255,255,255))
