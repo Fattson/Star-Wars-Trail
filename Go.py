@@ -187,10 +187,11 @@ def TelaGo(jog, screen, display, game_over):
 		screen.blit(carro, carro_position)
 		screen.blit(barra_limite, barra_limite_position)
 
+		if largura == 495:
+			stat1 = "Gasolina: " + str(jog.gas - 0.06*i - 0.36) 
 		if largura <= 496:
 			largura += 1
 		if largura >= 496:
-			stat1 -= 0.36
 			break
 
 		barra = pygame.draw.rect(screen, (225, 0, 0), [253, 503, largura, 46])
