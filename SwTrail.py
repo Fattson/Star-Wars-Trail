@@ -16,7 +16,7 @@ class Jogo:
 		self.numero_jogadores = 3
 		self.distancia = 3000
 		self.velocidade = 100
-		self.durab = 100 # durabilidade
+		self.durab = 1000 # durabilidade
 
 	def varia_durabilidade(self, tempo):
 		self.durab -= tempo*10

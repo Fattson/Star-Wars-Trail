@@ -337,15 +337,15 @@ def mercado(jog):
         clock.tick(tick)
 
 def menuCidade(prox):    
-    screen.blit(cid, (100,100))
-    screen.blit(cid_menu0, (100,150))
-    screen.blit(cid_menu1, (100,200))
-    screen.blit(cid_menu2, (100,250))
-    screen.blit(cid_menu3, (100,300))
-    screen.blit(cid_menu4, (100,350))
-    screen.blit(cid_menu5, (100,400))
+    #screen.blit(cid, (100,100))
+    screen.blit(cid_menu0, (10,20))
+    screen.blit(cid_menu1, (10,50))
+    screen.blit(cid_menu2, (10,80))
+    screen.blit(cid_menu3, (10,110))
+    screen.blit(cid_menu4, (10,140))
+    screen.blit(cid_menu5, (10,170))
     proxima = fazTextoProx(prox)
-    screen.blit(proxima, (100,500))
+    screen.blit(proxima, (400,20))
     display.update()
     
 
@@ -511,15 +511,17 @@ def cidade(jog, prox, game_over): # CIDADE
             if jog.health<100:
                 jog.temporestante-=2
                 jog.health+=20
-                screen.blit(done, (500,250))
+                screen.blit(done, (300,80))
                 display.update()
                 time.wait(1000)
                 limpaCidade()
+                menuCidade(prox)
             else:
-                screen.blit(tanomax, (500,250))
+                screen.blit(tanomax, (300,80))
                 display.update()
                 time.wait(1000)
                 limpaCidade()
+                menuCidade(prox)
             
             if jog.health<100:
                 jog.health = 100
@@ -529,13 +531,13 @@ def cidade(jog, prox, game_over): # CIDADE
             if jog.health<100:
                 jog.reais-=20
                 jog.health+=20
-                screen.blit(done, (500,300))
+                screen.blit(done, (300,110))
                 display.update()
                 time.wait(1000)
                 limpaCidade()
                 menuCidade(prox)
             else:
-                screen.blit(tanomax, (500,300))
+                screen.blit(tanomax, (300,110))
                 display.update()
                 time.wait(1000)
                 limpaCidade()
@@ -555,20 +557,20 @@ def cidade(jog, prox, game_over): # CIDADE
         if key.get_pressed()[K_5] or key.get_pressed()[K_KP5]:#STATUS
             limpaCidade()
             stat1, stat2, stat3, stat4, stat5, stat6, stat7, stat8, stat9 = getStatus(jog)
-            py = 100 # 1o y da tela 
-            esp = 35 # espaco entre eles
-            screen.blit(stat, (100,py))
-            screen.blit(stat1, (100,py+1*esp))
-            screen.blit(stat2, (100,py+2*esp))
-            screen.blit(stat3, (100,py+3*esp))
-            screen.blit(stat4, (100,py+4*esp))
-            screen.blit(stat5, (100,py+5*esp))
-            screen.blit(stat6, (100,py+6*esp))
-            screen.blit(stat7, (100,py+7*esp))
-            screen.blit(stat8, (100,py+8*esp))
-            screen.blit(stat9, (100,py+9*esp))
-            screen.blit(voltar, (100, 500))
-            display.update()            
+            py = 20 # 1o y da tela 
+            esp = 30 # espaco entre eles
+            screen.blit(stat, (10,py))
+            screen.blit(stat1, (10,py+1*esp))
+            screen.blit(stat2, (10,py+2*esp))
+            screen.blit(stat3, (10,py+3*esp))
+            screen.blit(stat4, (10,py+4*esp))
+            screen.blit(stat5, (10,py+5*esp))
+            screen.blit(stat6, (250,py+1*esp))
+            screen.blit(stat7, (250,py+2*esp))
+            screen.blit(stat8, (250,py+3*esp))
+            screen.blit(stat9, (250,py+4*esp))
+            screen.blit(voltar, (600, 100))
+            display.update()    
             
             while True: # loopzinho esperando o cara ler o status e decidir voltar
                 for e in event.get():
@@ -624,13 +626,13 @@ def campo(jog, prox, game_over):
     draw.rect(screen, (0, 0, 0), [2,3,952,200])
     draw.rect(screen, (255, 255, 255), [2,3,952,200], 5)
     screen.blit(rect_transparente, (0,0))
-    screen.blit(camp, (100,100))
-    screen.blit(camp_menu0, (100,150))
-    screen.blit(camp_menu1, (100,200))
-    screen.blit(camp_menu2, (100,250))
-    screen.blit(camp_menu3, (100,300))
+    screen.blit(camp, (10,20))
+    screen.blit(camp_menu0, (10,50))
+    screen.blit(camp_menu1, (10,80))
+    screen.blit(camp_menu2, (10,110))
+    screen.blit(camp_menu3, (10,140))
     proxima = fazTextoProx(prox)
-    screen.blit(proxima, (100,500))
+    screen.blit(proxima, (600,50))
     display.update()
     
     while True: # loop camp
@@ -649,17 +651,17 @@ def campo(jog, prox, game_over):
         if key.get_pressed()[K_1] or key.get_pressed()[K_KP1]: #Caçar
             jog.temporestante-=2
             jog.comida+=10
-            screen.blit(done, (500,200))
+            screen.blit(done, (300,80))
             display.update()
             time.wait(1000)
             limpaCampo()    
-            screen.blit(camp, (100,100))
-            screen.blit(camp_menu0, (100,150))
-            screen.blit(camp_menu1, (100,200))
-            screen.blit(camp_menu2, (100,250))
-            screen.blit(camp_menu3, (100,300))
+            screen.blit(camp, (10,20))
+            screen.blit(camp_menu0, (10,50))
+            screen.blit(camp_menu1, (10,80))
+            screen.blit(camp_menu2, (10,110))
+            screen.blit(camp_menu3, (10,140))
             proxima = fazTextoProx(prox)
-            screen.blit(proxima, (100,500))
+            screen.blit(proxima, (600,50))
             display.update()
     
         if key.get_pressed()[K_2] or key.get_pressed()[K_KP2]: #conserto
@@ -667,32 +669,32 @@ def campo(jog, prox, game_over):
             time.wait(500)
             conserto(jog)
             limpaCampo()    
-            screen.blit(camp, (100,100))
-            screen.blit(camp_menu0, (100,150))
-            screen.blit(camp_menu1, (100,200))
-            screen.blit(camp_menu2, (100,250))
-            screen.blit(camp_menu3, (100,300))
+            screen.blit(camp, (10,20))
+            screen.blit(camp_menu0, (10,50))
+            screen.blit(camp_menu1, (10,80))
+            screen.blit(camp_menu2, (10,110))
+            screen.blit(camp_menu3, (10,140))
             proxima = fazTextoProx(prox)
-            screen.blit(proxima, (100,500))
+            screen.blit(proxima, (600,50))
             display.update()
     
         if key.get_pressed()[K_3] or key.get_pressed()[K_KP3]: #STATUS
-            limpaTela()
+            limpaCampo()
             stat1, stat2, stat3, stat4, stat5, stat6, stat7, stat8, stat9 = getStatus(jog)
-            py = 100 # 1o y da tela 
-            esp = 35 # espaco entre eles
-            screen.blit(stat, (100,py))
-            screen.blit(stat1, (100,py+1*esp))
-            screen.blit(stat2, (100,py+2*esp))
-            screen.blit(stat3, (100,py+3*esp))
-            screen.blit(stat4, (100,py+4*esp))
-            screen.blit(stat5, (100,py+5*esp))
-            screen.blit(stat6, (100,py+6*esp))
-            screen.blit(stat7, (100,py+7*esp))
-            screen.blit(stat8, (100,py+8*esp))
-            screen.blit(stat9, (100,py+9*esp))
-            screen.blit(voltar, (100, 500))
-            display.update()            
+            py = 20 # 1o y da tela 
+            esp = 30 # espaco entre eles
+            screen.blit(stat, (10,py))
+            screen.blit(stat1, (10,py+1*esp))
+            screen.blit(stat2, (10,py+2*esp))
+            screen.blit(stat3, (10,py+3*esp))
+            screen.blit(stat4, (10,py+4*esp))
+            screen.blit(stat5, (10,py+5*esp))
+            screen.blit(stat6, (250,py+1*esp))
+            screen.blit(stat7, (250,py+2*esp))
+            screen.blit(stat8, (250,py+3*esp))
+            screen.blit(stat9, (250,py+4*esp))
+            screen.blit(voltar, (600, 100))
+            display.update()                
             
             while True: # loopzinho esperando o cara ler o status e decidir voltar
                 for e in event.get():
@@ -701,13 +703,13 @@ def campo(jog, prox, game_over):
                         
                 if key.get_pressed()[K_0] or key.get_pressed()[K_KP0]:
                     limpaCampo()
-                    screen.blit(camp, (100,100))
-                    screen.blit(camp_menu0, (100,150))
-                    screen.blit(camp_menu1, (100,200))
-                    screen.blit(camp_menu2, (100,250))
-                    screen.blit(camp_menu3, (100,300))
+                    screen.blit(camp, (10,20))
+                    screen.blit(camp_menu0, (10,50))
+                    screen.blit(camp_menu1, (10,80))
+                    screen.blit(camp_menu2, (10,110))
+                    screen.blit(camp_menu3, (10,140))
                     proxima = fazTextoProx(prox)
-                    screen.blit(proxima, (100,500))
+                    screen.blit(proxima, (600,50))
                     display.update()
                     time.wait(500) # pra dar tempo de tirar o dedo da tecla 0
                     break
@@ -737,10 +739,15 @@ historia.intro(screen,display)
 """
 # ACABA A INTROOOOO
 
-mercado(jog) # mercado inicial
-
 game_over = [False]
 chegou = False
+
+
+campo(jog, 1, game_over)
+
+mercado(jog) # mercado inicial
+
+
 
 i = 0
 
