@@ -5,6 +5,8 @@ import Go
 from random import randint
 import historia
 
+
+mixer.init()
 jog = sw.Jogo()
 
 # 3000 km  5 cidades 5 camps
