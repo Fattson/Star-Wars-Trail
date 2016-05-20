@@ -728,6 +728,10 @@ def campo(jog, prox, game_over):
 
 # INTROOOOOOO
 
+<<<<<<< HEAD
+teste = False # se teste==True, nao passa a introzinha
+=======
+>>>>>>> 15274b0b382ab6c8fb38b0c8a30017fc303c7900
 
 historia.intro(screen,display)
 
