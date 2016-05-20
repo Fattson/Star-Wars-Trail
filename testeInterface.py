@@ -726,18 +726,20 @@ def campo(jog, prox, game_over):
     
  
 
-
 # INTROOOOOOO
-"""
-screen.blit(msg_comeco1, (100,100)) # escreve a intro na tela
-screen.blit(msg_comeco2, (100, 150))
-display.update() #da um update pra aparecer o escrito na tela
 
-time.wait(3000) # espera, em milisegundos
-limpaTela()
+teste = True # se teste==True, nao passa a introzinha
 
-"""
-historia.intro(screen,display)
+if teste:
+    screen.blit(msg_comeco1, (100,100)) # escreve a intro na tela
+    screen.blit(msg_comeco2, (100, 150))
+    display.update() #da um update pra aparecer o escrito na tela
+
+    time.wait(3000) # espera, em milisegundos
+    limpaTela()
+else:
+    historia.intro(screen,display)
+
 
 # ACABA A INTROOOOO
 
@@ -750,13 +752,10 @@ mercado(jog) # mercado inicial
 
 
 
-i = 0
 
-
-#campo(jog, 1, game_over)
 
 ###  LOOP PRINCIPAL DO JOGO  ###
-
+i = 0
 while game_over[0]==False and chegou==False: 
     
     
@@ -779,7 +778,7 @@ while game_over[0]==False and chegou==False:
     if game_over[0]==True:
         break
     
-    if jog.temporestante <= 0 or jog.health <= 0:
+    if jog.temporestante <= 0 or jog.health <= 0 or jog.gas <= 0:
         game_over[0] = True
         break
     
@@ -802,10 +801,16 @@ while game_over[0]==False and chegou==False:
 
     jog.varia_tempo()
     
+    if jog.reais <= 0:
+        jog.reais =0
+    
+    if jog.comida <=0:
+        jog.comida =0
+    
     if jog.distancia <= 0:
         chegou = True
         break
-    elif jog.temporestante <= 0 or jog.health <= 0:
+    elif jog.temporestante <= 0 or jog.health <= 0 or jog.gas <= 0:
         game_over[0] = True
         break
     
