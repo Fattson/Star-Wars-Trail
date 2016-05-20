@@ -823,25 +823,34 @@ while game_over[0]==False and chegou==False:
 #limpaTela()
 """
 alpha = 0
+black = image.load('tela_preta_chupragraicer.png')
+black = black.convert_alpha()
 
-while alpha < 255:
-    screen.fill((0,0,0,alpha))
-    display.update()
-    time.wait(100)
-    alpha += 1
-"""
-
-screen.set_alpha(100)
+black.set_alpha(100)
+screen.blit(black,(0,0))
 display.update()
 time.wait(5000)
 
+while alpha < 255:
+    black.set_alpha(alpha)
+    screen.blit(black,(0,0))
+    display.update()
+    time.wait(500)
+    alpha += 1
+
+
+
+display.update()
+time.wait(4000)
+"""
 
 if game_over[0] == True:
+    som = mixer.Sound('musicagame_over.wav')
+    som.play()
     if jog.health <= 0:
         gameover1 = image.load('game_over2.png')
         screen.blit(gameover1, (0,0))
         display.update()
-
     else:
         gameover2 = image.load('game_over1.png')
         screen.blit(gameover2, (0,0))
