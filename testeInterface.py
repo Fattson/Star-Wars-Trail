@@ -728,7 +728,7 @@ def campo(jog, prox, game_over):
 
 # INTROOOOOOO
 
-teste = True # se teste==True, nao passa a introzinha
+teste = False # se teste==True, nao passa a introzinha
 
 if teste:
     screen.blit(msg_comeco1, (100,100)) # escreve a intro na tela
