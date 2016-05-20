@@ -147,7 +147,7 @@ def TelaGo(jog, screen, display, game_over):
 				carro_position[0] += 1.5
 		
 		if carro_position[0] == -1.5:
-			if tecla[K_a]:
+			if tecla[K_a] or tecla[K_LEFT]:
 				carro_position[0] += 1.5
 
 		if nuvens_position[0] <= -650:
