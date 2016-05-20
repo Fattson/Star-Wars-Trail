@@ -728,17 +728,8 @@ def campo(jog, prox, game_over):
 
 # INTROOOOOOO
 
-teste = True # se teste==True, nao passa a introzinha
 
-if teste:
-    screen.blit(msg_comeco1, (100,100)) # escreve a intro na tela
-    screen.blit(msg_comeco2, (100, 150))
-    display.update() #da um update pra aparecer o escrito na tela
-
-    time.wait(1000) # espera, em milisegundos
-    limpaTela()
-else:
-    historia.intro(screen,display)
+historia.intro(screen,display)
 
 
 # ACABA A INTROOOOO
