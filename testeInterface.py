@@ -113,7 +113,6 @@ done = fonte.render("Done!",1,(255,255,255))
 
 tanomax = fonte.render("Tá no max já!", 1, (255,255,255))
 
-go = fonte.render("TELA GO",1,(255,255,255))
 
 msg_gameover = fonte.render("GAME OVER",1,(255,255,255))
 msg_chegou = fonte.render("CHEGOOOOOU!!!",1,(255,255,255))
@@ -821,13 +820,32 @@ while game_over[0]==False and chegou==False:
     clock.tick(tick)
 
 
-limpaTela()
+#limpaTela()
+"""
+alpha = 0
 
+while alpha < 255:
+    screen.fill((0,0,0,alpha))
+    display.update()
+    time.wait(100)
+    alpha += 1
+"""
+
+screen.set_alpha(100)
+display.update()
+time.wait(5000)
 
 
 if game_over[0] == True:
-    screen.blit(msg_gameover, (250,200))
-    display.update()
+    if jog.health <= 0:
+        gameover1 = image.load('game_over2.png')
+        screen.blit(gameover1, (0,0))
+        display.update()
+
+    else:
+        gameover2 = image.load('game_over1.png')
+        screen.blit(gameover2, (0,0))
+        display.update()
     
 if chegou == True:
     screen.blit(msg_chegou, (250,200))
@@ -838,6 +856,7 @@ while True:
     for e in event.get():
         if e.type == QUIT:
             exit() 
+    
     
     display.update()
     clock.tick(tick)
