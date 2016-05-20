@@ -819,31 +819,13 @@ while game_over[0]==False and chegou==False:
     display.update()
     clock.tick(tick)
 
+black = image.load('afeeeeeee.png')
 
-#limpaTela()
-"""
-alpha = 0
-black = image.load('tela_preta_chupragraicer.png')
-black = black.convert_alpha()
-
-black.set_alpha(100)
-screen.blit(black,(0,0))
-display.update()
-time.wait(5000)
-
-while alpha < 255:
-    black.set_alpha(alpha)
+for i in range(50):
     screen.blit(black,(0,0))
     display.update()
-    time.wait(500)
-    alpha += 1
-
-
-
-display.update()
-time.wait(4000)
-"""
-
+    time.wait(10)
+    
 if game_over[0] == True:
     som = mixer.Sound('musicagame_over.wav')
     som.play()
