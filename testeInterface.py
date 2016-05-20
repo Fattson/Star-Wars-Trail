@@ -735,7 +735,7 @@ if teste:
     screen.blit(msg_comeco2, (100, 150))
     display.update() #da um update pra aparecer o escrito na tela
 
-    time.wait(3000) # espera, em milisegundos
+    time.wait(1000) # espera, em milisegundos
     limpaTela()
 else:
     historia.intro(screen,display)
