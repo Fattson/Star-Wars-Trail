@@ -26,11 +26,6 @@ def getStatusGO(jog, i, game_over):
 	return stat_gas, stat_dur, stat_dist, stat_temp
 
 def TelaGo(jog, screen, display, game_over):
-	#pygame.init() # Iniciar pygame
-
-	# Configurações gerais da tela
-	#screen = pygame.display.set_mode((956,560), 0, 32) # Tamanho da tela
-	#pygame.display.set_caption("StarWars Trail") # Título
 
 	# Carregar imagens
 	background = pygame.image.load("background1.1.png").convert()
@@ -46,7 +41,6 @@ def TelaGo(jog, screen, display, game_over):
 	carro = pygame.image.load("carro.png")
 
 	barra_limite = pygame.image.load("Barra_500x50.png").convert()
-	#sol = pygame.image.load("").convert()
 
 	carro = pygame.transform.scale(carro, (50,50))
 
@@ -283,7 +277,9 @@ def TelaGo(jog, screen, display, game_over):
 		
 		pygame.draw.rect(screen,(255, 255, 255), [0, 332, 956, 228], 5)
 		screen.fill((0,0,0),recta)
+		
 		i += 1
+		cactus_flag += 1
 
 		screen.blit(stat1, (150,py+250+1*esp))
 		screen.blit(stat3, (150,py+300+1*esp))
