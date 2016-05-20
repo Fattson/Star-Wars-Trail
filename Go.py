@@ -26,6 +26,8 @@ def getStatusGO(jog, i, game_over):
 	return stat_gas, stat_dur, stat_dist, stat_temp
 
 def TelaGo(jog, screen, display, game_over):
+    
+	semCactus = True 
 
 	# Carregar imagens
 	background = pygame.image.load("background1.1.png").convert()
@@ -197,18 +199,19 @@ def TelaGo(jog, screen, display, game_over):
 		screen.blit(estrada2, estrada2_position)
 		screen.blit(carro, carro_position)
 		screen.blit(barra_limite, barra_limite_position)
-
-		if cactus_flag <= 150:
-			if cactus_flag == 150:
-				cactus_flag = 0
-			if cactus_flag == 0:
-				cactus_random = randint(0,1)
+  
+		if semCactus == False:
+			if cactus_flag <= 150:
+				if cactus_flag == 150:
+				   cactus_flag = 0
+				if cactus_flag == 0:
+				   cactus_random = randint(0,1)
 				
-				cactus_random2 = randint(0,1)
+				   cactus_random2 = randint(0,1)
 				
-				cactus_random3= randint(0,1)
+				   cactus_random3= randint(0,1)
 				
-				cactus_position[0] = 956
+				   cactus_position[0] = 956
 
 			cactus_position[1] =  cactus_y[cactus_random]
 			screen.blit(cactus, cactus_position)
@@ -216,7 +219,9 @@ def TelaGo(jog, screen, display, game_over):
 			screen.blit(cactus2, (cactus_position[0]+200,cactus_position[1]))
 			cactus_position[1] =  cactus_y[cactus_random3]
 			screen.blit(cactus3, (cactus_position[0]+400,cactus_position[1]))
-		# Colisões
+		
+  
+  # Colisões
 		distancia_choqueX = cactus_position[0] - carro_position[0]
 		distancia_choqueY = cactus_position[1] - carro_position[1]
 		distancia_choqueX2 = (cactus_position[0]+200) - carro_position[0]
