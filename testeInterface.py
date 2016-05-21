@@ -833,11 +833,13 @@ black = image.load('afeeeeeee.png')
 
 for i in range(50): #FADE OUT PORRAAAAA :D
     screen.blit(black,(0,0))
+    if i == 25:
+        musica_intro.fadeout(1000)
     display.update()
     time.wait(10)
     
 if game_over[0] == True:
-    musica_intro.stop()
+    
     musica_gameover = mixer.Sound('musicagame_over.wav')
     musica_gameover.play()
     if jog.health <= 0:

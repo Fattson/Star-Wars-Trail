@@ -19,8 +19,6 @@ def intro(screen, display):
     fonte = pygame.font.Font(None, 30)
     espaco = fonte.render("Pressione espaço para roubar o carro!", 1, (255,255,255))
 
-    som = pygame.mixer.Sound("musica_abertura.wav")
-    som.play()
 
     i = 0
     

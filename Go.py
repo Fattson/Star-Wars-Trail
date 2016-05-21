@@ -244,12 +244,14 @@ def TelaGo(jog, screen, display, game_over):
 
 		barra = pygame.draw.rect(screen, (225, 0, 0), [253, 503, largura, 46])
 		
+  
 		if i == lugar:
 		    if ev < 30: 
 		    	if jog.comida >= 10:
         		    	ema(jog, screen, display)
 		    	else:
         		    	lugar = randint((lugar+1),495)
+        		    	ev = randint(0,100)
                
 
 		    elif ev < 50:
@@ -260,7 +262,7 @@ def TelaGo(jog, screen, display, game_over):
         		    	assalto(jog, screen, display)
 		    	else:
         		    	lugar = randint((lugar+1),495)  
-               
+        		    	ev = randint(0,100)
                
 		    elif ev < 90:
 		    	buraco(jog, screen, display)             
