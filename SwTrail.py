@@ -11,7 +11,7 @@ class Jogo:
 		self.pecas = 1000
 		self.health = 100
 		self.reais = 100
-		self.temporestante = 100    # Tempo restante
+		self.temporestante = 1    # Tempo restante
 		self.tempodeviagem = 3    # Tempo de viagem, não conta o tempo gasto em cidade ou camp, apenas na tela go
 		self.numero_jogadores = 3
 		self.distancia = 3000
@@ -34,9 +34,6 @@ class Jogo:
 	def varia_distancia(self):
 		self.distancia -= self.velocidade*self.tempodeviagem
 
-	def varia_pecas(self):
-		# Varia conforme há o conserto do carro
-		besteira = besteira
 
 	def varia_health(self):
 		# Varia conforme os eventos e com:
@@ -46,9 +43,6 @@ class Jogo:
 			elif 0 < self.health < 50:
 				self.health -= 7*self.tempodeviagem
 
-	def varia_reais(self):
-		# Varia com as compras ou eventos
-		besteira = besteira
 
 	def varia_tempo(self):
 		self.temporestante -= self.tempodeviagem

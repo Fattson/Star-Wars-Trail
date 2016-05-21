@@ -737,7 +737,8 @@ def campo(jog, prox, game_over):
 
 # INTROOOOOOO
 
-
+musica_intro = mixer.Sound("musica_abertura.wav")
+musica_intro.play()
 historia.intro(screen,display)
 
 
@@ -746,8 +747,6 @@ historia.intro(screen,display)
 game_over = [False]
 chegou = False
 
-cidade(jog, 1, game_over)
-campo(jog, 10, game_over)
 
 mercado(jog) # mercado inicial
 
@@ -838,8 +837,9 @@ for i in range(50): #FADE OUT PORRAAAAA :D
     time.wait(10)
     
 if game_over[0] == True:
-    som = mixer.Sound('musicagame_over.wav')
-    som.play()
+    musica_intro.stop()
+    musica_gameover = mixer.Sound('musicagame_over.wav')
+    musica_gameover.play()
     if jog.health <= 0:
         gameover1 = image.load('game_over2.png')
         screen.blit(gameover1, (0,0))
