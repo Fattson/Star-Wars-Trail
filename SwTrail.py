@@ -9,9 +9,9 @@ class Jogo:
 		self.comida = 0
 		self.gas = 250
 		self.pecas = 1000
-		self.health = 10
+		self.health = 100
 		self.reais = 100
-		self.temporestante = 2    # Tempo restante
+		self.temporestante = 100    # Tempo restante
 		self.tempodeviagem = 3    # Tempo de viagem, não conta o tempo gasto em cidade ou camp, apenas na tela go
 		self.numero_jogadores = 3
 		self.distancia = 3000

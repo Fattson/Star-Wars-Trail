@@ -74,9 +74,9 @@ clock = time.Clock() # cria o reloginho
 
 cid = fonte.render("CIDADE! O que deseja fazer?", 1, (255,255,255))
 cid_menu0 = fonte.render("0 - Continuar a viagem", 1, (255,255,255))
-cid_menu1 = fonte.render("1 - Mercado", 1, (255,255,255))
-cid_menu2 = fonte.render("2 - SUS", 1, (255,255,255))
-cid_menu3 = fonte.render("3 - Hospital Particular", 1, (255,255,255))
+cid_menu1 = fonte.render("1 - Mercado (3 horas)", 1, (255,255,255))
+cid_menu2 = fonte.render("2 - SUS (2 horas +20 health)", 1, (255,255,255))
+cid_menu3 = fonte.render("3 - Hospital Particular (-20 reais +20 health)", 1, (255,255,255))
 cid_menu4 = fonte.render("4 - Conserto do carro", 1, (255,255,255))
 cid_menu5 = fonte.render("5 - Status", 1, (255,255,255))
 
@@ -90,13 +90,13 @@ mer_menu5 = fonte.render("5 - Status", 1, (255,255,255))
 
 camp = fonte.render("ACAMPAMENTO! O que deseja fazer?",1,(255,255,255))
 camp_menu0 = fonte.render("0 - Continuar a viagem", 1, (255,255,255))
-camp_menu1 = fonte.render("1 - Caçar",1,(255,255,255))
+camp_menu1 = fonte.render("1 - Caçar (-2 horas +10 comidas)",1,(255,255,255))
 camp_menu2 = fonte.render("2 - Conserto do carro", 1, (255,255,255))
 camp_menu3 = fonte.render("3 - Status", 1, (255,255,255))
 
 cons = fonte.render("CONSERTO DO CARRO (durabilidade: >600=200pecas >300=300pecas else 500 pecas)",1,(255,255,255))
 cons_menu0 = fonte.render("0 - Sair",1,(255,255,255))
-cons_menu1 = fonte.render("1 - Consertar",1,(255,255,255))
+cons_menu1 = fonte.render("1 - Consertar (2 horas)",1,(255,255,255))
 
 
 stat = fonte.render("===== Status =====", 1, (255,255,255))
@@ -351,12 +351,18 @@ def menuCidade(prox):
     
 
 
-def limpaConserto():
-    draw.rect(screen, (0, 0, 0), [2,2,952,200])
-    display.update()
+def limpaConserto(onde):
+    #draw.rect(screen, (0, 0, 0), [2,2,952,200])
+    #display.update()
 
-def menuConserto(jog):
-    limpaConserto()    
+    if onde == 'c':
+        limpaCidade()
+    else:
+        limpaCampo()
+        
+        
+def menuConserto(jog,onde):
+    limpaConserto(onde)    
     screen.blit(cons, (100,50))
     screen.blit(cons_menu0, (100,100))
     screen.blit(cons_menu1, (100,150))
@@ -368,9 +374,10 @@ def menuConserto(jog):
     screen.blit(durab, (700,150))
     display.update()
 
-def conserto(jog):
+def conserto(jog,onde):
     
-    menuConserto(jog)
+    
+    menuConserto(jog,onde)
     
     while True:
         for e in event.get():
@@ -383,67 +390,69 @@ def conserto(jog):
     
         if key.get_pressed()[K_1] or key.get_pressed()[K_KP1]: 
             
+            
             if jog.durab == 1000:
-                screen.blit(tanomax, (300,150))
+                screen.blit(tanomax, (350,150))
                 display.update()
                 time.wait(1000)
-                limpaConserto()
-                menuConserto(jog)
+                limpaConserto(onde)
+                menuConserto(jog,onde)
             else:
+                jog.temporestante -= 2
                 if jog.durab > 600:
                     if jog.pecas >= 200:
                         jog.durab += 200
                         jog.pecas -= 200
                         if jog.durab > 1000: # nao deixa passar do max
                             jog.durab = 1000
-                        screen.blit(done, (300,150))
+                        screen.blit(done, (400,150))
                         display.update()
                         time.wait(1000)
-                        limpaConserto()
-                        menuConserto(jog)
+                        limpaConserto(onde)
+                        menuConserto(jog,onde)
                     else:
-                        limpaConserto()
+                        limpaConserto(onde)
                         screen.blit(semPecas, (250,150))
                         display.update()
                         time.wait(2000)
-                        limpaConserto()
-                        menuConserto(jog)
+                        limpaConserto(onde)
+                        menuConserto(jog,onde)
                 elif jog.durab > 300:
                     if jog.pecas >= 300:
                         jog.durab += 200
                         jog.pecas -= 300
                         if jog.durab > 1000: # nao deixa passar do max
                             jog.durab = 1000
-                        screen.blit(done, (300,150))
+                        screen.blit(done, (400,150))
                         display.update()
                         time.wait(1000)
-                        limpaConserto()
-                        menuConserto(jog)
+                        limpaConserto(onde)
+                        menuConserto(jog,onde)
                     else:
-                        limpaConserto()
+                        limpaConserto(onde)
                         screen.blit(semPecas, (250,150))
                         display.update()
                         time.wait(2000)
-                        limpaConserto()
-                        menuConserto(jog)
+                        limpaConserto(onde)
+                        menuConserto(jog,onde)
                 else:
                     if jog.pecas >= 500:
                         jog.durab += 200
                         jog.pecas -= 500
                         if jog.durab > 1000: # nao deixa passar do max
                             jog.durab = 1000
-                        screen.blit(done, (300,150))
+                        screen.blit(done, (400,150))
                         display.update()
                         time.wait(1000)
-                        limpaConserto()
-                        menuConserto(jog)
+                        limpaConserto(onde)
+                        menuConserto(jog,onde)
                     else:
-                        limpaConserto()
+                        limpaConserto(onde)
                         screen.blit(semPecas, (100,150))
                         display.update()
                         time.wait(2000)
-                        limpaConserto()
-                        menuConserto(jog)
+                        limpaConserto(onde)
+                        menuConserto(jog,onde)
             
             
             
@@ -502,6 +511,7 @@ def cidade(jog, prox, game_over): # CIDADE
             break
     
         if key.get_pressed()[K_1] or key.get_pressed()[K_KP1]: #MERCADO
+            jog.temporestante -= 3
             limpaCidade()            
             time.wait(500) # para a opcao 1 nao valer dentro do mercado
             mercado(jog)
@@ -532,13 +542,13 @@ def cidade(jog, prox, game_over): # CIDADE
             if jog.health<100:
                 jog.reais-=20
                 jog.health+=20
-                screen.blit(done, (300,110))
+                screen.blit(done, (450,110))
                 display.update()
                 time.wait(1000)
                 limpaCidade()
                 menuCidade(prox)
             else:
-                screen.blit(tanomax, (300,110))
+                screen.blit(tanomax, (450,110))
                 display.update()
                 time.wait(1000)
                 limpaCidade()
@@ -551,7 +561,7 @@ def cidade(jog, prox, game_over): # CIDADE
         if key.get_pressed()[K_4] or key.get_pressed()[K_KP4]:#CONSERTO
             screen.blit(background, (0,0))            
             time.wait(500)
-            conserto(jog)
+            conserto(jog, 'c')
             limpaCidade()
             menuCidade(prox)
     
@@ -652,7 +662,7 @@ def campo(jog, prox, game_over):
         if key.get_pressed()[K_1] or key.get_pressed()[K_KP1]: #Caçar
             jog.temporestante-=2
             jog.comida+=10
-            screen.blit(done, (300,80))
+            screen.blit(done, (400,80))
             display.update()
             time.wait(1000)
             limpaCampo()    
@@ -668,7 +678,7 @@ def campo(jog, prox, game_over):
         if key.get_pressed()[K_2] or key.get_pressed()[K_KP2]: #conserto
             limpaCampo()
             time.wait(500)
-            conserto(jog)
+            conserto(jog,'a')
             limpaCampo()    
             screen.blit(camp, (10,20))
             screen.blit(camp_menu0, (10,50))
@@ -736,7 +746,8 @@ historia.intro(screen,display)
 game_over = [False]
 chegou = False
 
-
+cidade(jog, 1, game_over)
+campo(jog, 10, game_over)
 
 mercado(jog) # mercado inicial
 
@@ -819,31 +830,13 @@ while game_over[0]==False and chegou==False:
     display.update()
     clock.tick(tick)
 
+black = image.load('afeeeeeee.png')
 
-#limpaTela()
-"""
-alpha = 0
-black = image.load('tela_preta_chupragraicer.png')
-black = black.convert_alpha()
-
-black.set_alpha(100)
-screen.blit(black,(0,0))
-display.update()
-time.wait(5000)
-
-while alpha < 255:
-    black.set_alpha(alpha)
+for i in range(50): #FADE OUT PORRAAAAA :D
     screen.blit(black,(0,0))
     display.update()
-    time.wait(500)
-    alpha += 1
-
-
-
-display.update()
-time.wait(4000)
-"""
-
+    time.wait(10)
+    
 if game_over[0] == True:
     som = mixer.Sound('musicagame_over.wav')
     som.play()
