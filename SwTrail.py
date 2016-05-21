@@ -6,15 +6,15 @@ from random import randint
 class Jogo:
 	def __init__(self):
 		# Estoque não variáveis com a classe do jogador
-		self.comida = 0
+		self.comida = 100
 		self.gas = 250
 		self.pecas = 1000
-		self.health = 10
+		self.health = 100
 		self.reais = 100
 		self.temporestante = 100    # Tempo restante
 		self.tempodeviagem = 3    # Tempo de viagem, não conta o tempo gasto em cidade ou camp, apenas na tela go
 		self.numero_jogadores = 3
-		self.distancia = 3000
+		self.distancia = 300
 		self.velocidade = 100
 		self.durab = 1000 # durabilidade
 

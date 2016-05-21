@@ -15,7 +15,7 @@ CC = []
 ci = 5 # 1
 ca = 5 # 2
 p = 50
-tick = 35 #fps
+ticke = 35 #fps
 
 
 for i in range(ci+ca): # monta o vetor CCB
@@ -329,13 +329,13 @@ def mercado(jog):
                     break
                 
                 display.update()
-                clock.tick(tick)
+                clock.tick(ticke)
             
         
         
         
         display.update()
-        clock.tick(tick)
+        clock.tick(ticke)
 
 def menuCidade(prox):    
     #screen.blit(cid, (100,100))
@@ -460,7 +460,7 @@ def conserto(jog,onde):
             
         
         display.update()
-        clock.tick(tick)
+        clock.tick(ticke)
         
 def limpaCidade():
 
@@ -596,12 +596,12 @@ def cidade(jog, prox, game_over): # CIDADE
                     break
             
             display.update()
-            clock.tick(tick)
+            clock.tick(ticke)
         
            
     
     display.update()
-    clock.tick(tick)
+    clock.tick(ticke)
     
     
 def limpaCampo():
@@ -726,12 +726,12 @@ def campo(jog, prox, game_over):
                     break
             
             display.update()
-            clock.tick(tick)
+            clock.tick(ticke)
         
         
     
     display.update()
-    clock.tick(tick)
+    clock.tick(ticke)
     
  
 
@@ -827,7 +827,7 @@ while game_over[0]==False and chegou==False:
     
         
     display.update()
-    clock.tick(tick)
+    clock.tick(ticke)
 
 black = image.load('afeeeeeee.png')
 
@@ -852,8 +852,40 @@ if game_over[0] == True:
         display.update()
     
 if chegou == True:
-    screen.blit(msg_chegou, (250,200))
+    vitoria = image.load('tela_preta_chupragraicer_vitoria.png')
+    fracasso = image.load('tela_preta_chupragraicer_fracasso.png')
+    chegada = image.load('chegada.png')
+    chegada_aviso = image.load('chegada_aviso.png')
+    
+    screen.blit(chegada, (0,0))
     display.update()
+    
+    while True:
+    
+        for e in event.get():
+            if e.type == QUIT:
+                exit() 
+        
+        if key.get_pressed()[K_1] or key.get_pressed()[K_KP1]:
+            screen.blit(fracasso,(0,0))
+            musica_gameover = mixer.Sound('musicagame_over.wav')
+            musica_gameover.play()
+            break
+            
+        if key.get_pressed()[K_0] or key.get_pressed()[K_KP0]:
+            if jog.reais >= 100:
+                screen.blit(vitoria,(0,0))
+                break
+            else:
+                screen.blit(chegada_aviso,(0,0))
+                display.update()
+                time.wait(4000)
+                screen.blit(fracasso,(0,0))
+                break
+    
+        display.update()
+        clock.tick(ticke)
+
 
 while True:
     
@@ -863,4 +895,4 @@ while True:
     
     
     display.update()
-    clock.tick(tick)
+    clock.tick(ticke)
