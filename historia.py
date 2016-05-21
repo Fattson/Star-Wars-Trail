@@ -4,7 +4,6 @@ from pygame.locals import *
 
 def intro(screen, display):
 
-    pygame.mixer.init()
     
     background = pygame.image.load("estrelaspequeno.png")
     background = pygame.transform.scale(background, (956,560))
