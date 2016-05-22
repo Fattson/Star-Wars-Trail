@@ -27,7 +27,7 @@ def intro(screen, display):
     fonte = pygame.font.Font(None, 30)
     espaco = fonte.render("Pressione espaço para roubar o carro!", 1, (255,255,255))
 
-<<<<<<< HEAD
+
     som = pygame.mixer.Sound("musica_abertura.wav")
     
 
@@ -39,8 +39,7 @@ def intro(screen, display):
     azul_fraco = pygame.transform.scale(azul_fraco, (600,200))
 
     azul = 0
-=======
->>>>>>> dd1c101bc12137b43e0deed3a4a0a46f2f300fcf
+
 
     i = 0
     
@@ -130,7 +129,7 @@ def intro(screen, display):
                         
                 if pygame.key.get_pressed()[K_SPACE]:
                     flag = False
-                    som.stop()
+                    som.fadeout(3000)
                     break
         
                 if i%2:

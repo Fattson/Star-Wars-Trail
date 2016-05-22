@@ -737,11 +737,8 @@ def campo(jog, prox, game_over):
 
 # INTROOOOOOO
 
-<<<<<<< HEAD
-=======
-musica_intro = mixer.Sound("musica_abertura.wav")
-musica_intro.play()
->>>>>>> dd1c101bc12137b43e0deed3a4a0a46f2f300fcf
+
+
 historia.intro(screen,display)
 
 

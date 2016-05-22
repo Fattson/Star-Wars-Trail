@@ -28,7 +28,7 @@ def getStatusGO(jog, i, game_over):
 
 def TelaGo(jog, screen, display, game_over):
     
-	semCactus = True 
+	semCactus = False 
 
 	# Carregar imagens
 	background = pygame.image.load("background1.1.png").convert()
@@ -249,18 +249,17 @@ def TelaGo(jog, screen, display, game_over):
 						print("Bateu")
 
 			cactus_position[1] =  cactus_y[cactus_random3]
-<<<<<<< HEAD
+
 			screen.blit(cactus3, (cactus_position[0]+600,cactus_position[1]))
-=======
 			screen.blit(cactus3, (cactus_position[0]+400,cactus_position[1]))
 		
   
-  # Colisões
-		distancia_choqueX = cactus_position[0] - carro_position[0]
-		distancia_choqueY = cactus_position[1] - carro_position[1]
-		distancia_choqueX2 = (cactus_position[0]+200) - carro_position[0]
-		distancia_choqueX3 = (cactus_position[0]+400) - carro_position[0]
->>>>>>> dd1c101bc12137b43e0deed3a4a0a46f2f300fcf
+			# Colisões
+			distancia_choqueX = cactus_position[0] - carro_position[0]
+			distancia_choqueY = cactus_position[1] - carro_position[1]
+			distancia_choqueX2 = (cactus_position[0]+200) - carro_position[0]
+			distancia_choqueX3 = (cactus_position[0]+400) - carro_position[0]
+
 
 			if ((cactus_position[0]+600)-carro_position[0]) < 10:
 				if (cactus_position[0]+600) > carro_position[0]:
