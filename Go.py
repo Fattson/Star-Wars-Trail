@@ -2,6 +2,7 @@ import pygame
 from pygame.locals import *
 from random import randint
 from eventos import *
+from math import *
 
 def randY():
 	return randint(-100, 50)
@@ -80,7 +81,7 @@ def TelaGo(jog, screen, display, game_over):
 	estrada_position = [0,230]
 	estrada2_position =[956,230]
 
-	carro_position = [0,280]
+	carro_position = [0,270]
 
 	cactus_position = [956, 0]
 	
@@ -156,8 +157,22 @@ def TelaGo(jog, screen, display, game_over):
 				carro_position[0] += 1.5
 		
 		if carro_position[0] == -1.5:
-			if tecla[K_a] or tecla[K_LEFT]:
+			if tecla[K_d] or tecla[K_RIGHT]:
 				carro_position[0] += 1.5
+
+		if carro_position[0] == +957.5:
+			if tecla[K_a] or tecla[K_LEFT]:
+				carro_position[0] -= 1.5
+
+		if carro_position[1] == -261.5:
+			if tecla[K_s] or tecla[K_DOWN]:
+				carro_position[1] += 1.5
+
+		if carro_position[1] == -291.5:
+			if tecla[K_w] or tecla[K_UP]:
+				carro_position[1] -= 1.5
+
+
 
 		if nuvens_position[0] <= -650:
 			nuvens_position[0] = 456
@@ -212,25 +227,36 @@ def TelaGo(jog, screen, display, game_over):
 
 			cactus_position[1] =  cactus_y[cactus_random]
 			screen.blit(cactus, cactus_position)
+
+			if (cactus_position[0]-carro_position[0]) < 10:
+				if cactus_position[0] > carro_position[0]:
+					if carro_position[1] - cactus_position[1] < 40 and carro_position[1] - cactus_position[1] > -20:
+						print("Carro: " + str(carro_position[1]))
+						print("Cactus: " + str(cactus_position[1]))
+						print("Bateu")
+
 			cactus_position[1] =  cactus_y[cactus_random2]
-			screen.blit(cactus2, (cactus_position[0]+200,cactus_position[1]))
+			screen.blit(cactus2, (cactus_position[0]+300,cactus_position[1]))
+
+			if ((cactus_position[0]+300)-carro_position[0]) < 10:
+				if (cactus_position[0]+300) > carro_position[0]:
+					if carro_position[1] - cactus_position[1] < 40 and carro_position[1] - cactus_position[1] > -20:
+						print("Carro: " + str(carro_position[1]))
+						print("Cactus2: " + str(cactus_position[1]))
+						print("Bateu")
+
 			cactus_position[1] =  cactus_y[cactus_random3]
-			screen.blit(cactus3, (cactus_position[0]+400,cactus_position[1]))
-		# Colisões
-		distancia_choqueX = cactus_position[0] - carro_position[0]
-		distancia_choqueY = cactus_position[1] - carro_position[1]
-		distancia_choqueX2 = (cactus_position[0]+200) - carro_position[0]
-		distancia_choqueX3 = (cactus_position[0]+400) - carro_position[0]
+			screen.blit(cactus3, (cactus_position[0]+600,cactus_position[1]))
 
-		# Condições nas colisões
-		if distancia_choqueX < 8 and distancia_choqueX > 0 and distancia_choqueY > -6 and distancia_choqueY < 0:
-			game_over[0] = True
-		if distancia_choqueX2 < 8 and distancia_choqueX2 > 0 and distancia_choqueY > -6 and distancia_choqueY < 0:
-			game_over[0] = True
-		if distancia_choqueX3 < 8 and distancia_choqueX3 > 0 and distancia_choqueY > -6 and distancia_choqueY < 0:
-			game_over[0] = True
+			if ((cactus_position[0]+600)-carro_position[0]) < 10:
+				if (cactus_position[0]+600) > carro_position[0]:
+					if carro_position[1] - cactus_position[1] < 40 and carro_position[1] - cactus_position[1] > -20:
+						print("Carro: " + str(carro_position[1]))
+						print("Cactus3: " + str(cactus_position[1]))
+						print("Bateu")	
 
 
+		
 
 		if largura <= 496:
 			largura += 1
@@ -277,7 +303,7 @@ def TelaGo(jog, screen, display, game_over):
 		
 		pygame.draw.rect(screen,(255, 255, 255), [0, 332, 956, 228], 5)
 		screen.fill((0,0,0),recta)
-		
+
 		i += 1
 		cactus_flag += 1
 
