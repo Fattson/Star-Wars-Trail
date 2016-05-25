@@ -6,6 +6,7 @@ from random import randint
 class Jogo:
 	def __init__(self):
 		# Estoque não variáveis com a classe do jogador
+		self.tipo = 0 # 1 = Computação (melhor de todas obvioooo) 2 = Mecatronica 3 = Mecanica
 		self.comida = 100
 		self.gas = 250
 		self.pecas = 1000
