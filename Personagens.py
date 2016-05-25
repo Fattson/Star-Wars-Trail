@@ -31,40 +31,6 @@ while True:
 	screen.blit(mecat, (600,100))
 	pygame.display.update()
 
-	"""while j < 10:
-		if i == 0: # Computação
-			screen.fill((0,0,0))
-			screen.blit(mec, (350,100))
-			screen.blit(mecat, (600,100))
-			pygame.draw.rect(screen, (255,255,255), [99,99, 300, 300], 5)
-			screen.blit(comp, (100,100))
-			pygame.display.update()
-			pygame.time.wait(100)
-			i += 1
-
-		if i == 1: # Mecanica
-			screen.fill((0,0,0))
-			screen.blit(comp, (100,100))
-			screen.blit(mecat, (600,100))
-			pygame.draw.rect(screen, (255,255,255), [399,99, 200, 300], 5)
-			screen.blit(mec, (350,100))
-			pygame.display.update()
-			pygame.time.wait(100)
-			i += 1
-
-		if i == 2: # Mecatronica
-			screen.fill((0,0,0))
-			screen.blit(comp, (100,100))
-			screen.blit(mec, (350,100))
-			pygame.draw.rect(screen, (255,255,255), [650,99, 200, 300], 5)
-			screen.blit(mecat, (600,100))
-			pygame.display.update()
-			pygame.time.wait(200)
-			i += 1
-
-		i = 0
-		j += 1"""
-
 	while j < 100:
 
 		if i%2:
