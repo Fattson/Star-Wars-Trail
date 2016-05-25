@@ -45,6 +45,10 @@ def ema(jog,screen, display):
             
             jog.temporestante -= 3
             s_n = randint(0,100)
+            
+            if jog.mecatronica:
+                s_n -= 15 # + 15% de chance de conseguir
+
             if s_n < 75:
                 screen.blit(ema_suc1,(150,150))
                 display.update()
@@ -64,6 +68,10 @@ def ema(jog,screen, display):
         if key.get_pressed()[K_2] or key.get_pressed()[K_KP2]:#jogar pedra    
             
             s_n = randint(0,100)
+            
+            if jog.mecatronica:
+                s_n -= 15# + 15% de chance de conseguir
+
             if s_n < 15:
                 jog.comida += 10
                 screen.blit(ema_suc2,(150,150))
@@ -106,6 +114,10 @@ def lobo(jog, screen, display):
         
         if key.get_pressed()[K_1] or key.get_pressed()[K_KP1]:#lutar
             s_n = randint(0,100)
+            
+            if jog.mecatronica:
+                s_n -= 15# + 15% de chance de conseguir
+                
             if s_n < 15:
                 jog.comida += 20
                 screen.blit(lobo_suc,(150,150))
@@ -203,13 +215,17 @@ def assalto(jog, screen, display):
             if e.type == QUIT:
                 exit()
         
-        if key.get_pressed()[K_0] or key.get_pressed()[K_KP0]:
+        if key.get_pressed()[K_0] or key.get_pressed()[K_KP0]: # entrega a grana
             jog.reais -= 30
             limpaTelaEv(screen, display)
             break
         
-        if key.get_pressed()[K_1] or key.get_pressed()[K_KP1]:
+        if key.get_pressed()[K_1] or key.get_pressed()[K_KP1]: # reage
             sn = randint(0,100)
+            
+            if jog.mecatronica:
+                sn -= 10# + 10% de chance de conseguir
+
             if sn < 20:
                screen.blit(ass_suc1,(150,150))
                display.update()
@@ -225,7 +241,7 @@ def assalto(jog, screen, display):
                 limpaTelaEv(screen, display)
                 break
                 
-        if key.get_pressed()[K_2] or key.get_pressed()[K_KP2]:
+        if key.get_pressed()[K_2] or key.get_pressed()[K_KP2]: #chama o batman
             sn = randint(0,100)
             if sn < 5:
                screen.blit(ass_suc2,(150,150))

@@ -121,6 +121,9 @@ def TelaGo(jog, screen, display, game_over): # Função "MASTER" que gera a tela
 				exit()
 
 		tecla = pygame.key.get_pressed() # Registrar toda tecla pressionada
+  
+		if tecla[K_SPACE]:
+			break
 
 		# Condição para o movimento vertical do carro
 		if carro_movimento['y'] == 2:
