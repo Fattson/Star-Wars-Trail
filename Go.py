@@ -121,6 +121,9 @@ def TelaGo(jog, screen, display, game_over):
 				exit()
 
 		tecla = pygame.key.get_pressed()
+  
+		if tecla[K_SPACE]:
+			break
 
 		# Condição movimento carro vertical
 		if carro_movimento['y'] == 2:
