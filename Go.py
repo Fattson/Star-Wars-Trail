@@ -271,14 +271,17 @@ def TelaGo(jog, screen, display, game_over): # Função "MASTER" que gera a tela
 						print("Bateu")
 						print("")
 		
+		# Gerar barra de progresso
 		barra = pygame.draw.rect(screen, (225, 0, 0), [253, 503, largura, 46])
 		
-  		
+		# Quando a barra chegar no final, tela Go acaba
+
 		if largura <= 496:
 			largura += 1
 		if largura >= 496:
 			break
 
+		# Gerar aleatoriedade dos eventos
 		if i == lugar:
 		    if ev < 30: 
 		    	if jog.comida >= 10:
@@ -301,7 +304,7 @@ def TelaGo(jog, screen, display, game_over): # Função "MASTER" que gera a tela
 		    elif ev < 90:
 		    	buraco(jog, screen, display)             
             
-    
+    	# Condições para o jogo terminar
 		if jog.durab<=0:
 		    jog.durab = 0 
 		    quebrou(jog, game_over, screen, display)
@@ -310,23 +313,27 @@ def TelaGo(jog, screen, display, game_over): # Função "MASTER" que gera a tela
 		    game_over[0] = True
 		    break
 
-		stat1, stat3, stat8, stat9 = getStatusGO(jog, i, game_over)
-            
 		if game_over[0]==True:
 		    break
 
-		
+		# Chamada de função para dar blit na tela
+		stat1, stat3, stat8, stat9 = getStatusGO(jog, i, game_over)
+        
+        # Gerar barra externa a barra ' kkk '
 		pygame.draw.rect(screen,(255, 255, 255), [0, 332, 956, 228], 5)
 		screen.fill((0,0,0),recta)
 
+		# Contadores
 		i += 1
 		cactus_flag += 1
 
+		# Blit no status
 		screen.blit(stat1, (150,py+250+1*esp))
 		screen.blit(stat3, (150,py+300+1*esp))
 		screen.blit(stat8, (600,py+250+1*esp))
 		screen.blit(stat9, (600,py+300+1*esp))
 		
+		# Update
 		pygame.display.update()
 
 		# relógio
