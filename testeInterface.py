@@ -1015,9 +1015,9 @@ if chegou == True:
             else:
                 screen.blit(chegada_aviso,(0,0))
                 display.update()
-                time.wait(4000)
-                screen.blit(fracasso,(0,0))
-                break
+                time.wait(5000)
+                screen.blit(chegada,(0,0))
+                
     
         display.update()
         clock.tick(ticke)

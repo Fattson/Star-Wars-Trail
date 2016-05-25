@@ -163,19 +163,19 @@ def TelaGo(jog, screen, display, game_over): # Função "MASTER" que gera a tela
 			elif tecla[K_d] or tecla[K_RIGHT]:
 				carro_position[0] += 1.5
 		
-		if carro_position[0] == -1.5:
+		if carro_position[0] < 1:
 			if tecla[K_d] or tecla[K_RIGHT]:
 				carro_position[0] += 1.5
 
-		if carro_position[0] == +957.5:
+		if carro_position[0] > 955:
 			if tecla[K_a] or tecla[K_LEFT]:
 				carro_position[0] -= 1.5
 
-		if carro_position[1] == -261.5:
+		if carro_position[1] < 260:
 			if tecla[K_s] or tecla[K_DOWN]:
 				carro_position[1] += 1.5
 
-		if carro_position[1] == -291.5:
+		if carro_position[1] > 290:
 			if tecla[K_w] or tecla[K_UP]:
 				carro_position[1] -= 1.5
 
@@ -283,10 +283,10 @@ def TelaGo(jog, screen, display, game_over): # Função "MASTER" que gera a tela
 
 		# Gerar aleatoriedade dos eventos
 		if i == lugar:
-		    if ev < 30: 
+		    if ev < 100: 
 		    	if jog.comida >= 10:
         		    	ema(jog, screen, display)
-		    	else:
+		    	else: # se nao tem comida suficiente pra ser roubada, ele troca a variavel ev e lugar 
         		    	lugar = randint((lugar+1),495)
         		    	ev = randint(0,100)
                
@@ -294,7 +294,7 @@ def TelaGo(jog, screen, display, game_over): # Função "MASTER" que gera a tela
 		    elif ev < 50:
 		    	lobo(jog,screen, display)
 
-		    elif ev < 80:
+		    elif ev < 80: # se nao tem dindin suficiente pra ser roubada, ele troca a variavel ev e lugar 
 		    	if jog.reais >= 30:
         		    	assalto(jog, screen, display)
 		    	else:
