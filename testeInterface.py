@@ -58,16 +58,11 @@ init()
 screen = display.set_mode((956,560), 0, 32) # cria a janela
 
 x,y = (100,100)
-#bg = image.load("bg.png").convert() # define uma imagem bg
 fonte = font.Font(None, 30) # define uma fonte
 fontePeq = font.Font(None, 23)
 
 screen.fill((0,0,0)) # pinta a tela de preto
 clock = time.Clock() # cria o reloginho
-
-#screen.blit(bg, (0,0))
-
-#jog = sw.Jogo()
 
 
 
