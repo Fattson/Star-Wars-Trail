@@ -129,7 +129,7 @@ def intro(screen, display):
                         
                 if pygame.key.get_pressed()[K_SPACE]:
                     flag = False
-                    som.fadeout(3000)
+                    som.fadeout(1000)
                     break
         
                 if i%2:
