@@ -163,19 +163,19 @@ def TelaGo(jog, screen, display, game_over): # Função "MASTER" que gera a tela
 			elif tecla[K_d] or tecla[K_RIGHT]:
 				carro_position[0] += 1.5
 		
-		if carro_position[0] == -1.5:
+		if carro_position[0] < 1:
 			if tecla[K_d] or tecla[K_RIGHT]:
 				carro_position[0] += 1.5
 
-		if carro_position[0] == +957.5:
+		if carro_position[0] > 955:
 			if tecla[K_a] or tecla[K_LEFT]:
 				carro_position[0] -= 1.5
 
-		if carro_position[1] == -261.5:
+		if carro_position[1] < 260:
 			if tecla[K_s] or tecla[K_DOWN]:
 				carro_position[1] += 1.5
 
-		if carro_position[1] == -291.5:
+		if carro_position[1] > 290:
 			if tecla[K_w] or tecla[K_UP]:
 				carro_position[1] -= 1.5
 
