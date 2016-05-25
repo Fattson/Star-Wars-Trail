@@ -5,8 +5,13 @@ from random import randint
 
 class Jogo:
 	def __init__(self):
-		# Estoque não variáveis com a classe do jogador
-		self.tipo = 0 # 1 = Computação (melhor de todas obvioooo) 2 = Mecatronica 3 = Mecanica
+		 #Ele é do tipo que for True, sempre 2 delas serao False
+		self.mecatronica = True
+		self.mecanica = False
+		self.comp = False
+  
+          # Estoque não variáveis com a classe do jogador
+
 		self.comida = 100
 		self.gas = 250
 		self.pecas = 1000
@@ -15,7 +20,7 @@ class Jogo:
 		self.temporestante = 100    # Tempo restante
 		self.tempodeviagem = 3    # Tempo de viagem, não conta o tempo gasto em cidade ou camp, apenas na tela go
 		self.numero_jogadores = 3
-		self.distancia = 300
+		self.distancia = 3000
 		self.velocidade = 100
 		self.durab = 1000 # durabilidade
 
