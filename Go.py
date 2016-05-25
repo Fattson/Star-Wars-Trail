@@ -283,10 +283,10 @@ def TelaGo(jog, screen, display, game_over): # Função "MASTER" que gera a tela
 
 		# Gerar aleatoriedade dos eventos
 		if i == lugar:
-		    if ev < 30: 
+		    if ev < 100: 
 		    	if jog.comida >= 10:
         		    	ema(jog, screen, display)
-		    	else:
+		    	else: # se nao tem comida suficiente pra ser roubada, ele troca a variavel ev e lugar 
         		    	lugar = randint((lugar+1),495)
         		    	ev = randint(0,100)
                
@@ -294,7 +294,7 @@ def TelaGo(jog, screen, display, game_over): # Função "MASTER" que gera a tela
 		    elif ev < 50:
 		    	lobo(jog,screen, display)
 
-		    elif ev < 80:
+		    elif ev < 80: # se nao tem dindin suficiente pra ser roubada, ele troca a variavel ev e lugar 
 		    	if jog.reais >= 30:
         		    	assalto(jog, screen, display)
 		    	else:

@@ -16,11 +16,11 @@ class Jogo:
 		self.gas = 250
 		self.pecas = 1000
 		self.health = 100
-		self.reais = 10
+		self.reais = 100
 		self.temporestante = 100    # Tempo restante
 		self.tempodeviagem = 3    # Tempo de viagem, não conta o tempo gasto em cidade ou camp, apenas na tela go
 		self.numero_jogadores = 3
-		self.distancia = 300
+		self.distancia = 3000
 		self.velocidade = 100
 		self.durab = 1000 # durabilidade
 
