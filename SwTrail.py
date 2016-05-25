@@ -6,7 +6,7 @@ from random import randint
 class Jogo:
 	def __init__(self):
 		 #Ele é do tipo que for True, sempre 2 delas serao False
-		self.mecatronica = True
+		self.mecatronica = False
 		self.mecanica = False
 		self.comp = False
   

@@ -89,6 +89,7 @@ def ema(jog,screen, display):
                 break
                 
         
+        
         #display.update()
         clock.tick(tick)
 
