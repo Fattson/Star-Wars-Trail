@@ -970,7 +970,6 @@ black = image.load('afeeeeeee.png')
 
 for i in range(50): #FADE OUT PORRAAAAA :D
     screen.blit(black,(0,0))
-    
     display.update()
     time.wait(10)
     
