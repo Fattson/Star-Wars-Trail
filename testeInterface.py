@@ -12,13 +12,13 @@ jog = sw.Jogo()
 # 3000 km  5 cidades 5 camps
 
 CC = []
-ci = 5 # 1
-ca = 5 # 2
+ci = 5 # numero de cidades
+ca = 5 # numero de camps
 p = 50
 ticke = 35 #fps
 
 
-for i in range(ci+ca): # monta o vetor CCB
+for i in range(ci+ca): # monta o vetor CC (composto de 1s e 2s, 1= cidade 2= campo)
     if ci>0 and ca>0:
         x = randint(1,100)
 
@@ -59,13 +59,13 @@ screen = display.set_mode((956,560), 0, 32) # cria a janela
 
 x,y = (100,100)
 fonte = font.Font(None, 30) # define uma fonte
-fontePeq = font.Font(None, 23)
+fontePeq = font.Font(None, 23) # define uma fonte de tamanho menor
 
 screen.fill((0,0,0)) # pinta a tela de preto
 clock = time.Clock() # cria o reloginho
 
 
-
+## DEFINICAO DE TEXTOS PARA SEREM USADOS MAIS PARA FRENTE
 
 cid = fonte.render("CIDADE! O que deseja fazer?", 1, (255,255,255))
 cid_menu0 = fonte.render("0 - Continuar a viagem", 1, (255,255,255))
@@ -156,8 +156,8 @@ msg_comeco1 = fonte.render("vc e 3 amigos tao no piaui e blablabla roubaram um c
 msg_comeco2 = fonte.render("a viagem comeca num mercado, chequem o STATUS e comprem o necessario", 1, (255,255,255))
 
 
-def limpaTela():
-    screen.fill((0,0,0)) # pinta a tela de preto
+def limpaTela():# pinta a tela de preto
+    screen.fill((0,0,0))
     display.update()
     
 
@@ -185,11 +185,12 @@ def fazTextoProx(prox): # faz o texto da distancia pra prox cidade
     text = "Distância para a próxima cidade: " + str(prox)
     return fonte.render(text, 1, (255,255,255))
     
-def fazTextoGrana(jog):
+def fazTextoGrana(jog): # faz um texto de tela mostrando o dinheiro do jogador
     grana = "Grana: " + str(jog.reais)
     return fonte.render(grana,1,(255,255,255))
     
-def limpaMercado():
+    
+def limpaMercado(): # apaga o menu do mercado
     background = image.load("market.png")
     background = transform.scale(background, (956,560))
     rect = image.load("market_preto.png")
@@ -204,7 +205,7 @@ def limpaMercado():
     draw.rect(screen, (255, 255, 255), [2,2,952,200], 5)
     display.update()
     
-def mercado(jog):
+def mercado(jog): # o mercado
     background = image.load("market.png")
     background = transform.scale(background, (956,560))
     rect = image.load("market_preto.png")
@@ -236,7 +237,7 @@ def mercado(jog):
             limpaTela()            
             break
 
-        if key.get_pressed()[K_1] or key.get_pressed()[K_KP1]:
+        if key.get_pressed()[K_1] or key.get_pressed()[K_KP1]: # comprar comida
             if jog.comp:
                 if jog.reais >= 5:
                     jog.reais-=5
@@ -273,7 +274,7 @@ def mercado(jog):
                     menuMercado(jog)
                 
                 
-        if key.get_pressed()[K_2] or key.get_pressed()[K_KP2]:
+        if key.get_pressed()[K_2] or key.get_pressed()[K_KP2]: # vender comida
             if jog.comp:
                 if jog.comida >= 10:
                     jog.comida-=10
@@ -308,7 +309,7 @@ def mercado(jog):
                     menuMercado(jog)
             
         
-        if key.get_pressed()[K_3] or key.get_pressed()[K_KP3]:
+        if key.get_pressed()[K_3] or key.get_pressed()[K_KP3]: # comprar peças
             if jog.comp:
                 if jog.reais >= 5:
                     jog.reais-=5
@@ -343,7 +344,7 @@ def mercado(jog):
                     limpaMercado()
                     menuMercado(jog)
                     
-        if key.get_pressed()[K_4] or key.get_pressed()[K_KP4]:
+        if key.get_pressed()[K_4] or key.get_pressed()[K_KP4]: # vender peças
             if jog.comp:
                 if jog.reais >= 5:
                     jog.reais-=5
@@ -379,7 +380,7 @@ def mercado(jog):
                     menuMercado(jog)
                     
     
-        if key.get_pressed()[K_5] or key.get_pressed()[K_KP5]:
+        if key.get_pressed()[K_5] or key.get_pressed()[K_KP5]: # STATUS
             limpaMercado()
             stat1, stat2, stat3, stat4, stat5, stat6, stat7, stat8, stat9 = getStatus(jog)
             py = 20 # 1o y da tela 
@@ -431,7 +432,7 @@ def menuCidade(prox):
     
 
 
-def limpaConserto(onde):
+def limpaConserto(onde): # apaga o menu do conserto
     if onde == 'c':
         limpaCidade()
     else:
@@ -1014,9 +1015,9 @@ if chegou == True:
             else:
                 screen.blit(chegada_aviso,(0,0))
                 display.update()
-                time.wait(4000)
-                screen.blit(fracasso,(0,0))
-                break
+                time.wait(5000)
+                screen.blit(chegada,(0,0))
+                
     
         display.update()
         clock.tick(ticke)
