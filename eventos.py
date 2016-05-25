@@ -47,7 +47,7 @@ def ema(jog,screen, display):
             s_n = randint(0,100)
             
             if jog.mecatronica:
-                s_n -= 15
+                s_n -= 15 # + 15% de chance de conseguir
 
             if s_n < 75:
                 screen.blit(ema_suc1,(150,150))
@@ -70,7 +70,7 @@ def ema(jog,screen, display):
             s_n = randint(0,100)
             
             if jog.mecatronica:
-                s_n -= 15
+                s_n -= 15# + 15% de chance de conseguir
 
             if s_n < 15:
                 jog.comida += 10
@@ -116,7 +116,7 @@ def lobo(jog, screen, display):
             s_n = randint(0,100)
             
             if jog.mecatronica:
-                s_n -= 15
+                s_n -= 15# + 15% de chance de conseguir
                 
             if s_n < 15:
                 jog.comida += 20
@@ -224,7 +224,7 @@ def assalto(jog, screen, display):
             sn = randint(0,100)
             
             if jog.mecatronica:
-                sn -= 10
+                sn -= 10# + 15% de chance de conseguir
 
             if sn < 20:
                screen.blit(ass_suc1,(150,150))
