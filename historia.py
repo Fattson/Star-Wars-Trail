@@ -35,8 +35,10 @@ def intro(screen, display):
         if position['y'] >= -1650:
             screen.blit(background, (0,0))
             screen.blit(texto, (position['x'],position['y']))
-            position['y'] -= 0.5
+            position['y'] -= 1
             pygame.display.update()
+            if pygame.key.get_pressed()[K_SPACE]:
+                flag = False
 
         else:
             while True:

@@ -728,7 +728,7 @@ def campo(jog, prox, game_over):
 
 
 # INTROOOOOOO
-"""
+'''
 screen.blit(msg_comeco1, (100,100)) # escreve a intro na tela
 screen.blit(msg_comeco2, (100, 150))
 display.update() #da um update pra aparecer o escrito na tela
@@ -736,7 +736,7 @@ display.update() #da um update pra aparecer o escrito na tela
 time.wait(3000) # espera, em milisegundos
 limpaTela()
 
-"""
+'''
 historia.intro(screen,display)
 
 # ACABA A INTROOOOO

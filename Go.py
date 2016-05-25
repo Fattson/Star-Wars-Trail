@@ -10,7 +10,7 @@ def randY():
 def getStatusGO(jog, i):
 	fonte = pygame.font.Font(None, 30)
 
-	stat1 = "Gasolina: " + str(jog.gas - int(0.06*i)) 
+	stat1 = "Gasolina: " + str(jog.gas - int(0.1*i)) 
 	stat3 = "Durabilidade: " + str(jog.durab - int(0.06*i))
 	stat8 = "Distancia restante: " + str(jog.distancia - int(0.6*i))
 	stat9 = "Tempo restante: " + str(jog.temporestante - int(0.006*i))
@@ -57,6 +57,15 @@ def TelaGo(jog, screen, display, game_over):
 	nuvens2 = pygame.transform.scale(nuvens, (956,300))
 	nuvens3 = pygame.transform.scale(nuvens, (956,300))
 
+	cactus = pygame.image.load("Cactus.png")
+	cactus = pygame.transform.scale(cactus, (35,40))
+
+	cactus2 = pygame.image.load("Cactus.png")
+	cactus2 = pygame.transform.scale(cactus, (35,40))
+
+	cactus3 = pygame.image.load("Cactus.png")
+	cactus3 = pygame.transform.scale(cactus, (35,40))
+
 	# Posições
 	barra_limite_position = [250,500]
 
@@ -76,12 +85,15 @@ def TelaGo(jog, screen, display, game_over):
 
 	carro_position = [0,280]
 
-	#sol_position = [0,0]
+	cactus_position = [956, 0]
+	
+	cactus_y = [285,265]
 
 	# Movimentos
 	background_movimento = {'x': -2, 'y': 0}
 	nuvens_movimento = {'x': -3, 'y': 0}
 	carro_movimento = {'x': 0, 'y': 2}
+	cactus_movimento = {'x': 10, 'y': 0}
 
 	# Relógio
 
@@ -93,7 +105,7 @@ def TelaGo(jog, screen, display, game_over):
 	py = 100 # 1o y da tela 
 	esp = 35
 	i = 0
-
+	cactus_flag = 0
 
 	ev = randint(0,100)
 	lugar = randint(1,495)
@@ -174,11 +186,14 @@ def TelaGo(jog, screen, display, game_over):
 
 		estrada_position[0] += background_movimento['x']
 		estrada2_position[0] += background_movimento['x']
+
+		cactus_position[0] -= cactus_movimento['x']
+
 		
+
 		# Plotar na tela
 		screen.blit(background, background_position)
 		screen.blit(background2, background2_position)
-		#screen.blit(sol, sol_position))
 		screen.blit(nuvens, nuvens_position)
 		screen.blit(nuvens2, nuvens2_position)
 		screen.blit(nuvens3, nuvens3_position)
@@ -186,6 +201,40 @@ def TelaGo(jog, screen, display, game_over):
 		screen.blit(estrada2, estrada2_position)
 		screen.blit(carro, carro_position)
 		screen.blit(barra_limite, barra_limite_position)
+
+		if cactus_flag <= 150:
+			if cactus_flag == 150:
+				cactus_flag = 0
+			if cactus_flag == 0:
+				cactus_random = randint(0,1)
+				print(cactus_random)
+				cactus_random2 = randint(0,1)
+				print(cactus_random2)
+				cactus_random3= randint(0,1)
+				print(cactus_random3)
+				cactus_position[0] = 956
+
+			cactus_position[1] =  cactus_y[cactus_random]
+			screen.blit(cactus, cactus_position)
+			cactus_position[1] =  cactus_y[cactus_random2]
+			screen.blit(cactus2, (cactus_position[0]+200,cactus_position[1]))
+			cactus_position[1] =  cactus_y[cactus_random3]
+			screen.blit(cactus3, (cactus_position[0]+400,cactus_position[1]))
+		# Colisões
+		distancia_choqueX = cactus_position[0] - carro_position[0]
+		distancia_choqueY = cactus_position[1] - carro_position[1]
+		distancia_choqueX2 = (cactus_position[0]+200) - carro_position[0]
+		distancia_choqueX3 = (cactus_position[0]+400) - carro_position[0]
+
+		print(distancia_choqueY)
+		# Condições nas colisões
+		if distancia_choqueX < 8 and distancia_choqueX > 0 and distancia_choqueY > -6 and distancia_choqueY < 0:
+			game_over[0] = True
+		if distancia_choqueX2 < 8 and distancia_choqueX2 > 0 and distancia_choqueY > -6 and distancia_choqueY < 0:
+			game_over[0] = True
+		if distancia_choqueX3 < 8 and distancia_choqueX3 > 0 and distancia_choqueY > -6 and distancia_choqueY < 0:
+			game_over[0] = True
+
 
 		if largura <= 496:
 			largura += 1
@@ -216,6 +265,7 @@ def TelaGo(jog, screen, display, game_over):
 		pygame.draw.rect(screen,(255, 255, 255), [0, 332, 956, 228], 5)
 		screen.fill((0,0,0),recta)
 		i += 1
+		cactus_flag += 1
 
 		screen.blit(stat1, (150,py+250+1*esp))
 		screen.blit(stat3, (150,py+300+1*esp))
