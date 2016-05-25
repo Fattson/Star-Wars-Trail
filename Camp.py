@@ -36,5 +36,3 @@ def Camp():
 		if i < 60:
 			i += 1
 		pygame.display.update()
-
-Camp()
