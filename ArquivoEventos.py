@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Created on Wed May 18 08:14:42 2016
-
-@author: GuilhermeZaborowsky
+Esse arquivo contem os eventos do jogo Star Wars Trail
 """
 
 from pygame import *

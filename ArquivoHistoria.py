@@ -136,34 +136,6 @@ def intro(screen, display): # Função Geraaaal
             screen.blit(texto, (position['x'],position['y']))
             position['y'] -= 1
             pygame.display.update()
-<<<<<<< HEAD
-            if pygame.key.get_pressed()[K_SPACE]:
-                flag = False
-
-        else:
-            while True:
-                for event in pygame.event.get():
-                    if event.type == QUIT:
-                        exit()
-                        
-                if pygame.key.get_pressed()[K_SPACE]:
-                    flag = False
-                    break
-	    
-                if i%2:
-                    screen.blit(espaco, (300,350))
-                    pygame.time.wait(250)
-                    i += 1
-                    pygame.display.update()
-				
-                else:
-                    pygame.draw.rect(screen, (0, 0, 0), [2,2,956,560])
-                    pygame.time.wait(250)
-                    i += 1
-                    pygame.display.update()
-                   
-                clock.tick(30)
-=======
 
             # Apertar a tecla espaço para pular a introdução
             if pygame.key.get_pressed()[K_SPACE]:
@@ -198,4 +170,3 @@ def intro(screen, display): # Função Geraaaal
         
         clock.tick(30)
         azul += 1
->>>>>>> 9e7c2d750664a3ffa3f4a66cd443b8afc010ab6c

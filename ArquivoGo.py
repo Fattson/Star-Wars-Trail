@@ -1,7 +1,7 @@
 import pygame
 from pygame.locals import *
 from random import randint
-from eventos import *
+from ArquivoEventos import *
 from math import *
 
 def randY(): # Função para gerar valores usados para o blit das nuvens
@@ -27,7 +27,7 @@ def getStatusGO(jog, i, game_over): # Função que gera os status do personagem 
 
 def TelaGo(jog, screen, display, game_over): # Função "MASTER" que gera a tela GO
     
-	semCactus = False # Teste para os cactus
+	semCactus = True # Teste para os cactus
 
 	# Carregar imagens e dimensioná-las
 
@@ -92,20 +92,13 @@ def TelaGo(jog, screen, display, game_over): # Função "MASTER" que gera a tela
 		# Estrada
 	estrada_position = [0,230]
 	estrada2_position =[956,230]
-<<<<<<< HEAD
-
-	carro_position = [0,280]
-
-	cactus_position = [956, 0]
 	
-	cactus_y = [285,265]
-=======
 		# Carro
-	carro_position = [0,270]
-		# Cactus
+	carro_position = [0,280]
+		
+      # Cactus
 	cactus_position = [956, 0]
 	cactus_y = [285,265] # Posição Y varia
->>>>>>> 9e7c2d750664a3ffa3f4a66cd443b8afc010ab6c
 
 	# Movimentos
 
@@ -125,10 +118,7 @@ def TelaGo(jog, screen, display, game_over): # Função "MASTER" que gera a tela
 	esp = 35
 	i = 0
 	cactus_flag = 0
-<<<<<<< HEAD
 
-=======
->>>>>>> 9e7c2d750664a3ffa3f4a66cd443b8afc010ab6c
 	ev = randint(0,100)
 	lugar = randint(1,495)
 
@@ -227,18 +217,11 @@ def TelaGo(jog, screen, display, game_over): # Função "MASTER" que gera a tela
 		carro_position[1] += carro_movimento['y']
 			# Estrada
 		estrada_position[0] += background_movimento['x']
-		estrada2_position[0] += background_movimento['x']
-<<<<<<< HEAD
+		estrada2_position[0] += background_movimento['x']		
 
-		cactus_position[0] -= cactus_movimento['x']
-
-		
-
-=======
 			# Cactus
 		cactus_position[0] -= cactus_movimento['x']
 
->>>>>>> 9e7c2d750664a3ffa3f4a66cd443b8afc010ab6c
 		# Plotar na tela
 
 		screen.blit(background, background_position)
@@ -301,45 +284,48 @@ def TelaGo(jog, screen, display, game_over): # Função "MASTER" que gera a tela
 						print("Bateu")
 						print("")
 		
-		# Gerar barra de progresso
-		barra = pygame.draw.rect(screen, (225, 0, 0), [253, 503, largura, 46])
+		
 		
 		# Quando a barra chegar no final, tela Go acaba
 
-		if cactus_flag <= 150:
-			if cactus_flag == 150:
-				cactus_flag = 0
-			if cactus_flag == 0:
-				cactus_random = randint(0,1)
-				print(cactus_random)
-				cactus_random2 = randint(0,1)
-				print(cactus_random2)
-				cactus_random3= randint(0,1)
-				print(cactus_random3)
-				cactus_position[0] = 956
+			if cactus_flag <= 150:
+				if cactus_flag == 150:
+						cactus_flag = 0
+				if cactus_flag == 0:
+						cactus_random = randint(0,1)
+						print(cactus_random)
+						cactus_random2 = randint(0,1)
+						print(cactus_random2)
+						cactus_random3= randint(0,1)
+						print(cactus_random3)
+						cactus_position[0] = 956
 
-			cactus_position[1] =  cactus_y[cactus_random]
-			screen.blit(cactus, cactus_position)
-			cactus_position[1] =  cactus_y[cactus_random2]
-			screen.blit(cactus2, (cactus_position[0]+200,cactus_position[1]))
-			cactus_position[1] =  cactus_y[cactus_random3]
-			screen.blit(cactus3, (cactus_position[0]+400,cactus_position[1]))
-		# Colisões
-		distancia_choqueX = cactus_position[0] - carro_position[0]
-		distancia_choqueY = cactus_position[1] - carro_position[1]
-		distancia_choqueX2 = (cactus_position[0]+200) - carro_position[0]
-		distancia_choqueX3 = (cactus_position[0]+400) - carro_position[0]
+				cactus_position[1] =  cactus_y[cactus_random]
+				screen.blit(cactus, cactus_position)
+				cactus_position[1] =  cactus_y[cactus_random2]
+				screen.blit(cactus2, (cactus_position[0]+200,cactus_position[1]))
+				cactus_position[1] =  cactus_y[cactus_random3]
+				screen.blit(cactus3, (cactus_position[0]+400,cactus_position[1]))
+			# Colisões
+			distancia_choqueX = cactus_position[0] - carro_position[0]
+			distancia_choqueY = cactus_position[1] - carro_position[1]
+			distancia_choqueX2 = (cactus_position[0]+200) - carro_position[0]
+			distancia_choqueX3 = (cactus_position[0]+400) - carro_position[0]
 
-		print(distancia_choqueY)
-		# Condições nas colisões
-		if distancia_choqueX < 8 and distancia_choqueX > 0 and distancia_choqueY > -6 and distancia_choqueY < 0:
-			game_over[0] = True
-		if distancia_choqueX2 < 8 and distancia_choqueX2 > 0 and distancia_choqueY > -6 and distancia_choqueY < 0:
-			game_over[0] = True
-		if distancia_choqueX3 < 8 and distancia_choqueX3 > 0 and distancia_choqueY > -6 and distancia_choqueY < 0:
-			game_over[0] = True
+			print(distancia_choqueY)
+			# Condições nas colisões
+			if distancia_choqueX < 8 and distancia_choqueX > 0 and distancia_choqueY > -6 and distancia_choqueY < 0:
+				game_over[0] = True
+			if distancia_choqueX2 < 8 and distancia_choqueX2 > 0 and distancia_choqueY > -6 and distancia_choqueY < 0:
+				game_over[0] = True
+			if distancia_choqueX3 < 8 and distancia_choqueX3 > 0 and distancia_choqueY > -6 and distancia_choqueY < 0:
+				game_over[0] = True
 
 
+
+
+        # Gerar barra de progresso
+		barra = pygame.draw.rect(screen, (225, 0, 0), [253, 503, largura, 46])
 		if largura <= 496:
 			largura += 1
 		if largura >= 496:
@@ -347,7 +333,7 @@ def TelaGo(jog, screen, display, game_over): # Função "MASTER" que gera a tela
 
 		# Gerar aleatoriedade dos eventos
 		if i == lugar:
-		    if ev < 100: 
+		    if ev < 40: 
 		    	if jog.comida >= 10:
         		    	ema(jog, screen, display)
 		    	else: # se nao tem comida suficiente pra ser roubada, ele troca a variavel ev e lugar 
@@ -355,13 +341,13 @@ def TelaGo(jog, screen, display, game_over): # Função "MASTER" que gera a tela
         		    	ev = randint(0,100)
                
 
-		    elif ev < 50:
+		    elif ev < 55:
 		    	lobo(jog,screen, display)
 
-		    elif ev < 80: # se nao tem dindin suficiente pra ser roubada, ele troca a variavel ev e lugar 
+		    elif ev < 75: 
 		    	if jog.reais >= 30:
         		    	assalto(jog, screen, display)
-		    	else:
+		    	else:# se nao tem dindin suficiente pra ser roubada, ele troca a variavel ev e lugar 
         		    	lugar = randint((lugar+1),495)  
         		    	ev = randint(0,100)
                
