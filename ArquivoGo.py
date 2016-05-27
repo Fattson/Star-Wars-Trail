@@ -10,7 +10,7 @@ def randY(): # Função para gerar valores usados para o blit das nuvens
 def getStatusGO(jog, i, game_over): # Função que gera os status do personagem em forma de frases e calcula para o posterior blit
 	fonte = pygame.font.Font(None, 30)
 
-	stat1 = "Gasolina: " + str(jog.gas - int(0.1*i)) 
+	stat1 = "Gasolina: " + str(jog.gas - int(0.1*i))
 	stat3 = "Durabilidade: " + str(jog.durab - int(0.06*i))
 	stat8 = "Distancia restante: " + str(jog.distancia - int(0.6*i))
 	stat9 = "Tempo restante: " + str(jog.temporestante - int(0.006*i))
@@ -25,7 +25,7 @@ def getStatusGO(jog, i, game_over): # Função que gera os status do personagem 
 
 	return stat_gas, stat_dur, stat_dist, stat_temp
 
-def rect_cactus(screen, cactus_position, x): # Função que cria Hitbox para os Cactus        
+def rect_cactus(screen, cactus_position, x): # Função que cria Hitbox para os Cactus
 	return pygame.draw.rect(screen, (255,255,255),[cactus_position[0]+x, cactus_position[1]+20, 5, 20], 1)	# x = 12 ou 312 ou 612
 
 def rect_carro(screen, carro_position):	# Função que cria Hitbox para o carro
