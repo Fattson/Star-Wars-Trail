@@ -309,14 +309,14 @@ def TelaGo(jog, screen, display, game_over): # Função "MASTER" que gera a tela
 				screen.blit(carro, carro_position)
 		
 			# Colisões
-			if c1.colliderect(x1): # Teste
+			'''if c1.colliderect(x1): # Teste
 				print("B1")
 			if c1.colliderect(x2): # Teste
 				print("B2")
 			if c1.colliderect(x3): # Teste
-				print("B3")
+				print("B3")'''
 			if c1.colliderect(x1) or c1.colliderect(x2) or c1.colliderect(x3):
-				print("Hahaha")
+				#print("Hahaha")
 				jog.durab -= 10
 		# Quando a barra chegar no final, tela Go acaba
 
