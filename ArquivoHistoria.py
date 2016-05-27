@@ -1,6 +1,7 @@
 import pygame
 from pygame.locals import *
 from ArquivoViela import *
+from ArquivoPersonagens import *
 
 
 def fadeIn(screen,display, background): # Efeito fedeIn
@@ -143,11 +144,17 @@ def intro(jog, screen, display): # Função Geraaaal
                 flag = False
                 som.fadeout(1000)
                 pygame.time.wait(300)
+                screen.fill((0,0,0))
+                personagem(jog, screen, display)
+                pygame.time.wait(200)
                 viela(jog, screen, display)
                 break
             if position['y'] <= -1650:
                 flag = False
                 som.fadeout(1000)
+                screen.fill((0,0,0))
+                personagem(jog, screen, display)
+                pygame.time.wait(200)
                 viela(jog, screen, display)
                 break
         

@@ -25,7 +25,7 @@ def viela(jog, screen, display):
         personagem_head = pygame.image.load("comp_dark_head.png")
         personagem_head = pygame.transform.scale(personagem_head, (160,160))	# 160x160 para mecat , resto: 180x180
 
-    elif jog.mecatronica:
+    if jog.mecatronica:
         personagem = pygame.image.load("mecat_dark.png")
         personagem = pygame.transform.scale(personagem, (180,180))	# 160x160 para mecat , resto: 180x180
         
@@ -71,26 +71,20 @@ def viela(jog, screen, display):
                  Loop1 = False
 
 		# Fazer a frase ficar piscando
-         if i%2:
+         if i%5:
                  screen.blit(espaco, (0,0))
-                 pygame.time.wait(250)
                  i += 1
-                 pygame.display.update()
-                 clock.tick(30)
-                 for event in pygame.event.get(): # Se clicar
-                     if event.type == QUIT:
-                         exit()
+
 		
          else:
                  screen.blit(background,(0,0))
                  screen.blit(carro,carro_position)
-                 pygame.time.wait(250)
                  i += 1
-                 pygame.display.update()
-                 clock.tick(30)
-                 for event in pygame.event.get(): # Se clicar
-                     if event.type == QUIT:
-                         exit()
+                 
+         #pygame.time.wait(250)
+                 
+         pygame.display.update()
+         clock.tick(10)
 		
 
 
@@ -150,7 +144,7 @@ def viela(jog, screen, display):
 				# Velocidade do carro 
                       carro_position[1] += speedy_car
                       carro_position[0] += 2
-                      if carro_position[0] == 900:
+                      if carro_position[0] == 900: #quando o carro sair da tela, acabou a viela (rimou hihihi)
                           acabou = True
                       
 			
