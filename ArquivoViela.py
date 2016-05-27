@@ -12,6 +12,8 @@ background = pygame.transform.scale(background, (956,560))
 	# Carro
 carro = pygame.image.load("carcomplex2.png")
 carro = pygame.transform.scale(carro, (400,150))
+
+
 	# Personagens
 if personagem == " Computação":
 	personagem = pygame.image.load("comp_dark.png")
