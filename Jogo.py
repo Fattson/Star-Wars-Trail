@@ -69,7 +69,7 @@ screen.fill((0,0,0)) # pinta a tela de preto
 clock = time.Clock() # cria o reloginho
 
 # INTROOOOOOO
-intro(screen,display)
+intro(jog, screen,display)
 
 
 # ACABA A INTROOOOO

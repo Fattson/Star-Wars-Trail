@@ -1,5 +1,6 @@
 import pygame
 from pygame.locals import *
+from ArquivoViela import *
 
 
 def fadeIn(screen,display, background): # Efeito fedeIn
@@ -8,7 +9,7 @@ def fadeIn(screen,display, background): # Efeito fedeIn
         pygame.display.update()
         pygame.time.wait(100)
 
-def intro(screen, display): # Função Geraaaal
+def intro(jog, screen, display): # Função Geraaaal
 
     # Carregar imagens e dimensioná-las
         # Background
@@ -141,10 +142,13 @@ def intro(screen, display): # Função Geraaaal
             if pygame.key.get_pressed()[K_SPACE]:
                 flag = False
                 som.fadeout(1000)
+                pygame.time.wait(300)
+                viela(jog, screen, display)
                 break
             if position['y'] <= -1650:
                 flag = False
                 som.fadeout(1000)
+                viela(jog, screen, display)
                 break
         
         clock.tick(30)

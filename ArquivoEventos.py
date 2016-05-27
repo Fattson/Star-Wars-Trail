@@ -186,7 +186,6 @@ def quebrou(jog, game_over, screen, display):
                limpaTelaEv(screen, display)
                break
            else:
-               popup(screen, display)
                screen.blit(consE_noGrana, (150, 150))
                display.update()
                time.wait(5000)

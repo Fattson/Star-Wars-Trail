@@ -21,7 +21,7 @@ class Jogador:
 		 #Ele é do tipo que for True, sempre 2 delas serao False
 		self.mecatronica = False
 		self.mecanica = False
-		self.comp = False		
+		self.comp = True		
           
           # Estoques para ser manejados durante o jogo
 		self.comida = 0
