@@ -91,7 +91,7 @@ while game_over[0]==False and chegou==False:
 
     
     
-    proxCidade = dist_proximaCidade(CC[i:])
+    proxCidade = dist_proximaCidade(CC[i:]) # calcula a distancia pra proxima cidade, em rodadas
 
     display.update()
     

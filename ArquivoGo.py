@@ -304,7 +304,6 @@ def TelaGo(jog, screen, display, game_over): # Função "MASTER" que gera a tela
 				if cactus_movim == 10:
 					cactus_movim = 0
 			
-
 			if cactus_position[1] < carro_position[1]: # Para o carro passar na frente o cactus
 				screen.blit(carro, carro_position)
 		
@@ -318,6 +317,9 @@ def TelaGo(jog, screen, display, game_over): # Função "MASTER" que gera a tela
 			if c1.colliderect(x1) or c1.colliderect(x2) or c1.colliderect(x3):
 				#print("Hahaha")
 				jog.durab -= 10
+				if jog.durab <= 0:
+						jog.durab = 0 
+						quebrou(jog, game_over, screen, display)
 		# Quando a barra chegar no final, tela Go acaba
 
 			if cactus_flag <= 170:
