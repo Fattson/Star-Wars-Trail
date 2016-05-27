@@ -71,17 +71,26 @@ def TelaGo(jog, screen, display, game_over): # Função "MASTER" que gera a tela
 	cactus_mov = pygame.image.load("cactus_v2_mov.png")
 	cactus_mov = pygame.transform.scale(cactus_mov, (35,40))
 
+	cactus_dead = pygame.image.load("cactus_dead.png")
+	cactus_dead = pygame.transform.scale(cactus_dead, (35,40))
+
 	cactus2 = pygame.image.load("cactus_v2.png")
 	cactus2 = pygame.transform.scale(cactus, (35,40))
 
 	cactus2_mov = pygame.image.load("cactus_v2_mov.png")
 	cactus2_mov = pygame.transform.scale(cactus2_mov, (35,40))
 
+	cactus2_dead = pygame.image.load("cactus_dead.png")
+	cactus2_dead = pygame.transform.scale(cactus_dead, (35,40))
+
 	cactus3 = pygame.image.load("cactus_v2.png")
 	cactus3 = pygame.transform.scale(cactus, (35,40))
 
 	cactus3_mov = pygame.image.load("cactus_v2_mov.png")
 	cactus3_mov = pygame.transform.scale(cactus3_mov, (35,40))
+
+	cactus3_dead = pygame.image.load("cactus_dead.png")
+	cactus3_dead = pygame.transform.scale(cactus_dead, (35,40))
 
 	# Posições
 		
@@ -130,6 +139,9 @@ def TelaGo(jog, screen, display, game_over): # Função "MASTER" que gera a tela
 	ev = randint(0,100)
 	lugar = randint(1,495)
 	cactus_movim = 0
+	Crash = False
+	Crash2 = False
+	Crash3 = False
 
 	# Retângulo utilizado para ser a área do FILL
 
@@ -252,6 +264,7 @@ def TelaGo(jog, screen, display, game_over): # Função "MASTER" que gera a tela
 			if cactus_flag <= 160:
 				if cactus_flag == 160:
 				   cactus_flag = 0
+				   
 				if cactus_flag == 0:
 				   cactus_random = randint(0,1)
 				
@@ -260,19 +273,30 @@ def TelaGo(jog, screen, display, game_over): # Função "MASTER" que gera a tela
 				   cactus_random3= randint(0,1)
 				
 				   cactus_position[0] = 956
+
+				   Crash = False
+				   Crash2 = False
+				   Crash3 = False
 			
 			# Gerar posição Y para Cactus e blit na tela
 			cactus_position[1] =  cactus_y[cactus_random]
 			x1 = rect_cactus(screen, cactus_position, 12)
 
 			# Mudar de imagem do cacto para dar a sensação de movimento
+			print(Crash, Crash2, Crash3)
+			print(cactus_movim)
+			
 			if cactus_movim < 5:
-				screen.blit(cactus, cactus_position)
+				if Crash == False:
+					screen.blit(cactus, cactus_position)
 			if cactus_movim >= 5 and cactus_movim <= 10:
-				screen.blit(cactus_mov, cactus_position)
+				if Crash == False:
+					screen.blit(cactus_mov, cactus_position)
 				if cactus_movim == 10:
 					cactus_movim = 0
-
+			if Crash:
+				screen.blit(cactus_dead,(cactus_position[0], cactus_position[1]+10))
+			
 			if cactus_position[1] < carro_position[1]: # Para o carro passar na frente o cactus
 				screen.blit(carro, carro_position)
 			
@@ -281,13 +305,18 @@ def TelaGo(jog, screen, display, game_over): # Função "MASTER" que gera a tela
 			x2 = rect_cactus(screen, cactus_position, 312)
 
 			# Mudar de imagem do cacto para dar a sensação de movimento
+			
 			if cactus_movim < 5:
-				screen.blit(cactus2, (cactus_position[0]+300,cactus_position[1]))
+				if Crash2 == False:
+					screen.blit(cactus2, (cactus_position[0]+300,cactus_position[1]))
 			if cactus_movim >= 5 and cactus_movim <= 10:
-				screen.blit(cactus2_mov, (cactus_position[0]+300,cactus_position[1]))
+				if Crash2 == False:
+					screen.blit(cactus2_mov, (cactus_position[0]+300,cactus_position[1]))
 				if cactus_movim == 10:
 					cactus_movim = 0
 			
+			if Crash2:
+				screen.blit(cactus2_dead, (cactus_position[0]+300, cactus_position[1]+10))
 
 			if cactus_position[1] < carro_position[1]: # Para o carro passar na frente o cactus
 				screen.blit(carro, carro_position)
@@ -297,29 +326,36 @@ def TelaGo(jog, screen, display, game_over): # Função "MASTER" que gera a tela
 			x3 = rect_cactus(screen, cactus_position, 612)
 
 			# Mudar de imagem do cacto para dar a sensação de movimento
+			
 			if cactus_movim < 5:
-				screen.blit(cactus3, (cactus_position[0]+600,cactus_position[1]))
+				if Crash3 == False:
+					screen.blit(cactus3, (cactus_position[0]+600,cactus_position[1]))
 			if cactus_movim >= 5 and cactus_movim <= 10:
-				screen.blit(cactus3_mov, (cactus_position[0]+600,cactus_position[1]))
+				if Crash3 == False:
+					screen.blit(cactus3_mov, (cactus_position[0]+600,cactus_position[1]))
 				if cactus_movim == 10:
 					cactus_movim = 0
+
+			if Crash3:
+				screen.blit(cactus3_dead, (cactus_position[0]+600, cactus_position[1]+10))
 			
 			if cactus_position[1] < carro_position[1]: # Para o carro passar na frente o cactus
 				screen.blit(carro, carro_position)
 		
 			# Colisões
-			'''if c1.colliderect(x1): # Teste
-				print("B1")
-			if c1.colliderect(x2): # Teste
-				print("B2")
-			if c1.colliderect(x3): # Teste
-				print("B3")'''
+			
 			if c1.colliderect(x1) or c1.colliderect(x2) or c1.colliderect(x3):
-				#print("Hahaha")
 				jog.durab -= 10
 				if jog.durab <= 0:
 						jog.durab = 0 
 						quebrou(jog, game_over, screen, display)
+				
+				if c1.colliderect(x1):
+					Crash = True
+				if c1.colliderect(x2):
+					Crash2 = True
+				if c1.colliderect(x3):
+					Crash3 = True
 		# Quando a barra chegar no final, tela Go acaba
 
 			if cactus_flag <= 170:

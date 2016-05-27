@@ -23,21 +23,21 @@ def viela(jog, screen, display):
         personagem = pygame.transform.scale(personagem, (180,180))	# 160x160 para mecat , resto: 180x180
         
         personagem_head = pygame.image.load("comp_dark_head.png")
-        personagem_head = pygame.transform.scale(personagem_head, (160,160))	# 160x160 para mecat , resto: 180x180
+        personagem_head = pygame.transform.scale(personagem_head, (180,180))	# 160x160 para mecat , resto: 180x180
 
     if jog.mecatronica:
         personagem = pygame.image.load("mecat_dark.png")
-        personagem = pygame.transform.scale(personagem, (180,180))	# 160x160 para mecat , resto: 180x180
+        personagem = pygame.transform.scale(personagem, (160,160))	# 160x160 para mecat , resto: 180x180
         
         personagem_head = pygame.image.load("mecat_dark_head.png")
-        personagem_head = pygame.transform.scale(personagem_head, (180,180))	# 160x160 para mecat , resto: 180x180
+        personagem_head = pygame.transform.scale(personagem_head, (160,160))	# 160x160 para mecat , resto: 180x180
 
     if jog.mecanica:
         personagem = pygame.image.load("mec_dark.png")
-        personagem = pygame.transform.scale(personagem, (160,160))	# 160x160 para mecat , resto: 180x180
+        personagem = pygame.transform.scale(personagem, (180,180))	# 160x160 para mecat , resto: 180x180
         
         personagem_head = pygame.image.load("mec_dark_head.png")
-        personagem_head = pygame.transform.scale(personagem_head, (160,160))	# 160x160 para mecat , resto: 180x180
+        personagem_head = pygame.transform.scale(personagem_head, (180,180))	# 160x160 para mecat , resto: 180x180
 
     # Movimentos e posições
     personagem_position = [-50,372]
