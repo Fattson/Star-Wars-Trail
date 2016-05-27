@@ -13,11 +13,26 @@ background = pygame.transform.scale(background, (956,560))
 carro = pygame.image.load("carcomplex2.png")
 carro = pygame.transform.scale(carro, (400,150))
 	# Personagens
-comp = pygame.image.load("comp_dark.png")
-comp = pygame.transform.scale(comp, (180,180))
+if personagem == " Computação":
+	personagem = pygame.image.load("comp_dark.png")
+	personagem = pygame.transform.scale(comp, (180,180))	# 160x160 para mecat , resto: 180x180
 
-comp_head = pygame.image.load("comp_dark_head.png")
-comp_head = pygame.transform.scale(comp_head, (180,180))
+	personagem_head = pygame.image.load("comp_dark_head.png")
+	personagem_head = pygame.transform.scale(comp_head, (160,160))	# 160x160 para mecat , resto: 180x180
+
+if personagem == " Mecatrônica":
+	personagem = pygame.image.load("mecat_dark.png")
+	personagem = pygame.transform.scale(comp, (180,180))	# 160x160 para mecat , resto: 180x180
+
+	personagem_head = pygame.image.load("mecat_dark_head.png")
+	personagem_head = pygame.transform.scale(comp_head, (180,180))	# 160x160 para mecat , resto: 180x180
+
+if personagem == " Mecânica":
+	personagem = pygame.image.load("mec_dark.png")
+	personagem = pygame.transform.scale(comp, (160,160))	# 160x160 para mecat , resto: 180x180
+
+	personagem_head = pygame.image.load("mec_dark_head.png")
+	personagem_head = pygame.transform.scale(comp_head, (160,160))	# 160x160 para mecat , resto: 180x180
 
 # Movimentos e posições
 personagem_position = [-50,372]
@@ -115,7 +130,7 @@ while True:
 
 			# Se o carro nao anda, ele plota a descida da cabeça do personagem
 			if espera <= 40:
-				screen.blit(comp_head, personagem_position)
+				screen.blit(personagem_head, personagem_position)
 
 			# Plota o carro
 			screen.blit(carro,carro_position)
@@ -134,7 +149,7 @@ while True:
 			espera += 1
 
 	else:	
-		screen.blit(comp, personagem_position)
+		screen.blit(personagem, personagem_position)
 
 	screen.blit(carro,carro_position)
 	

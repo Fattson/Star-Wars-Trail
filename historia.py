@@ -143,6 +143,30 @@ def intro(screen, display): # Função Geraaaal
                 break
             if position['y'] <= -1650:
                 break
+        '''
+        # Após o título:
+        while True:
+            for event in pygame.event.get(): # Se clicar
+                if event.type == QUIT:
+                    exit()
+            # Se apertar a tecla espaço "rouba o carro"
+            if pygame.key.get_pressed()[K_SPACE]:
+                flag = False
+                som.fadeout(1000)
+                break
+            # Fazer a frase ficar piscando
+            if i%2:
+                screen.blit(espaco, (300,350))
+                pygame.time.wait(250)
+                i += 1
+                pygame.display.update()
+			
+            else:
+                pygame.draw.rect(screen, (0, 0, 0), [2,2,956,560])
+                pygame.time.wait(250)
+                i += 1
+                pygame.display.update()'''
+        
         
         clock.tick(30)
         azul += 1
