@@ -143,7 +143,7 @@ def intro(screen, display): # Função Geraaaal
                 break
             if position['y'] <= -1650:
                 break
-
+        '''
         # Após o título:
         while True:
             for event in pygame.event.get(): # Se clicar
@@ -165,7 +165,7 @@ def intro(screen, display): # Função Geraaaal
                 pygame.draw.rect(screen, (0, 0, 0), [2,2,956,560])
                 pygame.time.wait(250)
                 i += 1
-                pygame.display.update()
+                pygame.display.update()'''
         
         
         clock.tick(30)

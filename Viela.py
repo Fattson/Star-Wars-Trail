@@ -17,12 +17,18 @@ comp = pygame.transform.scale(comp, (180,180))
 
 # Movimentos
 personagem_position = [-50,372]
-personagem_velocity = [1,0]
+
 # Variáveis
 i = 0
 flag = True
 # Time
 clock = pygame.time.Clock()
+
+numet = 0
+velocity = 0
+velocity_change = 0
+
+personagem_velocity = [1,velocity]
 
 # Loop principal
 while True:
@@ -34,11 +40,26 @@ while True:
 		if personagem_position[0] == 620:
 			pygame.time.wait(500)
 			flag = False
+
+	velocity = 10
+	velocity_change = 9*(numet**2)
+
+	if personagem_position[1] <= 372:
+		personagem_position[1] = personagem_position[1] - velocity + velocity_change
+		print(personagem_position[1])
+
+	if personagem_position[1] > 372:
+		numet = 0
+		personagem_position[1] = 372
+
 	screen.blit(background, (0,0))
 	if personagem_position[0] > 620:
 		pygame.time.wait(500)
 	else:	
 		screen.blit(comp, personagem_position)
 	screen.blit(carro,(500, 400))
+	
+	if velocity == 10:
+		numet += 0.04
 	
 	pygame.display.update()
