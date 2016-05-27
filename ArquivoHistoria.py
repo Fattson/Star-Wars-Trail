@@ -140,8 +140,11 @@ def intro(screen, display): # Função Geraaaal
             # Apertar a tecla espaço para pular a introdução
             if pygame.key.get_pressed()[K_SPACE]:
                 flag = False
+                som.fadeout(1000)
                 break
             if position['y'] <= -1650:
+                flag = False
+                som.fadeout(1000)
                 break
         
         clock.tick(30)

@@ -315,9 +315,9 @@ def TelaGo(jog, screen, display, game_over): # Função "MASTER" que gera a tela
 				print("B2")
 			if c1.colliderect(x3): # Teste
 				print("B3")
-			#if c1.colliderect(x1) or c1.colliderect(x2) or c1.colliderect(x3):
-				#print("Hahaha")
-			
+			if c1.colliderect(x1) or c1.colliderect(x2) or c1.colliderect(x3):
+				print("Hahaha")
+				jog.durab -= 10
 		# Quando a barra chegar no final, tela Go acaba
 
 			if cactus_flag <= 170:
