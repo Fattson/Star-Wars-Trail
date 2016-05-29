@@ -80,7 +80,7 @@ m7 = mixer.Sound('musica_7.wav')
 musicas = [m1,m2,m3,m4,m5,m6,m7]
 
 # INTROOOOOOO
-#intro(jog, screen,display)
+intro(jog, screen,display)
 
 
 # ACABA A INTROOOOO
@@ -120,7 +120,7 @@ while game_over[0]==False and chegou==False:
  
     TelaGo(jog, screen,display, game_over)
 
-    ma.set_volume(0.3) # volume vai pra 0.3
+    ma.set_volume(0.2) # abaixa o volume, pro jogador pensar
     ####### TERMINA A TELA GO
     
     if game_over[0]==True:
