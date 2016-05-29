@@ -283,8 +283,8 @@ def TelaGo(jog, screen, display, game_over): # Função "MASTER" que gera a tela
 			x1 = rect_cactus(screen, cactus_position, 12)
 
 			# Mudar de imagem do cacto para dar a sensação de movimento
-			print(Crash, Crash2, Crash3)
-			print(cactus_movim)
+			#print(Crash, Crash2, Crash3)
+			#print(cactus_movim)
 			
 			if cactus_movim < 5:
 				if Crash == False:
