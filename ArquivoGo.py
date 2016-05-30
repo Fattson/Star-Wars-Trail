@@ -58,7 +58,7 @@ def TelaGo(jog, screen, display, game_over): # Função "MASTER" que gera a tela
 	estrada = pygame.transform.scale(estrada, (956,200))
 	estrada2 = pygame.transform.scale(estrada, (956,200))
 		# Carro
-	carro = pygame.image.load("carro.png")
+	carro = pygame.image.load("carro2.png")
 
 	carro = pygame.transform.scale(carro, (50,50))
 		# Barra de progresso

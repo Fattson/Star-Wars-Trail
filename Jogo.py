@@ -225,7 +225,7 @@ if chegou == True: # se ele chegou no destino final
             musica_gameover = mixer.Sound('musicagame_over.wav')
             musica_gameover.play()
             break
-            
+
         if key.get_pressed()[K_0] or key.get_pressed()[K_KP0]: # Tentar comprar, se nao tem grana suficiente volta pro menu
             if jog.reais >= 100:
                 screen.blit(vitoria,(0,0))
