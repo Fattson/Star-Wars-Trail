@@ -16,6 +16,8 @@ def viela(jog, screen, display):
     carro = pygame.image.load("carcomplex2.png")
     carro = pygame.transform.scale(carro, (400,150))
 
+    carro_mov = pygame.image.load("carcomplex2_2.png")
+    carro_mov = pygame.transform.scale(carro_mov, (400,150))
 
 	# Personagens
     if jog.comp:
@@ -58,7 +60,7 @@ def viela(jog, screen, display):
     flag = True
     Loop1 = True
     acabou = False
-    
+    mov = 0
     
     
     while Loop1:
@@ -133,13 +135,24 @@ def viela(jog, screen, display):
                       screen.blit(personagem_head, personagem_position)
 
 			# Plota o carro
-                  screen.blit(carro,carro_position)
+                  if carro_position[0] > 500:
+                    
+                    if mov < 10:
+                        screen.blit(carro_mov,carro_position)
+                    if mov >= 10:
+                        screen.blit(carro,carro_position)
+                        if mov == 20:
+                            mov = 0
+                  else:
+                      screen.blit(carro,carro_position)
 			# Se o personagem "está" no carro, o carro se movimenta
                   if espera >= 40:
                       if carro_position[1] == 400:
                           speedy_car -= 2
                       if carro_position[1] == 398:
                           speedy_car += 2
+                      
+                      mov += 1
 
 				# Velocidade do carro 
                       carro_position[1] += speedy_car
@@ -159,4 +172,6 @@ def viela(jog, screen, display):
 	
             pygame.display.update()
             clock.tick(30)
+        
+
 

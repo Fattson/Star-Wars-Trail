@@ -6,6 +6,8 @@ from ArquivoPersonagens import *
 
 def fadeIn(screen,display, background): # Efeito fedeIn
     for i in range(0,20):
+        if pygame.key.get_pressed()[K_SPACE]:
+                flag = False
         screen.blit(background, (0,0))
         pygame.display.update()
         pygame.time.wait(100)
@@ -61,6 +63,8 @@ def intro(jog, screen, display): # Função Geraaaal
         
         # Efeito FadeIn e FadeOut para o texto inicial
         while azul <= 3:
+            if pygame.key.get_pressed()[K_SPACE]:
+                flag = False
             screen.blit(azul_fraco, (215,250))
             pygame.display.update()
             pygame.time.wait(300)
@@ -68,6 +72,8 @@ def intro(jog, screen, display): # Função Geraaaal
             azul += 1
             
         while azul <= 6:
+            if pygame.key.get_pressed()[K_SPACE]:
+                flag = False
             screen.blit(azul_medio, (215,250))
             pygame.display.update()
             pygame.time.wait(300)
@@ -75,6 +81,8 @@ def intro(jog, screen, display): # Função Geraaaal
             azul += 1
             
         while azul <= 9:
+            if pygame.key.get_pressed()[K_SPACE]:
+                flag = False
             screen.blit(azul_forte, (215,250))
             pygame.display.update()
             pygame.time.wait(1000)
@@ -83,6 +91,8 @@ def intro(jog, screen, display): # Função Geraaaal
 
         screen.fill((0,0,0))
         while azul <= 12:
+            if pygame.key.get_pressed()[K_SPACE]:
+                flag = False
             screen.blit(azul_medio, (215,250))
             pygame.display.update()
             
@@ -91,6 +101,8 @@ def intro(jog, screen, display): # Função Geraaaal
         pygame.time.wait(200)
         screen.fill((0,0,0))
         while azul <= 15:
+            if pygame.key.get_pressed()[K_SPACE]:
+                flag = False
             screen.blit(azul_fraco, (215,250))
             pygame.display.update()
             
@@ -99,6 +111,8 @@ def intro(jog, screen, display): # Função Geraaaal
         pygame.time.wait(300)
         screen.fill((0,0,0))
         while azul == 16:
+            if pygame.key.get_pressed()[K_SPACE]:
+                flag = False
             screen.blit(azul_fraco, (215,250))
             pygame.display.update()
 
@@ -107,6 +121,8 @@ def intro(jog, screen, display): # Função Geraaaal
         pygame.time.wait(400)
         screen.fill((0,0,0))
         while azul <= 19:
+            if pygame.key.get_pressed()[K_SPACE]:
+                flag = False
             screen.blit(azul_superfraco, (215,250))
             pygame.display.update()
 
