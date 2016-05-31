@@ -143,7 +143,7 @@ def viela(jog, screen, display):
 
 				# Velocidade do carro 
                       carro_position[1] += speedy_car
-                      carro_position[0] += 2
+                      carro_position[0] += 5
                       if carro_position[0] == 900: #quando o carro sair da tela, acabou a viela (rimou hihihi)
                           acabou = True
                       
