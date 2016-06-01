@@ -21,7 +21,7 @@ ca = 5 # numero de camps
 p = 50
 ticke = 35 #fps
 
-
+  
 for i in range(ci+ca): # monta o vetor CC (composto de 1s e 2s, 1= cidade 2= campo)
     if ci>0 and ca>0:
         x = randint(1,100)
