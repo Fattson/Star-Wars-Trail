@@ -11,7 +11,7 @@ from ArquivoHistoria import *
 
 
 mixer.init()
-jog = Jogador()
+jog = Jogador()                                       
 
 # 3000 km  5 cidades 5 camps
 
