@@ -25,18 +25,18 @@ class Jogador:
           
           # Estoques para ser manejados durante o jogo
 		self.comida = 0
-		self.gas = 200
+		self.gas = 100
 		self.pecas = 100
 		self.health = 100
-		self.reais = 50
-		self.durab = 1000 # durabilidade
+		self.reais = 500
+		self.durab = 500 # durabilidade
   
   
           # Infos sobre o andamento do jogo
-		self.temporestante = 100    # Tempo restante
+		self.temporestante = 50    # Tempo restante
 		self.tempodeviagem = 3    # Tempo de viagem, não conta o tempo gasto em cidade ou camp, apenas na tela go
 		self.numero_personagens = 3
-		self.distancia = 3000
+		self.distancia = 300
 		self.velocidade = 100
 
 
