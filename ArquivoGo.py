@@ -15,7 +15,7 @@ def getStatusGO(jog, i, game_over): # Função que gera os status do personagem 
 	stat8 = "Distancia restante: " + str(jog.distancia - int(0.6*i))
 	stat9 = "Tempo restante: " + str(jog.temporestante - int(0.006*i))
  
-	if (jog.gas - int(0.06*i)) <= 0 or (jog.temporestante - int(0.006*i)) <= 0: # Se o gás ou o tempo for == 0 , GAME OVER
+	if (jog.gas - int(0.1*i)) <= 0 or (jog.temporestante - int(0.006*i)) <= 0: # Se o gás ou o tempo for == 0 , GAME OVER
          game_over[0]=True
 
 	stat_gas = fonte.render(stat1, 1, (255,255,255))
