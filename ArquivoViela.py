@@ -73,14 +73,13 @@ def viela(jog, screen, display):
 		# Fazer a frase ficar piscando
          if i%5:
                  screen.blit(espaco, (0,0))
-                 i += 1
 
 		
          else:
                  screen.blit(background,(0,0))
                  screen.blit(carro,carro_position)
-                 i += 1
                  
+         i += 1      
          #pygame.time.wait(250)
                  
          pygame.display.update()
