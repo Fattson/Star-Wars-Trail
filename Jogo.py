@@ -229,6 +229,7 @@ if chegou == True: # se ele chegou no destino final
         if key.get_pressed()[K_0] or key.get_pressed()[K_KP0]: # Tentar comprar, se nao tem grana suficiente volta pro menu
             if jog.reais >= 100:
                 screen.blit(vitoria,(0,0))
+                m1.play()
                 break
             else:
                 screen.blit(chegada_aviso,(0,0))

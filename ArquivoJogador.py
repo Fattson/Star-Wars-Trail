@@ -24,19 +24,19 @@ class Jogador:
 		self.comp = False		
           
           # Estoques para ser manejados durante o jogo
-		self.comida = 0
-		self.gas = 200
+		self.comida = 50
+		self.gas = 90
 		self.pecas = 100
-		self.health = 100
-		self.reais = 50
-		self.durab = 1000 # durabilidade
+		self.health = 150
+		self.reais = 100
+		self.durab = 700 # durabilidade
   
   
           # Infos sobre o andamento do jogo
-		self.temporestante = 100    # Tempo restante
+		self.temporestante = 40  # Tempo restante
 		self.tempodeviagem = 3    # Tempo de viagem, não conta o tempo gasto em cidade ou camp, apenas na tela go
 		self.numero_personagens = 3
-		self.distancia = 3000
+		self.distancia = 1500
 		self.velocidade = 100
 
 
